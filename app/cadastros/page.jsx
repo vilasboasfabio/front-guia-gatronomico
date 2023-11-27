@@ -21,6 +21,9 @@ function CadastroRestaurante() {
     const [restaurantes, setRestaurantes] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
 
+    const [dados, setDados] = useState([]);
+    const router = useRouter();
+
 
     const diasFuncionamento = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"];
     const formasPagamento = ["Dinheiro", "Cartão de Crédito", "Cartão de Débito"];
@@ -88,14 +91,15 @@ function CadastroRestaurante() {
         }
     };
 
-    const handleDelete = async (id) => {
+    const handleDelete =async (id) => {
+        const url = `/api/restaurantes/${id}`;
         try {
-            const resposta = await axios.delete(`/api/restaurantes/${id}`);
-            console.log(resposta.data);
-        } catch (erro) {
-            console.error(erro);
+          await axios.delete(url);
+          setDados(dados.filter((restaurante) => restaurante.id !== id));
+        } catch (error) {
+          console.error("Error fetching data:", error);
         }
-    }
+      };
 
     useEffect(() => {
         const fetchRestaurantes = async () => {
