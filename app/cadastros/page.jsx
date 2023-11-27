@@ -20,8 +20,8 @@ function CadastroRestaurante() {
     });
     const [restaurantes, setRestaurantes] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
-    const [dados, setDados] = useState([]);
     const [editingRestaurante, setEditingRestaurante] = useState(null);
+    const [error, setError] = useState(null);
 
     const formRef = React.useRef(null);
 
@@ -60,6 +60,7 @@ function CadastroRestaurante() {
 
         console.log(dadosFormatados)
         try {
+            console.log(dadosFormatados)
             const response = await axios.post('/api/restaurantes', dadosFormatados);
             console.log('response', response);
             console.log('Restaurante cadastrado:', response.data);
@@ -78,6 +79,7 @@ function CadastroRestaurante() {
                 data: ''
             });
         } catch (error) {
+            console.log(error)
             console.error('Erro ao enviar o formulário', error);
         }
 
