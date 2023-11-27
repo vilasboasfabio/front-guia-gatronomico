@@ -101,17 +101,16 @@ function CadastroRestaurante() {
         } catch (erro) {
             console.error(erro);
         }
-    }
-    
+    };
+
     const handleDelete = async (id) => {
-        const url = `/api/restaurantes/${id}`;
         try {
-           await axios.delete(url);
-           setDados(dados.filter((restaurante) => restaurante.id !== id));
+            const resposta = await axios.delete(`/api/restaurantes/${id}`);
+            console.log(resposta.data);
         } catch (erro) {
             console.error(erro);
         }
-    }
+      };
 
     useEffect(() => {
         const fetchRestaurantes = async () => {
