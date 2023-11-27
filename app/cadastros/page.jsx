@@ -20,7 +20,10 @@ function CadastroRestaurante() {
     });
     const [restaurantes, setRestaurantes] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
-    const [dados, setDados] = useState([]); 
+    const [dados, setDados] = useState([]);
+    const [editingRestaurante, setEditingRestaurante] = useState(null);
+
+    const formRef = React.useRef(null);
 
 
     const diasFuncionamento = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"];
@@ -80,10 +83,12 @@ function CadastroRestaurante() {
 
     };
 
-    const handleEdit = async (id, restaurante) => {
+    const handleEdit = async (id, updatedRestaurante) => {
         try {
-            const resposta = await axios.put(`/api/restaurantes/${id}`, restaurante);
-            console.log(resposta.data);
+            const response = await axios.put(`/api/restaurantes/${id}`, updatedRestaurante);
+            setRestaurantes(restaurantes.map(restaurante =>
+                restaurante.id === id ? response.data : restaurante
+            ));
             setIsEditing(false);
             setRestaurante({
                 nome: '',
@@ -98,19 +103,19 @@ function CadastroRestaurante() {
                 avaliacao: '',
                 data: ''
             });
-        } catch (erro) {
-            console.error(erro);
+        } catch (error) {
+            console.error('Erro ao atualizar o restaurante:', error);
         }
     };
 
     const handleDelete = async (id) => {
         try {
-            const resposta = await axios.delete(`/api/restaurantes/${id}`);
-            console.log(resposta.data);
+            await axios.delete(`/api/restaurantes/${id}`);
+            setRestaurantes(restaurantes.filter(restaurante => restaurante.id !== id));
         } catch (erro) {
             console.error(erro);
         }
-      };
+    };
 
     useEffect(() => {
         const fetchRestaurantes = async () => {
@@ -123,12 +128,14 @@ function CadastroRestaurante() {
         };
 
         fetchRestaurantes();
-    }, []);
+    }, [restaurante]);
 
     const editInputs = (id) => {
         const restauranteEdit = restaurantes.find(restaurante => restaurante.id === id);
         setRestaurante(restauranteEdit);
         setIsEditing(true);
+        setEditingRestaurante(id);
+        formRef.current.scrollIntoView({ behavior: 'smooth' });
     }
 
 
@@ -136,7 +143,8 @@ function CadastroRestaurante() {
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 py-2 sm:px-6 lg:px-8">
             <div className="max-w-md w-full space-y-8">
                 <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Cadastro de Restaurantes</h2>
-                <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+                <form className="mt-8 space-y-6" ref={formRef}>
+
                     <input type="hidden" name="remember" value="true" />
                     <div className="rounded-md shadow-sm -space-y-px">
                         <label htmlFor="nome">Nome:</label>
@@ -278,10 +286,11 @@ function CadastroRestaurante() {
                         {
                             isEditing
                                 ? <button className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onClick={() => handleEdit(restaurante.id, restaurante)}>Atualizar</button>
-                                : <button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cadastrar</button>
+                                : <button className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onClick={handleSubmit}>Cadastrar</button>
                         }
                     </div>
                 </form>
+
             </div>
 
             <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 py-2 sm:px-6 lg:px-8">
@@ -289,7 +298,9 @@ function CadastroRestaurante() {
 
                 <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     {restaurantes.map((restaurante) => (
-                        <RestauranteCard key={restaurante.id} restaurante={restaurante} onEdit={editInputs} onDelete={handleDelete} />
+                        restaurante.id !== editingRestaurante && (
+                            <RestauranteCard key={restaurante.id} restaurante={restaurante} onEdit={editInputs} onDelete={handleDelete} />
+                        )
                     ))}
                 </ul>
             </div>
