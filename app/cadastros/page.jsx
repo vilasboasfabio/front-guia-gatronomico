@@ -20,6 +20,7 @@ function CadastroRestaurante() {
     });
     const [restaurantes, setRestaurantes] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
+    const [dados, setDados] = useState([]); 
 
 
     const diasFuncionamento = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"];
@@ -79,19 +80,34 @@ function CadastroRestaurante() {
 
     };
 
-    const handleEdit = async (id, dadosAtualizados) => {
+    const handleEdit = async (id, restaurante) => {
         try {
-            const resposta = await axios.put(`/api/restaurantes/${id}`, dadosAtualizados);
+            const resposta = await axios.put(`/api/restaurantes/${id}`, restaurante);
             console.log(resposta.data);
+            setIsEditing(false);
+            setRestaurante({
+                nome: '',
+                img: '',
+                loc: '',
+                valor: '',
+                tipo: '',
+                chefe: '',
+                descricao: '',
+                funcionamento: [],
+                pagamento: [],
+                avaliacao: '',
+                data: ''
+            });
         } catch (erro) {
             console.error(erro);
         }
-    };
-
+    }
+    
     const handleDelete = async (id) => {
+        const url = `/api/restaurantes/${id}`;
         try {
-            const resposta = await axios.delete(`/api/restaurantes/${id}`);
-            console.log(resposta.data);
+           await axios.delete(url);
+           setDados(dados.filter((restaurante) => restaurante.id !== id));
         } catch (erro) {
             console.error(erro);
         }
