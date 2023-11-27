@@ -3,7 +3,7 @@ import {NextResponse} from 'next/server';
 
 const url = process.env.BASE_URL + "restaurante";
 
-export async function getRestaurantes() {
+export async function GET() {
 
     try{
         const resposta = await axios.get(url);
@@ -30,8 +30,12 @@ export async function getRestaurante(id) {
     
 }
 
-export async function postRestaurante(request) {
-    const pararametros = request.body;
+export async function POST(request) {
+
+    const pararametros = await request.json();
+
+    console.log(`POST`);
+    console.log(pararametros);
 
     try{
         const resposta = await axios.post(url, pararametros);

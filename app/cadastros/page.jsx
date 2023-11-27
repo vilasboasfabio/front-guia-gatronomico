@@ -2,6 +2,7 @@
 console.log('CadastroRestaurante.jsx');
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import RestauranteCard from '../components/CardRestaurante';
 
 function CadastroRestaurante() {
     const [restaurante, setRestaurante] = useState({
@@ -18,6 +19,7 @@ function CadastroRestaurante() {
         data: ''
     });
     const [restaurantes, setRestaurantes] = useState([]);
+    const [isEditing, setIsEditing] = useState(false);
 
 
     const diasFuncionamento = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"];
@@ -54,19 +56,51 @@ function CadastroRestaurante() {
 
         console.log(dadosFormatados)
         try {
-            const response = await axios.post('http://localhost:4005/restaurante', dadosFormatados);
+            const response = await axios.post('/api/restaurantes', dadosFormatados);
             console.log('response', response);
             console.log('Restaurante cadastrado:', response.data);
             console.log(dadosFormatados);
+            setRestaurante({
+                nome: '',
+                img: '',
+                loc: '',
+                valor: '',
+                tipo: '',
+                chefe: '',
+                descricao: '',
+                funcionamento: [],
+                pagamento: [],
+                avaliacao: '',
+                data: ''
+            });
         } catch (error) {
             console.error('Erro ao enviar o formulário', error);
         }
+
     };
+
+    const handleEdit = async (id, dadosAtualizados) => {
+        try {
+            const resposta = await axios.put(`/api/restaurantes/${id}`, dadosAtualizados);
+            console.log(resposta.data);
+        } catch (erro) {
+            console.error(erro);
+        }
+    };
+
+    const handleDelete = async (id) => {
+        try {
+            const resposta = await axios.delete(`/api/restaurantes/${id}`);
+            console.log(resposta.data);
+        } catch (erro) {
+            console.error(erro);
+        }
+    }
 
     useEffect(() => {
         const fetchRestaurantes = async () => {
             try {
-                const response = await axios.get('http://localhost:4005/restaurante');
+                const response = await axios.get('/api/restaurantes');
                 setRestaurantes(response.data);
             } catch (error) {
                 console.error('Erro ao buscar restaurantes', error);
@@ -76,6 +110,13 @@ function CadastroRestaurante() {
         fetchRestaurantes();
     }, []);
 
+    const editInputs = (id) => {
+        const restauranteEdit = restaurantes.find(restaurante => restaurante.id === id);
+        setRestaurante(restauranteEdit);
+        setIsEditing(true);
+    }
+
+
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 py-2 sm:px-6 lg:px-8">
             <div className="max-w-md w-full space-y-8">
@@ -83,28 +124,75 @@ function CadastroRestaurante() {
                 <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
                     <input type="hidden" name="remember" value="true" />
                     <div className="rounded-md shadow-sm -space-y-px">
-                        <div>
-                            <label htmlFor="nome" className="sr-only">Nome:</label>
-                            <input id="nome" name="nome" type="text" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Nome" onChange={handleChange} />
-                        </div>
+                        <label htmlFor="nome">Nome:</label>
+                        <input
+                            type="text"
+                            id="nome"
+                            name="nome"
+                            value={restaurante.nome}
+                            onChange={handleChange}
+                            className='w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
+                        />
 
-                        <label htmlFor="imagem" className='block text-sm font-medium text-gray-700'>Imagem:</label>
-                        <input type="text" name="img" id="imagem" onChange={handleChange} className='block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' />
+                        <label htmlFor="imagem">Imagem:</label>
+                        <input
+                            type="text"
+                            id="imagem"
+                            name="img"
+                            value={restaurante.img}
+                            onChange={handleChange}
+                            className='w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
+                        />
 
-                        <label htmlFor="localizacao" className='block text-sm font-medium text-gray-700'>Localização:</label>
-                        <input type="text" name="loc" id="localizacao" onChange={handleChange} className='block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' />
+                        <label htmlFor="localizacao">Localização:</label>
+                        <input
+                            type="text"
+                            id="localizacao"
+                            name="loc"
+                            value={restaurante.loc}
+                            onChange={handleChange}
+                            className='w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
+                        />
 
-                        <label htmlFor="valor" className='block text-sm font-medium text-gray-700'>Valor:</label>
-                        <input type="text" name="valor" id="valor" onChange={handleChange} className='block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' />
+                        <label htmlFor="valor">Valor:</label>
+                        <input
+                            type="text"
+                            id="valor"
+                            name="valor"
+                            value={restaurante.valor}
+                            onChange={handleChange}
+                            className='w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
+                        />
 
-                        <label htmlFor="tipo" className='block text-sm font-medium text-gray-700'>Tipo:</label>
-                        <input type="text" name="tipo" id="tipo" onChange={handleChange} className='block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' />
+                        <label htmlFor="tipo">Tipo:</label>
+                        <input
+                            type="text"
+                            id="tipo"
+                            name="tipo"
+                            value={restaurante.tipo}
+                            onChange={handleChange}
+                            className='w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
+                        />
 
-                        <label htmlFor="chefe" className='block text-sm font-medium text-gray-700'>Chefe:</label>
-                        <input type="text" name="chefe" id="chefe" onChange={handleChange} className='block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' />
+                        <label htmlFor="chefe">Chefe:</label>
+                        <input
+                            type="text"
+                            id="chefe"
+                            name="chefe"
+                            value={restaurante.chefe}
+                            onChange={handleChange}
+                            className='w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
+                        />
 
-                        <label htmlFor="descricao" className='block text-sm font-medium text-gray-700'>Descrição:</label>
-                        <input type="text" name="descricao" id="descricao" onChange={handleChange} className='block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' />
+                        <label htmlFor="descricao">Descrição:</label>
+                        <input
+                            type="text"
+                            id="descricao"
+                            name="descricao"
+                            value={restaurante.descricao}
+                            onChange={handleChange}
+                            className='w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
+                        />
 
                         <div className="w-full max-w-xs mx-auto flex">
                             <label htmlFor="funcionamento" className="block text-sm font-medium text-gray-700 mb-2">Funcionamento:</label>
@@ -151,43 +239,51 @@ function CadastroRestaurante() {
                                 ))}
                             </div>
                         </div>
-                        <label htmlFor='avaliacao' className='block text-sm font-medium text-gray-700'>Avaliação:</label>
-                        <input type="text" name="avaliacao" id="avaliacao" onChange={handleChange} className='block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' />
+                        <label htmlFor="avaliacao">Avaliação:</label>
+                        <input
+                            type="number"
+                            id="avaliacao"
+                            name="avaliacao"
+                            value={restaurante.avaliacao}
+                            onChange={handleChange}
+                            className='w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
+                        />
 
-
-                        <label htmlFor='data' className='block text-sm font-medium text-gray-700'>Data:</label>
-                        <input type="text" name="data" id="data" onChange={handleChange} className='block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' />
+                        <label htmlFor="data">Data:</label>
+                        <input
+                            type="date"
+                            id="data"
+                            name="data"
+                            value={restaurante.data}
+                            onChange={handleChange}
+                            className='w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
+                        />
                     </div>
                     <div>
-                        <button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            Cadastrar Restaurante
-                        </button>
+                        {
+                            isEditing
+                                ? <button className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onClick={() => handleEdit(restaurante.id, restaurante)}>Atualizar</button>
+                                : <button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cadastrar</button>
+                        }
                     </div>
                 </form>
             </div>
-            {/*Exibir os restaurantes criados*/}
-            <div>
-                <h2>Restaurantes Cadastrados</h2>
-                <ul>
+
+            <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 py-2 sm:px-6 lg:px-8">
+                <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Restaurantes Cadastrados</h2>
+
+                <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     {restaurantes.map((restaurante) => (
-                        <div key={restaurante._id}>
-                            <li>{restaurante.nome}</li>
-                            <li>{restaurante.img}</li>
-                            <li>{restaurante.loc}</li>
-                            <li>{restaurante.valor}</li>
-                            <li>{restaurante.tipo}</li>
-                            <li>{restaurante.chefe}</li>
-                            <li>{restaurante.descricao}</li>
-                            <li>{restaurante.funcionamento}</li>
-                            <li>{restaurante.pagamento}</li>
-                            <li>{restaurante.avaliacao}</li>
-                            <li>{restaurante.data}</li>
-                        </div>
+                        <RestauranteCard key={restaurante.id} restaurante={restaurante} onEdit={editInputs} onDelete={handleDelete} />
                     ))}
                 </ul>
             </div>
+
+
         </div>
     );
+
+
 
 }
 
