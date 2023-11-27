@@ -17,19 +17,6 @@ export async function GET() {
 
 }
 
-export async function getRestaurante(id) {
-        try{
-            const resposta = await axios.get(url + id);
-    
-            return NextResponse.json(resposta.data);
-    
-        }catch(erro){
-            console.log("[Order_Get]", erro);
-            return new NextResponse("Erro do servidor", {status: 500});
-        }
-    
-}
-
 export async function POST(request) {
 
     const pararametros = await request.json();
