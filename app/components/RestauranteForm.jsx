@@ -39,6 +39,7 @@ const RestauranteForm = ({
     {value: 'Mista Oriental', label: 'Mista Oriental'},
     {value: 'Mista Ocidental', label: 'Mista Ocidental'},
     {value: 'Mista Mediterrânea', label: 'Mista Mediterrânea'},
+    {value: 'Moderna', label: 'Moderna'},
     {value: 'Mista', label: 'Mista'},
     { value: 'Outra', label: 'Outra' },
   ];
