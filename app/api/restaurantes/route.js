@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {NextResponse} from 'next/server';
 
-const url = "http://localhost:4005/" + "restaurante";
+const url = process.env.BASE_URL + "restaurante";
 
 export async function GET() {
 
@@ -28,8 +28,13 @@ export async function POST(request) {
         console.log("[Resposta]", resposta.data);
 
         return NextResponse.json(resposta.data);
-    } catch(erro){
-        console.log("[Order_Post]", erro);
-        return new NextResponse("Erro do servidor dentro do route", {status: 500});
+    } catch (error) {
+        console.log("[Order_Post]", error);
+        if (error.response && error.response.data) {
+            // Retorna o erro de forma que o frontend possa capturá-lo
+            return new NextResponse(JSON.stringify(error.response.data), { status: error.response.status });
+        } else {
+            return new NextResponse("Erro do servidor dentro do route", {status: 500});
+        }
     }
 }
