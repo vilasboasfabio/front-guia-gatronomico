@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import RestauranteCard from './components/CardRestaurante';
+import RestauranteCardShow from './components/CardRestauranteShow';
 import FilterDropdown from './components/Filter';
 
 
@@ -139,7 +139,7 @@ function ExibirRestaurantes() {
         
         filtredRestaurantes.map(restaurante => (
           <li key={restaurante.id}>
-            <RestauranteCard restaurante={restaurante} />
+            <RestauranteCardShow restaurante={restaurante} />
           </li>
         ))
 
