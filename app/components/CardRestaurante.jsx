@@ -3,7 +3,7 @@ import React from 'react';
 
 function RestauranteCard({ restaurante, onEdit, onDelete }) {
   return (
-    <div className="max-w-sm rounded mt-5 bg-bronze overflow-hidden shadow-lg hover:scale-105 hover:transition-all hover:opacity-80 border-bronze">
+    <div className="max-w-sm rounded-2xl mt-5 bg-bronze overflow-hidden shadow-lg hover:scale-105 hover:transition-all hover:bg-transparent border-bronze">
       <img className="w-full" src={restaurante.img} alt="Imagem do Restaurante" />
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2 text-lbronze"  >{restaurante.nome} - {restaurante.chefe}</div>

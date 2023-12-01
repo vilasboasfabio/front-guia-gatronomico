@@ -145,19 +145,18 @@ function CadastroRestaurante() {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 py-2 sm:px-6 lg:px-8 ">
-            <div className=" space-y-8 w-screen bg-image-1">
-
-                <div className='w-1/2 mx-auto mt-24 mb-20'>
-                    <RestauranteForm
-                        restaurante={restaurante}
-                        handleChange={handleChange}
-                        handleCheckboxChange={handleCheckboxChange}
-                        handleSubmit={handleSubmit}
-                        errors={errors}
-                        isEditing={isEditing}
-                        handleEdit={handleEdit}
-                        formRef={formRef}
-                    />
+        <div className="space-y-8 w-screen bg-image-1 bg-slate-700">
+          <div className='w-1/2 mx-auto mt-24 mb-20 opacity-1'>
+            <RestauranteForm
+              restaurante={restaurante}
+              handleChange={handleChange}
+              handleCheckboxChange={handleCheckboxChange}
+              handleSubmit={handleSubmit}
+              errors={errors}
+              isEditing={isEditing}
+              handleEdit={handleEdit}
+              formRef={formRef}
+            />
                 </div>
 
 

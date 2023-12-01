@@ -16,7 +16,7 @@ const RestauranteForm = ({
 
 
   return (
-    <div className="container mx-auto p-6 bg-white shadow-lg rounded-lg">
+    <div className="container mx-auto p-6 bg-white bg-opacity-100 shadow-lg rounded-lg">
     <h2 className="text-3xl font-bold text-center mb-8">Cadastro de Restaurante</h2>
     <form onSubmit={isEditing ? () => handleEdit(restaurante.id, restaurante) : handleSubmit} ref={formRef}>
       {/* Nome */}

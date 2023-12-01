@@ -35,3 +35,7 @@
     background-position: center;
     background-repeat: no-repeat;
 }
+
+.bg-transparent{
+    background-color: transparent;
+}
