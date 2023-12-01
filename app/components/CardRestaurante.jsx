@@ -27,14 +27,14 @@ function RestauranteCard({ restaurante, onEdit, onDelete }) {
           <button
             onClick={() => onEdit(restaurante.id)}
             type="button"
-            className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white bg-blue-950 hover:bg-gray-950 focus:outline-none"
+            className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white bg-blue-950 hover:bg-slate-900 focus:outline-none"
           >
             Editar
           </button>
           <button
             onClick={() => onDelete(restaurante.id)}
             type="button"
-            className="inline-flex mr-40 items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white bg-blue-950 hover:bg-gray-950 focus:outline-none"
+            className="inline-flex mr-40 items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white bg-blue-950 hover:bg-slate-900 focus:outline-none"
           >
             Deletar
           </button>
