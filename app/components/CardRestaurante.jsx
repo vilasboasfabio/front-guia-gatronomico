@@ -1,7 +1,8 @@
 
 import React from 'react';
 
-function RestauranteCard({ restaurante, onEdit, onDelete }) {
+
+function RestauranteCard({ restaurante, onEdit, onDelete, endereco }) {
   return (
 
     <div className="max-w-sm rounded-2xl mt-5 bg-bronze overflow-hidden shadow-lg hover:scale-105 hover:transition-all hover:opacity-80 border-bronze">
@@ -24,7 +25,7 @@ function RestauranteCard({ restaurante, onEdit, onDelete }) {
       </div>
       <hr className="bg-lbronze h-1" />
       <div className="p-6">
-
+    
         <div className="mt-4 flex justify-between">
           <button
             onClick={() => onEdit(restaurante.id)}
@@ -41,6 +42,7 @@ function RestauranteCard({ restaurante, onEdit, onDelete }) {
             Deletar
           </button>
         </div>
+
       </div>
     </div>
     

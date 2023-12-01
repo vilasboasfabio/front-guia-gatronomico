@@ -10,7 +10,7 @@ function RestauranteCardShow({ restaurante}) {
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2 text-lbronze"  >{restaurante.nome} - {restaurante.chefe}</div>
         <dl className="mt-1 flex-grow flex flex-col justify-between">
-          <dd className="text-sm text-white">{restaurante.loc}</dd>
+        
           <dt className="sr-only">Valor</dt>
           <dd className="mt-3 lg:flex">
             <span className="px-2 py-1 text-green-800 text-xs font-medium text-lbronze bg-gray-500 rounded-full">
@@ -24,7 +24,7 @@ function RestauranteCardShow({ restaurante}) {
       </div>
       <hr className="bg-lbronze h-1" />
       <div className="p-6">
-
+      <dd className="text-sm text-white">{restaurante.loc}</dd>
       </div>
     </div>
     
