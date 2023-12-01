@@ -2,26 +2,20 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import RestauranteCard from './components/CardRestaurante';
-import Filter from './components/Filter';
+import FilterDropdown from './components/Filter';
 
 
 function ExibirRestaurantes() {
-  const [restaurantes, setRestaurantes] = useState([]);
   const [filters, setFilters] = useState({
-    avaliacao: null,
-    valor: null,
-    tipo: null,
-    chefe: null,
-    pagamento: null,
+    avaliacao: '',
+    valor: '',
+    tipo: '',
+    pagamento: '',
   });
-
-  const avaliacaoOptions = [
-    { value: 1, label: '1 estrela' },
-    { value: 2, label: '2 estrelas' },
-    { value: 3, label: '3 estrelas' },
-  ];
+  const [filtredRestaurantes, setFiltredRestaurantes] = useState([]);
 
   const valorOptions = [
+    { value: '', label: 'Qualquer Valor' },
     { value: 1, label: '$' },
     { value: 2, label: '$$' },
     { value: 3, label: '$$$' },
@@ -29,6 +23,7 @@ function ExibirRestaurantes() {
   ];
 
   const tipoOptions = [
+    {value:'', label: 'Qualquer tipo'},
     { value: 'Brasileira', label: 'Brasileira' },
     { value: 'Italiana', label: 'Italiana' },
     { value: 'Japonesa', label: 'Japonesa' },
@@ -58,56 +53,96 @@ function ExibirRestaurantes() {
   ];
 
   const pagamentoOptions = [
+    {value:'', label: 'Qualquer forma de pagamento'},
     { value: 'Dinheiro', label: 'Dinheiro' },
     { value: 'Cartão de Crédito', label: 'Cartão de Crédito' },
     { value: 'Cartão de Débito', label: 'Cartão de Débito' },
     { value: 'Pix', label: 'Pix' },
     { value: 'Vale Alimentação', label: 'Vale Alimentação' },
+    { value: 'Vale Refeição', label: 'Vale Refeição' },
   ];
 
+  const avaliacaoOptions = [
+    { value: 0, label: 'Qualquer avaliação'},
+    { value: 1, label: '1 estrela' },
+    { value: 2, label: '2 estrelas' },
+    { value: 3, label: '3 estrelas' },
+  ];
 
   useEffect(() => {
-    const fetchRestaurantes = async () => {
-      const response = await axios.get('/restaurantes', {
-        params: filters,
-      });
-      setRestaurantes(response.data);
+    const fetchRestaurants = async () => {
+      try {
+        const response = await axios.get(`/api/restaurantes?avaliacao=${filters.avaliacao}&valor=${filters.valor}&tipo=${filters.tipo}&pagamento=${filters.pagamento}`);
+        
+        if (filters.avaliacao || filters.valor || filters.tipo || filters.pagamento) {
+          setFiltredRestaurantes(response.data.filter((restaurante) => {
+            if (filters.avaliacao && restaurante.avaliacao !== Number(filters.avaliacao)) {
+              return false;
+            }
+            if (filters.valor && restaurante.valor !== Number(filters.valor)) {
+              return false;
+            }
+            if (filters.tipo && restaurante.tipo !== filters.tipo) {
+              return false;
+            }
+            if (filters.pagamento && !restaurante.pagamento.includes(filters.pagamento)) {
+              return false;
+            }
+            return true;
+          }));
+          console.log(filtredRestaurantes)
+        } else {
+          setFiltredRestaurantes(response.data);
+        }
+
+      } catch (error) {
+        console.error('Erro ao buscar restaurantes', error);
+      }
     };
+    console.log(filters)
+    fetchRestaurants();
+  }, [filters] );
+ 
 
-    fetchRestaurantes();
-  }, [filters]);
-
-  const handleFilterChange = (filterName) => (selectedOption) => {
-    setFilters((prevFilters) => ({
-      ...prevFilters,
-      [filterName]: selectedOption ? selectedOption.value : null,
-    }));
+  const handleFilterChange = (type) => (e) => {
+    setFilters({ ...filters, [type]: e.target.value });
   };
 
   return (
     <div>
       <h2>Restaurantes Cadastrados</h2>
-      <Filter
+      <FilterDropdown
         label="Avaliação"
         options={avaliacaoOptions}
         onChange={handleFilterChange('avaliacao')}
       />
-      <Filter
+      <FilterDropdown
         label="Valor"
         options={valorOptions}
         onChange={handleFilterChange('valor')}
       />
-      <Filter
+      <FilterDropdown
         label="Tipo"
         options={tipoOptions}
         onChange={handleFilterChange('tipo')}
       />
+      <FilterDropdown
+        label="Pagamento"
+        options={pagamentoOptions}
+        onChange={handleFilterChange('pagamento')}
+      />
 
 
       <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {restaurantes.map((restaurante) => (
-          <RestauranteCard key={restaurante.id} restaurante={restaurante} />
-        ))}
+       {
+        
+        filtredRestaurantes.map(restaurante => (
+          <li key={restaurante.id}>
+            <RestauranteCard restaurante={restaurante} />
+          </li>
+        ))
+
+       }
       </ul>
     </div>
   );

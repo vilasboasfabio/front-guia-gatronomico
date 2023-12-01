@@ -1,14 +1,16 @@
 import React from 'react';
-import Select from 'react-select';
 
-const Filter = ({ options, placeholder, onChange }) => {
-  return (
-    <Select
-      options={options}
-      placeholder={placeholder}
-      onChange={onChange}
-    />
-  );
-};
+const FilterDropdown = ({ label, options, onChange }) => (
+  <div className="flex flex-col">
+    <label>{label}</label>
+    <select onChange={onChange} className="rounded-md p-2">
+      {options.map(option => (
+        <option key={option.value} value={option.value}>
+          {option.label}
+        </option>
+      ))}
+    </select>
+  </div>
+);
 
-export default Filter;
+export default FilterDropdown;
