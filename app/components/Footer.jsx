@@ -1,6 +1,6 @@
 const Footer = () => {
     return (
-        <div className="bg-bronze text-white p-5 text-center text-26xl  tracking-wider uppercase mt-0 max-w-full ">
+        <div className="bg-slate-900 text-white p-5 text-center text-26xl  tracking-wider uppercase mt-0 max-w-full ">
             <section className="flex">
                 <div className=" font-sans font-thin text-xs w-3/5 ml-4 text-start mt-3">
                     <h3 className=" mb-3 font-semibold text-sm">Endereço</h3>
