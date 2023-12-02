@@ -23,8 +23,9 @@ export async function GET(request, { params }) {
   
     try {
       const response = await axios.put(`${url}/${id}`, body);
-  
+      console.log(response.data);
       return NextResponse.json(response.data);
+      
     } catch (error) {
       console.log("[ORDER_PUT]", error);
       return new NextResponse("Erro interno do servidor!", { status: 500 });

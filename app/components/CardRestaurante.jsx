@@ -1,51 +1,59 @@
-
 import React from 'react';
 
-
-function RestauranteCard({ restaurante, onEdit, onDelete, endereco }) {
+function RestauranteCard({ restaurante, onEdit, onDelete }) {
   return (
-
-    <div className="max-w-sm rounded-2xl mt-5 bg-bronze overflow-hidden shadow-lg hover:scale-105 hover:transition-all hover:opacity-80 border-bronze">
-      <img className="w-full h-64" src={restaurante.img} alt="Imagem do Restaurante" />
-
-      <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2 text-lbronze"  >{restaurante.nome} - {restaurante.chefe}</div>
-        <dl className="mt-1 flex-grow flex flex-col justify-between">
-          <dd className="text-sm text-white">{restaurante.loc}</dd>
-          <dt className="sr-only">Valor</dt>
-          <dd className="mt-3 lg:flex">
-            <span className="px-2 py-1 text-green-800 text-xs font-medium text-lbronze bg-gray-500 rounded-full">
-              {'$'.repeat(restaurante.valor)}
-            </span>
-            <span className="inline-flex items-center justify-center ml-3 px-2 py-1 text-xs font-bold leading-none text-indigo-100 bg-gray-500 rounded-full">
-              {'⭐'.repeat(restaurante.avaliacao)}
-            </span>
-          </dd>
-        </dl>
-      </div>
-      <hr className="bg-lbronze h-1" />
-      <div className="p-6">
-    
-        <div className="mt-4 flex justify-between">
+    <div className="max-w-sm rounded-2xl mt-5 bg-bronze overflow-hidden transition-transform duration-500 hover:scale-110 shadow-lg border-bronze relative group">
+      {/* Descrição (inicialmente escondida e com transição suave) */}
+      <div className="absolute top-0 inset-x-0 mt-8 px-6 py-4 opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out z-10">
+        <p className="text-sm text-white">{restaurante.descricao}</p>
+        <div className="flex justify-end w-fulls mt-4 mr-36">
           <button
             onClick={() => onEdit(restaurante.id)}
-            type="button"
-            className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white bg-blue-950 hover:bg-slate-900 focus:outline-none"
+            className="bg-slate-900 hover:bg-slate-700 hover:text-lbronze hover:scale-90 text-white font-bold py-2 px-4 rounded-full mr-4"  >
+            Editar
+          </button>
+          <button
+            onClick={() => onDelete(restaurante.id)}
+            className="bg-slate-900 hover:bg-slate-700 hover:scale-90 hover:text-lbronze text-white font-bold py-2 px-4 rounded-full">
+            Deletar
+          </button>
+        </div>
+      </div>
+      {/* Imagem do Restaurante */}
+      <img 
+        className="w-full h-64 relative z-0 group-hover:translate-y-full transition-transform duration-500 ease-in-out"
+        src={restaurante.img} 
+        alt="Imagem do Restaurante"
+      />
+      {/* Conteúdo do Card */}
+      <div className="px-6 py-4 z-20">
+        <div className="font-bold text-xl mb-2 text-lbronze">{restaurante.nome} - {restaurante.chefe}</div>
+        <p className="text-sm text-white">{restaurante.loc}</p>
+        <div className="flex justify-between mt-6 items-center">
+          <span className="text-lbronze bg-gray-500 rounded-full px-2 py-1 text-xs font-medium">
+            {'$'.repeat(restaurante.valor)}
+          </span>
+          <span className="bg-gray-500 rounded-full px-2 py-1 text-xs font-bold text-indigo-100 -ml-72">
+            {'⭐'.repeat(restaurante.avaliacao)}
+          </span>
+        </div>
+        <hr className='bg-lbronze h-1 mb-6 mt-6' />
+        <div className="flex justify-end mt-4 mr-36">
+          <button
+            onClick={() => onEdit(restaurante.id)}
+            className="bg-slate-900 hover:bg-slate-700 hover:text-lbronze text-white font-bold py-2 px-4 rounded-full mr-4"
           >
             Editar
           </button>
           <button
             onClick={() => onDelete(restaurante.id)}
-            type="button"
-            className="inline-flex mr-40 items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white bg-blue-950 hover:bg-slate-900 focus:outline-none"
+            className="bg-slate-900 hover:bg-slate-700 hover:text-lbronze text-white font-bold py-2 px-4 rounded-full"
           >
             Deletar
           </button>
         </div>
-
       </div>
     </div>
-    
   );
 }
 
