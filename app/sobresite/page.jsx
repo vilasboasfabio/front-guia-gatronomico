@@ -1,9 +1,11 @@
 import React from "react";
+import Footer from "../components/Footer";
 
 
 function PaginaSobre() {
     return (
         <main className="bg-slate-900 ">
+            
             <section className="mt-8">
                 <h1 className="text-4xl font-bold text-center mb-6 text-white">Bem-vindo ao Elite Chefs</h1>
                 <h1 className="text-2xl font-bold text-center mt-2 text-white">O Guia Definitivo para Experiências Gastronômicas Inesquecíveis</h1>
@@ -39,6 +41,8 @@ function PaginaSobre() {
                 <h1 className="font-bold text-xl text-lbronze  text-center mb-4 mt-4">Junte-se à Comunidade Elite:</h1>
                 <p className=" text-white ml-2 mr-2 text-center mb-4">Embarque nesta jornada gastronômica extraordinária com o Elite Chefs. Descubra, saboreie e celebre as melhores experiências culinárias ao redor do mundo. Sua próxima aventura gastronômica começa aqui.</p>
             </section>
+
+            <Footer/>
 
         </main>
 
