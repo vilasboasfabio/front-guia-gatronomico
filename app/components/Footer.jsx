@@ -12,7 +12,7 @@ const Footer = () => {
                 </div>
                 <div className=" font-sans font-thin text-xs w-3/5 ml-4 text-start mt-3">
                 <h3 className=" mb-3 font-semibold text-sm">Direitos Autorais</h3>
-                    <p>Tdodos os direitos são restritamente reservados à equipe realizadora do projeto, respectivamente, a Elite Coders. Quaisquer violanções das diretrizes dos direitos de retenção autoral e de originalidade desse projetão, estão sujeitos à devidas medidas de retenção e processo. Caso haja duvidas, entre em contato com o nosso suporte técnico: elitecoders@gmail.com.</p>
+                    <p>Todos os direitos são restritamente reservados à equipe realizadora do projeto, respectivamente, a Elite Coders. Quaisquer violanções das diretrizes dos direitos de retenção autoral e de originalidade desse projetão, estão sujeitos à devidas medidas de retenção e processo. Caso haja duvidas, entre em contato com o nosso suporte técnico: elitecoders@gmail.com.</p>
                 </div>
 
             </section>
