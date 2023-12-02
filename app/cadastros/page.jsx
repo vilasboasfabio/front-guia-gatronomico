@@ -5,6 +5,7 @@ import RestauranteCard from '../components/CardRestaurante';
 import RestauranteForm from '../components/RestauranteForm';
 import CardDetalhesRestaurante from '../components/CardDetalhesRestaurante';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 function CadastroRestaurante() {
     const [restaurante, setRestaurante] = useState({
@@ -222,9 +223,12 @@ function CadastroRestaurante() {
                         ))
                         
                     }
+                    
                 </ul>
             </div>
 
+            
+            <Footer/>
 
         </div>
         </>
