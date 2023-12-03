@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import RestauranteCardShow from './components/CardRestauranteShow';
 import FilterDropdown from './components/Filter';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 
 function ExibirRestaurantes() {
@@ -111,6 +113,7 @@ function ExibirRestaurantes() {
 
   return (
     <div>
+      <Header/>
       <h2>Restaurantes Cadastrados</h2>
       <FilterDropdown
         label="Avaliação"
@@ -145,6 +148,7 @@ function ExibirRestaurantes() {
 
        }
       </ul>
+      <Footer/>
     </div>
   );
 }
