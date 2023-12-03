@@ -27,7 +27,7 @@ const Header = () => {
                     <a href="/sobresite" className="block mt-10 lg:inline-block lg:mt-0 text-white hover:text-gray-500 mr-16">
                         Elite Chefs
                     </a>
-                    <a href="#responsive-header" className="block mt-10 lg:inline-block lg:mt-0 text-white hover:text-gray-500 mr-6">
+                    <a href="/sobrenos" className="block mt-10 lg:inline-block lg:mt-0 text-white hover:text-gray-500 mr-6">
                         Sobre nós
                     </a>
                     <a href='/'>
@@ -43,7 +43,7 @@ const Header = () => {
                     </a>
                 </div>
                 <div className='n-mt'>
-                    <a href="#responsive-header" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent text-lbronze hover:bg-white lg:mt-0 ml-72">
+                    <a href="/cadastromembros" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent text-lbronze hover:bg-white lg:mt-0 ml-72">
                         Cadastre-se
                     </a>
                 </div>
