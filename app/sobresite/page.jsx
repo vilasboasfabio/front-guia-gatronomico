@@ -1,10 +1,15 @@
+'use client';
+
 import React from "react";
 import Footer from "../components/Footer";
+import Header from "../components/Header";
 
 
 function PaginaSobre() {
     return (
         <main className="bg-slate-900 ">
+            <Header/>
+            <hr className='bg-lbronze h-2 -mt-1' />
             
             <section className="mt-8">
                 <h1 className="text-4xl font-bold text-center mb-6 text-white">Bem-vindo ao Elite Chefs</h1>
@@ -42,6 +47,7 @@ function PaginaSobre() {
                 <p className=" text-white ml-2 mr-2 text-center mb-4">Embarque nesta jornada gastronômica extraordinária com o Elite Chefs. Descubra, saboreie e celebre as melhores experiências culinárias ao redor do mundo. Sua próxima aventura gastronômica começa aqui.</p>
             </section>
 
+            <hr className='bg-lbronze h-2 -mt-1' />
             <Footer/>
 
         </main>
