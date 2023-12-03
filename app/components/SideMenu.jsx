@@ -31,20 +31,20 @@ const SideMenu = ({ onClose }) => {
                                 {/* Links */}
                                 <div className="mt-8">
                                     <nav className="flex flex-col space-y-1">
-                                        <a href="#" className="text-gray-600 hover:bg-gray-100 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
+                                        <a href="/" className="text-gray-600 hover:bg-gray-100 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
                                             {/* Icon */}
                                             Home
                                         </a>
                                         {/* Add more nav links here */}
-                                        <a href="#" className="text-gray-600 hover:bg-gray-100 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
+                                        <a href="/sobresite" className="text-gray-600 hover:bg-gray-100 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
                                             {/* Icon */}
                                             Nosso Conceito
                                         </a>
-                                        <a href="#" className="text-gray-600 hover:bg-gray-100 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
+                                        <a href="/cadastros" className="text-gray-600 hover:bg-gray-100 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
                                             {/* Icon */}
                                             Cadastro de Restaurantes
                                         </a>
-                                        <a href="#" className="text-gray-600 hover:bg-gray-100 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
+                                        <a href="/membros" className="text-gray-600 hover:bg-gray-100 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
                                             {/* Icon */}
                                             Cadastro de Clientes
                                         </a>
