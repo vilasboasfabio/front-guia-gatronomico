@@ -80,7 +80,7 @@ function Contato() {
 
 
 
-                        <div className="space-y-8 w-screen h-screen mr-4 bg-slate-900 flex">
+                        <div className="space-y-8 w-screen h-screen mr-4 bg-slate-900 lg:flex">
 
                             <img src="/logo.png" alt="logo" className=" w-2/4 ml-20   items-center justify-center" />
 
