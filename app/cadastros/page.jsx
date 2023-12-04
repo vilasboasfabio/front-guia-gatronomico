@@ -1,9 +1,10 @@
 'use client';
-console.log('CadastroRestaurante.jsx');
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import RestauranteCard from '../components/CardRestaurante';
 import RestauranteForm from '../components/RestauranteForm';
+import CardDetalhesRestaurante from '../components/CardDetalhesRestaurante';
+import Header from '../components/Header';
 
 function CadastroRestaurante() {
     const [restaurante, setRestaurante] = useState({
@@ -23,12 +24,23 @@ function CadastroRestaurante() {
     const [isEditing, setIsEditing] = useState(false);
     const [editingRestaurante, setEditingRestaurante] = useState(null);
     const [errors, setErrors] = useState([]);
+    const [aberto , setAberto] = useState(false);
+    const [selectedRestaurante, setSelectedRestaurante] = useState(null);
 
     const formRef = React.useRef(null);
 
     const handleChange = (e) => {
         setRestaurante({ ...restaurante, [e.target.name]: e.target.value });
     };
+
+    const abrir = () => {
+        if (aberto) {
+            setAberto(false);
+        }
+        else {
+            setAberto(true);
+        }
+    }
 
     const handleCheckboxChange = (e) => {
         const { name, value } = e.target;
@@ -54,40 +66,38 @@ function CadastroRestaurante() {
             valor: Number(restaurante.valor),
             avaliacao: Number(restaurante.avaliacao)
         };
-
-        console.log(dadosFormatados)
-        try {
-            console.log(dadosFormatados)
-            const response = await axios.post('/api/restaurantes', dadosFormatados);
-            console.log('response', response);
-            console.log('Restaurante cadastrado:', response.data);
-            console.log(dadosFormatados);
-            setRestaurante({
-                nome: '',
-                img: '',
-                loc: '',
-                valor: '',
-                tipo: '',
-                chefe: '',
-                descricao: '',
-                funcionamento: [],
-                pagamento: [],
-                avaliacao: '',
-                data: ''
-            });
-            setErrors([]); // Limpa os erros se a solicitação foi bem-sucedida
-        } catch (error) {
-            if (error.response && error.response.data && error.response.data.erros) {
-                // Captura os erros do backend e atualiza o estado
-                setErrors(error.response.data.erros);
-            } else {
-                setErrors(['Ocorreu um erro ao enviar o formulário.']);
+    
+        if (isEditing) {
+            handleEdit(editingRestaurante, dadosFormatados);
+        } else {
+            try {
+                const response = await axios.post('/api/restaurantes', dadosFormatados);
+                setRestaurante({
+                    nome: '',
+                    img: '',
+                    loc: '',
+                    valor: '',
+                    tipo: '',
+                    chefe: '',
+                    descricao: '',
+                    funcionamento: [],
+                    pagamento: [],
+                    avaliacao: '',
+                    data: ''
+                });
+                setErrors([]);
+            } catch (error) {
+                if (error.response && error.response.data && error.response.data.erros) {
+                    setErrors(error.response.data.erros);
+                } else {
+                    setErrors(['Ocorreu um erro ao enviar o formulário.']);
+                }
             }
         }
-
     };
 
     const handleEdit = async (id, updatedRestaurante) => {
+
         try {
             const response = await axios.put(`/api/restaurantes/${id}`, updatedRestaurante);
             setRestaurantes(restaurantes.map(restaurante =>
@@ -144,8 +154,11 @@ function CadastroRestaurante() {
 
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 py-2 sm:px-6 lg:px-8 ">
-        <div className="space-y-8 w-screen bg-image-1 bg-slate-700">
+        <>
+        <Header />
+        <hr className='bg-lbronze h-2 -mt-1' />
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 sm:px-6 lg:px-8 ">
+        <div className="space-y-8 w-screen bg-image-1 bg-slate-900">
           <div className='w-1/2 mx-auto mt-24 mb-20 opacity-1'>
             <RestauranteForm
               restaurante={restaurante}
@@ -185,16 +198,33 @@ function CadastroRestaurante() {
                 <h2 className="mt-6 text-center text-3xl font-extrabold text-white">Restaurantes Cadastrados</h2>
 
                 <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    {restaurantes.map((restaurante) => (
-                        restaurante.id !== editingRestaurante && (
-                            <RestauranteCard key={restaurante.id} restaurante={restaurante} onEdit={editInputs} onDelete={handleDelete} />
-                        )
-                    ))}
+                    {
+                      //se estiver aberto mostra o card de detalhes
+                        aberto ?  <CardDetalhesRestaurante restaurante={selectedRestaurante} abrir={abrir} /> 
+                        :
+                        //se não mostra o card normal
+                        restaurantes.map(restaurante => (
+
+                            <RestauranteCard
+                            key={restaurante.id}
+                            restaurante={restaurante}
+                            onDelete={handleDelete}
+                            onEdit={editInputs}
+                            abrir={() => {
+                              setSelectedRestaurante(restaurante);
+                              abrir();
+                            }}
+                          />
+
+                        ))
+
+                    }
                 </ul>
             </div>
 
 
         </div>
+        </>
     );
 
 
@@ -202,4 +232,3 @@ function CadastroRestaurante() {
 }
 
 export default CadastroRestaurante;
-                                        

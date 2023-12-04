@@ -26,8 +26,13 @@ export async function GET(request, { params }) {
   
       return NextResponse.json(response.data);
     } catch (error) {
-      console.log("[ORDER_PUT]", error);
-      return new NextResponse("Erro interno do servidor!", { status: 500 });
+      console.log("[Order_Post]", error);
+      if (error.response && error.response.data) {
+          // Retorna o erro de forma que o frontend possa capturá-lo
+          return new NextResponse(JSON.stringify(error.response.data), { status: error.response.status });
+      } else {
+          return new NextResponse("Erro do servidor dentro do route", {status: 500});
+      }
     }
   }
 
