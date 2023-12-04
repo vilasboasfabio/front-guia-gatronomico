@@ -17,14 +17,17 @@ const Header = () => {
             <div className="block mb-0">
                 <button
                     onClick={toggleMenu}
-                    className="flex items-center rounded text-lbronze hover:text-white "
+                    className="flex items-center rounded text-lbronze lg:hidden sm:block hover:text-white "
                 >
                     
                     <BiMenuAltLeft size={38} />
                 </button>
             </div>
-            <div className=" w-full block -mb-6 ml-lg flex-grow lg:flex lg:items-center lg:w-auto">
-                <div className="text-md w-full flex -ml-28 -mt-7">
+            <div className=" items-center lg:hidden -mb-6 -mt-6 flex-no-shrink text-white mr-40">
+                       <img src='/logo1.png' width={112} height={112} alt='logo' />
+                    </div>
+            <div className=" w-full block -mb-6 ml-lg  flex-grow lg:flex lg:items-center lg:w-auto">
+                <div className="text-md w-full flex -ml-44 mt-3 resp-hid">
                     <a href="/sobresite" className="block w-32 mt-6 lg:inline-block lg:mt-0 text-white hover:text-gray-500 mr-16">
                         Elite Chefs
                     </a>
@@ -39,12 +42,12 @@ const Header = () => {
                     <a href="/cadastros" className="block mt-7 lg:inline-block lg:mt-0 text-white hover:text-gray-500 ml-5">
                         Restaurantes
                     </a>
-                    <a href="/contato" className="block mt-7 lg:inline-block lg:mt-0 text-white hover:text-gray-500 ml-16">
+                    <a href="/contato" className="block mt-7 lg:inline-block lg:mt-0 text-white hover:text-gray-500 ml-24">
                         Contato
                     </a>
                 </div>
                 <div className='n-mt'>
-                    <a href="/membros" className="inline-block w-36 lg:pl-7 text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent text-lbronze hover:bg-white lg:-mt-6 ml-52">
+                    <a href="/membros" className="inline-block w-36 resp-hid lg:pl-7 text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent text-lbronze hover:bg-white lg:mt-2 ml-52 lg:block">
                         Cadastre-se
                     </a>
                 </div>

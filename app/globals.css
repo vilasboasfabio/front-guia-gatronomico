@@ -52,3 +52,9 @@
 .w-100{
     width: 112%;
 }
+@media (max-width: 768px) {
+    .resp-hid{
+        display: none;
+    }
+    
+}
