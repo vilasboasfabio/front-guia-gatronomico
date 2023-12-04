@@ -128,6 +128,7 @@ function ExibirRestaurantes() {
     <div>
       <Header />
       <h2>Restaurantes Cadastrados</h2>
+      <div className='lg:flex'>
       <FilterDropdown
         label="Avaliação"
         options={avaliacaoOptions}
@@ -148,6 +149,7 @@ function ExibirRestaurantes() {
         options={pagamentoOptions}
         onChange={handleFilterChange('pagamento')}
       />
+      </div>
 
 
       <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
