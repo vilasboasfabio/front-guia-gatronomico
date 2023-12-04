@@ -10,9 +10,16 @@
     box-sizing: border-box;
 }
 .bg-bronze{
-    background-color: #78594D;
+    background-color: rgb(120, 89, 77);
     
 }
+
+.bg-bronze-2{
+    background-color: rgba(120, 89, 77, 0.8);
+    
+}
+
+
 /*colocar transparencia no background no hover*/
 
 .text-lbronze{
@@ -30,11 +37,11 @@
 
 }
 .border-t-bronze{
-    border-top: 6px solid #CEB591;
+    border-top: 6px solid rgb(207, 181, 145);
 }
 
 .bg-image-1{
-    background-image: url('/fundo1.png');
+    background-image: url('/fundo02.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -59,6 +66,10 @@
 .w-100{
     width: 112%;
 }
+.bg-transparente{
+    background-color: rgba(245, 243, 242, 0.6)
+}
+
 
 
 @media (max-width: 768px) {
