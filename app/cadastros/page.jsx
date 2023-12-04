@@ -5,6 +5,7 @@ import RestauranteCard from '../components/CardRestaurante';
 import RestauranteForm from '../components/RestauranteForm';
 import CardDetalhesRestaurante from '../components/CardDetalhesRestaurante';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 function CadastroRestaurante() {
     const [restaurante, setRestaurante] = useState({
@@ -155,10 +156,10 @@ function CadastroRestaurante() {
 
 
     return (
-        <>
+       <main className='bg-slate-900'>
         <Header />
         <hr className='bg-lbronze h-2 -mt-1' />
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 sm:px-6 lg:px-8 ">
+        <div className="flex flex-col items-center justify-center min-h-screen bg-slate-900 sm:px-6 lg:px-8 mb-10">
         <div className="space-y-8 w-screen bg-image-1 bg-slate-900">
           <div className=' mx-auto mt-24 mb-20 opacity-1'>
             <RestauranteForm
@@ -225,7 +226,9 @@ function CadastroRestaurante() {
 
 
         </div>
-        </>
+        <hr className='bg-lbronze h-2 -mt-1' />
+        <Footer />
+       </main>
     );
 
 

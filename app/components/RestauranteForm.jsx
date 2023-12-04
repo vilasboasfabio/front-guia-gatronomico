@@ -155,8 +155,8 @@ const RestauranteForm = ({
 
         {/* Funcionamento */}
         {/* Assumindo que você deseja manter os checkboxes para dias de funcionamento */}
-        <div className='lg:flex'>
-          <fieldset className='ml-36 mt-5 mb-5  '>
+        <div className='lg:flex lg:ml-24'>
+          <fieldset className='ml-36 mt-5 mb-5 -ml5 ml30'>
             <legend className="block text-gray-700 text-sm font-bold mb-2"> Funcionamento</legend>
             {diasFuncionamento.map(dia => (
               <div key={dia}>
@@ -173,11 +173,11 @@ const RestauranteForm = ({
               </div>
             ))}
           </fieldset>
-          <hr className="bg-black h-56 w-1 mt-3 ml-24" />
+          <hr className="bg-black lg:h-56 lg:w-1 w-full h-1 mt-3 lg:ml-24" />
 
           {/* Pagamento */}
           {/* Assumindo que você deseja manter os checkboxes para formas de pagamento */}
-          <fieldset className=' ml-24 mt-5 mb-5'>
+          <fieldset className=' ml-24 mt-5 mb-5 ml30'>
             <legend className="block text-gray-700 text-sm font-bold mb-2">Formas de Pagamento</legend>
             {formasPagamento.map(forma => (
               <div key={forma}>
