@@ -148,6 +148,7 @@ function CadastroRestaurante() {
         fetchRestaurantes();
     }, [restaurante]);
 
+    
     const editInputs = (id) => {
         const restauranteEdit = restaurantes.find(restaurante => restaurante.id === id);
         setRestaurante(restauranteEdit);
