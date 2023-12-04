@@ -23,27 +23,27 @@ const Header = () => {
                 </button>
             </div>
             <div className=" w-full block -mb-6 ml-lg flex-grow lg:flex lg:items-center lg:w-auto">
-                <div className="text-md flex -ml-16 mt-2">
-                    <a href="/sobresite" className="block mt-10 lg:inline-block lg:mt-0 text-white hover:text-gray-500 mr-16">
+                <div className="text-md w-full flex -ml-16 -mt-9">
+                    <a href="/sobresite" className="block w-32 lg:inline-block lg:mt-0 text-white hover:text-gray-500 mr-16">
                         Elite Chefs
                     </a>
-                    <a href="/sobrenos" className="block mt-10 lg:inline-block lg:mt-0 text-white hover:text-gray-500 mr-6">
+                    <a href="/sobrenos" className="block mt-7 w-28 lg:inline-block lg:mt-0 text-white hover:text-gray-500 mr-6">
                         Sobre nós
                     </a>
                     <a href='/'>
-                    <div className=" items-center -mt-9 flex-no-shrink text-white mr-2">
-                       <img src='/logo1.png' width={100} height={100} alt='logo' />
+                    <div className=" items-center -mt-6 flex-no-shrink text-white mr-2">
+                       <img src='/logo1.png' width={112} height={112} alt='logo' />
                     </div>
                     </a>
-                    <a href="/cadastros" className="block mt-10 lg:inline-block lg:mt-0 text-white hover:text-gray-500 ml-5">
+                    <a href="/cadastros" className="block mt-7 lg:inline-block lg:mt-0 text-white hover:text-gray-500 ml-5">
                         Restaurantes
                     </a>
-                    <a href="/contato" className="block mt-10 lg:inline-block lg:mt-0 text-white hover:text-gray-500 ml-16">
+                    <a href="/contato" className="block mt-7 lg:inline-block lg:mt-0 text-white hover:text-gray-500 ml-16">
                         Contato
                     </a>
                 </div>
                 <div className='n-mt'>
-                    <a href="/cadastromembros" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent text-lbronze hover:bg-white lg:mt-0 ml-72">
+                    <a href="/cadastromembros" className="inline-block w-36 lg:pl-7 text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent text-lbronze hover:bg-white lg:-mt-6 ml-52">
                         Cadastre-se
                     </a>
                 </div>
