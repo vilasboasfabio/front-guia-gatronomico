@@ -28,6 +28,7 @@ const CardDetalhesRestaurante = ({ restaurante, abrir }) => {
                     onClick={abrir}
                 >Fechar</button>
                 <article>
+                    
                     <div>
                         <img className="w-full h-64 object-cover rounded-lg mt-4" src={restaurante.img} alt="Imagem do Restaurante" />
                     </div>

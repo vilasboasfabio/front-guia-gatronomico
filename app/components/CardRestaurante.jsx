@@ -18,6 +18,7 @@ function RestauranteCard({ restaurante, onEdit, onDelete }) {
             Deletar
           </button>
         </div>
+        
       </div>
       {/* Imagem do Restaurante */}
       <img 
