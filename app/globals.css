@@ -40,6 +40,13 @@
     background-repeat: no-repeat;
 }
 
+.bg-image-2{
+    background-image: url('/fundodetalhe2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 .bg-transparent{
     background-color: transparent;
 }
@@ -52,20 +59,11 @@
 .w-100{
     width: 112%;
 }
+
+
 @media (max-width: 768px) {
     .resp-hid{
         display: none;
     }
-    .ml30{
-        margin-left: 30%;
-    }
-    .h3{
-        height: 0.2rem;
-        margin-left: -1%;
-    }
-    .w-100{
-        width: 100%;
-        background-color: black;
-    }
-
+    
 }
