@@ -10,7 +10,7 @@ const Footer = () => {
                 </div>
                 <div className=" font-sans font-thin text-xs w-3/5 ml-4 text-start mt-3">
                 <h3 className=" mb-3 font-semibold text-sm">Nosso Trabalho.</h3>
-                    <p> Nós somos a ELITE CODERS, uma equipe do SENAI formada por um grupo de estudantes motivados e dedicados a aprender e desenvolver suas habilidades em suas áreas de interesse. Cada membro da equipe traz consigo sua própria perspectiva única e conjunto de habilidades, tornando nossa equipe diversa e criativa. Trabalhamos juntos em projetos desafiadores, buscando sempre superar nossos limites e aprender com nossos erros.</p>
+                    <p> Nós somos a ELITE CODERS, uma equipe do SENAI-SP formada por um grupo de estudantes motivados e dedicados a aprender e desenvolver suas habilidades em suas áreas de interesse. Cada membro da equipe traz consigo sua própria perspectiva única e conjunto de habilidades, tornando nossa equipe diversa e criativa. Trabalhamos juntos em projetos desafiadores, buscando sempre superar nossos limites e aprender com nossos erros.</p>
                 </div>
                 <div className=" font-sans font-thin text-xs w-3/5 ml-4 text-start mt-3">
                 <h3 className=" mb-3 font-semibold text-sm">Direitos Autorais</h3>
