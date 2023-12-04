@@ -1,11 +1,13 @@
 
 import React from 'react';
 
-function RestauranteCardShow({ restaurante}) {
+function RestauranteCardShow({ restaurante, abrirDetalhes}) {
   return (
 
-    <div className="max-w-sm rounded-2xl mt-5 bg-bronze overflow-hidden shadow-lg hover:scale-105 hover:transition-all hover:opacity-80 border-bronze">
-      <img className="w-full h-64" src={restaurante.img} alt="Imagem do Restaurante" />
+    <div className="max-w-sm rounded-2xl mt-5 bg-bronze overflow-hidden shadow-lg hover:scale-105 hover:transition-all hover:opacity-80 border-bronze" onClick={() => abrirDetalhes(restaurante.id)}> 
+      <img className="w-full h-64" src={restaurante.img} alt="Imagem do Restaurante"
+        
+       />
 
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2 text-lbronze"  >{restaurante.nome} - {restaurante.chefe}</div>

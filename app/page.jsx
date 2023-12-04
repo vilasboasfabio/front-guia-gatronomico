@@ -5,6 +5,7 @@ import RestauranteCardShow from './components/CardRestauranteShow';
 import FilterDropdown from './components/Filter';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import CardDetalhesRestaurante from './components/CardDetalhesRestaurante';
 
 
 function ExibirRestaurantes() {
@@ -15,6 +16,8 @@ function ExibirRestaurantes() {
     pagamento: '',
   });
   const [filtredRestaurantes, setFiltredRestaurantes] = useState([]);
+  const [detalhes, setDetalhes] = useState(false);
+  const [restauranteSelecionado, setRestauranteSelecionado] = useState(null);
 
   const valorOptions = [
     { value: '', label: 'Qualquer Valor' },
@@ -105,7 +108,17 @@ function ExibirRestaurantes() {
     console.log(filters)
     fetchRestaurants();
   }, [filters] );
- 
+
+  const abrirDetalhes = (id) => {
+    if (detalhes) {
+      setDetalhes(false);
+      setRestauranteSelecionado(null);
+    } else {
+      setDetalhes(true);
+      setRestauranteSelecionado(id);
+    }
+  };
+  
 
   const handleFilterChange = (type) => (e) => {
     setFilters({ ...filters, [type]: e.target.value });
@@ -138,15 +151,22 @@ function ExibirRestaurantes() {
 
 
       <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-       {
-        
-        filtredRestaurantes.map(restaurante => (
-          <li key={restaurante.id}>
-            <RestauranteCardShow restaurante={restaurante} />
-          </li>
+     {
+      detalhes ? (
+        <CardDetalhesRestaurante
+          abrir={abrirDetalhes}
+          restaurante={filtredRestaurantes.find((restaurante) => restaurante.id === restauranteSelecionado)}
+        />
+      ) : (
+        filtredRestaurantes.map((restaurante) => (
+          <RestauranteCardShow
+            key={restaurante.id}
+            restaurante={restaurante}
+            abrirDetalhes={abrirDetalhes}
+          />
         ))
-
-       }
+      )
+     }
       </ul>
       <Footer />
     </div>
