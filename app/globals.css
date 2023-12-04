@@ -34,7 +34,7 @@
 }
 
 .bg-image-1{
-    background-image: url('https://files.oaiusercontent.com/file-Bvs0WQQojQG63iSyk9svYXNN?se=2023-12-01T01%3A50%3A31Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3D785a7e79-fe54-4901-8e6b-2d96d3e273c7.webp&sig=/2M25o6sFfCnQ2mqzIjzJGPpms30OvYMB7e5/2wXI5g%3D');
+    background-image: url('/fundo1.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
