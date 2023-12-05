@@ -15,7 +15,7 @@
 }
 
 .bg-bronze-2{
-    background-color: rgba(120, 89, 77, 0.8);
+    background-color: rgba(206, 181, 145, 0.8);
     
 }
 
@@ -30,11 +30,14 @@
     color: #78594D;
 }
 .bg-lbronze{
-    background-color: #CEB591;
+    background-color: rgb(206, 181, 145);
 }
 .border-bronze{
     border: 2px solid #CEB591;
 
+}
+.border-dbronze{
+    border: 2px solid #78594D;
 }
 .border-t-bronze{
     border-top: 6px solid rgb(207, 181, 145);
@@ -49,6 +52,13 @@
 
 .bg-image-2{
     background-image: url('/fundo01.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.bg-image-3{
+    background-image: url('/fundo3.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -70,11 +80,14 @@
     background-color: rgba(245, 243, 242, 0.6)
 }
 
-
+.n-mt-2{
+    margin-top: -110%;
+}
 
 @media (max-width: 768px) {
     .resp-hid{
         display: none;
     }
+    
     
 }

@@ -35,11 +35,11 @@ const Header = () => {
                         Sobre nós
                     </a>
                     <a href='/'>
-                    <div className=" items-center -mt-9 flex-no-shrink text-white mr-2">
-                       <img src='/logo1.png' width={112} height={112} alt='logo' />
+                    <div className=" items-center -mt-9 flex-no-shrink text-white mx-auto">
+                       <img src='/logo1.png' width={112} height={112} alt='logo' className='mx-auto' />
                     </div>
                     </a>
-                    <a href="/cadastros" className="block mt-7 lg:inline-block lg:mt-0 text-white hover:text-gray-500 ml-5">
+                    <a href="/cadastros" className="block mt-7 lg:inline-block lg:mt-0 text-white hover:text-gray-500 ml-9">
                         Restaurantes
                     </a>
                     <a href="/contato" className="block mt-7 lg:inline-block lg:mt-0 text-white hover:text-gray-500 ml-24">
@@ -47,7 +47,7 @@ const Header = () => {
                     </a>
                 </div>
                 <div className='n-mt'>
-                    <a href="/membros" className="inline-block w-36 resp-hid lg:pl-7 text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent text-lbronze hover:bg-white lg:mt-2 ml-52 lg:block">
+                    <a href="/membros" className="inline-block w-36 h-8 pt-2 resp-hid lg:pl-7 text-sm mx-auto leading-none border rounded text-white border-white hover:border-transparent text-lbronze hover:bg-white lg:block">
                         Cadastre-se
                     </a>
                 </div>

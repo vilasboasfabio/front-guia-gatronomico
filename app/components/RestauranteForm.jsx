@@ -47,7 +47,7 @@ const RestauranteForm = ({
 
   return (
     <div className="container mx-auto p-6 w-2/3 bg-transparente opacity-80 shadow-lg rounded-lg">
-      <h2 className="text-3xl font-bold text-center mb-8 ">Cadastro de Restaurante</h2>
+      <h2 className="text-3xl font-bold text-center text-slate-900 mb-8 ">Cadastro de Restaurante</h2>
       <form  ref={formRef}>
         {/* Nome */}
         <div className="mb-4">
@@ -58,7 +58,7 @@ const RestauranteForm = ({
             type="text"
             value={restaurante.nome}
             onChange={handleChange}
-            className="shadow appearance-none border rounded-xl w-full py-2 px-3 text-slate-100 leading-tight focus:outline-none bg-bronze-2 border-bronze focus:shadow-outline"
+            className="shadow appearance-none border rounded-xl w-full py-2 px-3 text-slate-100 leading-tight focus:outline-none bg-bronze-2 border-dbronze focus:shadow-outline"
           />
           {errors.nome && <p className="error-message">{errors.nome}</p>}
         </div>
@@ -72,7 +72,7 @@ const RestauranteForm = ({
             type="text"
             value={restaurante.img}
             onChange={handleChange}
-            className="shadow appearance-none border rounded-xl w-full py-2 px-3 text-slate-100 leading-tight focus:outline-none bg-bronze-2 border-bronze focus:shadow-outline"
+            className="shadow appearance-none border rounded-xl w-full py-2 px-3 text-slate-100 leading-tight focus:outline-none bg-bronze-2 border-dbronze focus:shadow-outline"
           />
           {errors.img && <p className="error-message">{errors.img}</p>}
         </div>
@@ -86,7 +86,7 @@ const RestauranteForm = ({
             type="text"
             value={restaurante.loc}
             onChange={handleChange}
-            className="shadow appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none bg-bronze-2 border-bronze focus:shadow-outline"
+            className="shadow appearance-none border rounded-xl w-full py-2 px-3 text-slate-100 leading-tight focus:outline-none bg-bronze-2 border-dbronze focus:shadow-outline"
           />
           {errors.loc && <p className="error-message">{errors.loc}</p>}
         </div>
@@ -100,7 +100,7 @@ const RestauranteForm = ({
             type="text"
             value={restaurante.valor}
             onChange={handleChange}
-            className="shadow appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none bg-bronze-2 border-bronze focus:shadow-outline"
+            className="shadow appearance-none border rounded-xl w-full py-2 px-3 text-slate-100 leading-tight focus:outline-none bg-bronze-2 border-dbronze focus:shadow-outline"
           />
           {errors.valor && <p className="error-message">{errors.valor}</p>}
         </div>
@@ -113,11 +113,11 @@ const RestauranteForm = ({
             name="tipo"
             value={restaurante.tipo}
             onChange={handleChange}
-            className="shadow appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none bg-bronze-2 border-bronze focus:shadow-outline"
+            className="shadow appearance-none border rounded-xl w-full py-2 px-3 text-slate-100 leading-tight focus:outline-none bg-bronze-2 border-dbronze focus:shadow-outline"
           >
             <option value="">Selecione um tipo</option>
             {tipoOptions.map((option) => (
-              <option key={option.value} value={option.value}>
+              <option key={option.value} value={option.value} >
                 {option.label}
               </option>
             ))}
@@ -134,7 +134,7 @@ const RestauranteForm = ({
             type="text"
             value={restaurante.chefe}
             onChange={handleChange}
-            className="shadow appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none bg-bronze-2 border-bronze focus:shadow-outline"
+            className="shadow appearance-none border rounded-xl w-full py-2 px-3 text-slate-100 leading-tight focus:outline-none bg-bronze-2 border-dbronze focus:shadow-outline"
           />
           {errors.chefe && <p className="error-message">{errors.chefe}</p>}
         </div>
@@ -148,7 +148,7 @@ const RestauranteForm = ({
             type="text"
             value={restaurante.descricao}
             onChange={handleChange}
-            className="shadow appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none bg-bronze-2 border-bronze focus:shadow-outline"
+            className="shadow appearance-none border rounded-xl w-full py-2 px-3 text-slate-100 leading-tight focus:outline-none bg-bronze-2 border-dbronze focus:shadow-outline"
           />
           {errors.descricao && <p className="error-message">{errors.descricao}</p>}
         </div>
@@ -205,7 +205,7 @@ const RestauranteForm = ({
             type="number"
             value={restaurante.avaliacao}
             onChange={handleChange}
-            className="shadow appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none bg-bronze-2 border-bronze focus:shadow-outline"
+            className="shadow appearance-none border rounded-xl w-full py-2 px-3 text-slate-100 leading-tight focus:outline-none bg-bronze-2 border-dbronze focus:shadow-outline"
           />
           {errors.avaliacao && <p className="error-message">{errors.avaliacao}</p>}
         </div>
@@ -219,17 +219,18 @@ const RestauranteForm = ({
             type="date"
             value={restaurante.data}
             onChange={handleChange}
-            className="shadow appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none bg-bronze-2 border-bronze focus:shadow-outline mb-6"
+            className="shadow appearance-none border rounded-xl w-full py-2 px-3 text-slate-100 leading-tight focus:outline-none bg-bronze-2 border-dbronze focus:shadow-outline"
           />
           {errors.data && <p className="error-message">{errors.data}</p>}
         </div>
 
-
+        <div className='mx-auto mt-4 lg:ml-80'>
         {
           isEditing
-            ? <button className="w-full bg-blue-950 hover:bg-gray-950  text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => handleEdit(restaurante.id, restaurante)} >Atualizar</button>
-            : <button className="w-full bg-blue-950 hover:bg-gray-950 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={handleSubmit}>Cadastrar</button>
+            ? <button className="w-1/2 mx-auto bg-blue-950 hover:bg-gray-950 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline" onClick={() => handleEdit(restaurante.id, restaurante)} >Atualizar</button>
+            : <button className="w-1/2 mx-auto bg-blue-950 hover:bg-gray-950 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline" onClick={handleSubmit}>Cadastrar</button>
         }
+      </div>
       </form>
     </div>
   );
