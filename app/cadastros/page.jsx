@@ -198,7 +198,7 @@ function CadastroRestaurante() {
             </div>
 
             <div className="flex flex-col border-t-bronze items-center justify-center min-h-screen w-screen bg-gradient-to-r from-slate-900 to-slate-900 py-2 lg:px-8">
-                <h2 className="mt-6 text-center text-3xl font-extrabold text-white">Restaurantes Cadastrados</h2>
+                <h2 className="mt-10 text-center text-3xl font-extrabold text-white">Restaurantes Cadastrados</h2>
 
                 <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     {
@@ -227,7 +227,7 @@ function CadastroRestaurante() {
 
 
         </div>
-        <hr className='bg-lbronze h-2 -mt-1' />
+        <hr className='bg-lbronze h-2 mb-10' />
         <Footer />
        </main>
     );
