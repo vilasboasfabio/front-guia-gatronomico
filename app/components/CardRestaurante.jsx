@@ -37,7 +37,7 @@ function RestauranteCard({ restaurante, onEdit, onDelete }) {
       </div>
       {/* Imagem do Restaurante */}
       <img 
-        className="w-full h-64 relative z-0 group-hover:translate-y-[200%] transition-transform duration-500 ease-in-out"
+        className="w-full h-64 relative z-0 group-hover:scale-150 group-hover:translate-y-full group-hover:opacity-0 transition-all duration-700 ease"
         src={restaurante.img} 
         alt="Imagem do Restaurante"
       />
@@ -53,7 +53,7 @@ function RestauranteCard({ restaurante, onEdit, onDelete }) {
             {Array(restaurante.avaliacao).fill(<TbMichelinStar className='text-lbronze' size={24} />)}
           </span>
         </div>
-        <hr className='bg-lbronze h-1 mb-6 mt-6' />
+        <hr className='bg-lbronze h-0 mb-6 mt-6' />
         <div className="flex mt-4 mr-36">
           <h3 className='font-bold text-xl mb-2 text-lbronze'>{restaurante.tipo}</h3>
         
