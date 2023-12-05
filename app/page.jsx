@@ -31,7 +31,7 @@ function ExibirRestaurantes() {
   const tipoOptions = [
     { value: '', label: 'Qualquer tipo' },
     { value: 'Brasileira', label: 'Brasileira' },
-    { value: 'Italiana', label: 'Italiana' },
+    { value: 'Italiano', label: 'Italiana' },
     { value: 'Japonesa', label: 'Japonesa' },
     { value: 'Mexicana', label: 'Mexicana' },
     { value: 'Árabe', label: 'Árabe' },
@@ -61,16 +61,16 @@ function ExibirRestaurantes() {
 
   const pagamentoOptions = [
     { value: '', label: 'Qualquer forma de pagamento' },
-    { value: 'Dinheiro', label: 'Dinheiro' },
-    { value: 'Cartão de Crédito', label: 'Cartão de Crédito' },
-    { value: 'Cartão de Débito', label: 'Cartão de Débito' },
-    { value: 'Pix', label: 'Pix' },
-    { value: 'Vale Alimentação', label: 'Vale Alimentação' },
-    { value: 'Vale Refeição', label: 'Vale Refeição' },
+    { value: 'dinheiro', label: 'Dinheiro' },
+    { value: 'cartão de crédito', label: 'Cartão de Crédito' },
+    { value: 'cartão de débito', label: 'Cartão de Débito' },
+    { value: 'pix', label: 'Pix' },
+    { value: 'vale alimentação', label: 'Vale Alimentação' },
+    { value: 'vale refeição', label: 'Vale Refeição' },
   ];
 
   const avaliacaoOptions = [
-    { value: 0, label: 'Qualquer avaliação' },
+    { value: "", label: 'Qualquer avaliação' },
     { value: 1, label: '1 estrela' },
     { value: 2, label: '2 estrelas' },
     { value: 3, label: '3 estrelas' },
