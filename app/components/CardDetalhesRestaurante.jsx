@@ -1,5 +1,7 @@
 import React from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
+import { MdAttachMoney } from 'react-icons/md';
+import { TbMichelinStar } from 'react-icons/tb';
 
 const CardDetalhesRestaurante = ({ restaurante, abrir }) => {
     const getPrecoLegenda = (valor) => {
@@ -30,7 +32,7 @@ const CardDetalhesRestaurante = ({ restaurante, abrir }) => {
                     onClick={abrir}
                 >
                     <span className="sr-only">Close panel</span>
-                    <AiOutlineClose color='#CEB591' className="h-6 w-6 " aria-hidden="true" />
+                    <AiOutlineClose color='#CEB591' className="h-8 w-8 hover:bg-gray-400 rounded-md" aria-hidden="true" />
                 </button>
                 <article>
 
@@ -40,23 +42,21 @@ const CardDetalhesRestaurante = ({ restaurante, abrir }) => {
                     <div className="px-6 py-4 text-center">
                         <div className="font-bold text-4xl mb-2 text-lbronze "  >{restaurante.nome} - {restaurante.chefe}</div>
 
-                        <div className='text-center  text-white ml-5 mt-4'>{restaurante.loc}</div>
+                        <div className='text-center text-white ml-5 mt-4'>{restaurante.loc}</div>
 
                         <dl className="mt-1 flex-grow flex flex-col justify-between">
 
-                            <div className=" text-base mt-3 text-white">{restaurante.tipo}</div>
+                            <div className=" text-base mt-3 text-lbronze bg-gray-500 w-auto p-1 rounded-lg mx-auto">{restaurante.tipo}</div>
 
                             <dt className="sr-only">Valor</dt>
-                            <dd className="mt-10 lg:flex justify-center mb-5">
-                                <span className="px-2 py-1 text-green-800 text-xs font-medium text-lbronze bg-gray-500 rounded-full">
-                                    {'$'.repeat(restaurante.valor)}
+                            <div className="flex justify-between mt-6 items-center">
+                                <span className="text-lbronze flex rounded-full text-xs font-medium">
+                                    {Array(restaurante.valor).fill(<MdAttachMoney className='text-lbronze' size={24} />)}
                                 </span>
-                                <span className="ml-2 mt-1 text-base text-white">{getPrecoLegenda(restaurante.valor)}</span>
-                                <span className="inline-flex items-center justify-center ml-3 px-2 py-1 text-xs font-bold leading-none text-indigo-100 bg-gray-500 rounded-full">
-                                    {'⭐'.repeat(restaurante.avaliacao)}
+                                <span className="rounded-full flex px-2 py-1 text-xs font-bold text-indigo-100 -ml-72">
+                                    {Array(restaurante.avaliacao).fill(<TbMichelinStar className='text-lbronze' size={24} />)}
                                 </span>
-                                <span className="ml-2 mt-1 text-base text-white">{getEstrelasLegenda(restaurante.avaliacao)}</span>
-                            </dd>
+                            </div>
                         </dl>
                     </div>
                     <div className="px-6 py-4 scroll-auto  ">
@@ -70,6 +70,7 @@ const CardDetalhesRestaurante = ({ restaurante, abrir }) => {
                         </div>
                         <div>
                             <h3 className='text-center text-md mt-4 font-bold text-lbronze'>Localização:</h3>
+                            <div className='text-center text-white ml-5 mt-4'>{restaurante.loc}</div>
 
                         </div>
                         <div>

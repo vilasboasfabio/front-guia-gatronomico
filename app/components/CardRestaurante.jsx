@@ -1,4 +1,6 @@
 import React from 'react';
+import { TbMichelinStar } from "react-icons/tb";
+import { MdAttachMoney } from "react-icons/md";
 
 function RestauranteCard({ restaurante, onEdit, onDelete }) {
   // Limita a descrição a 350 caracteres, sem cortar palavras ao meio
@@ -44,11 +46,11 @@ function RestauranteCard({ restaurante, onEdit, onDelete }) {
         <div className="font-bold text-xl mb-2 text-lbronze">{restaurante.nome} - {restaurante.chefe}</div>
         <p className="text-sm text-white">{restaurante.loc}</p>
         <div className="flex justify-between mt-6 items-center">
-          <span className="text-lbronze bg-gray-500 rounded-full px-2 py-1 text-xs font-medium">
-            {'$'.repeat(restaurante.valor)}
+          <span className="text-lbronze flex rounded-full text-xs font-medium">
+            {Array(restaurante.valor).fill(<MdAttachMoney className='text-lbronze' size={24} />)}
           </span>
-          <span className="bg-gray-500 rounded-full px-2 py-1 text-xs font-bold text-indigo-100 -ml-72">
-            {'⭐'.repeat(restaurante.avaliacao)}
+          <span className="rounded-full flex px-2 py-1 text-xs font-bold text-indigo-100 -ml-72">
+            {Array(restaurante.avaliacao).fill(<TbMichelinStar className='text-lbronze' size={24} />)}
           </span>
         </div>
         <hr className='bg-lbronze h-1 mb-6 mt-6' />

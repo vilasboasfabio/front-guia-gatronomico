@@ -41,7 +41,7 @@ function Contato() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-    
+
         axios.post('/api/contatos', contato)
             .then((response) => {
                 setContatos(prevContatos => [...prevContatos, response.data]);
@@ -133,7 +133,7 @@ function Contato() {
                                 <textarea className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py
                         -3 px-4 mb-3 leading-tight focus:outline-none focus:bg-lbronze focus:border-gray-500" id="mensagem" name="mensagem" type="text" placeholder="Mensagem" value={contato.mensagem} onChange={handleChange} />
                             </div>
-                           
+
                         </div>
                         <div className="flex flex-wrap -mx-3 mb-2">
                             <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
@@ -144,89 +144,16 @@ function Contato() {
                         </div>
                     </form>
                 </div>
-                <div className="flex flex-col justify-center items-center">
-                    <h1 className="text-4xl font-bold text-lbronze">Mensagens</h1>
-                    <p className="text-xl text-lbronze">Aqui estão as mensagens enviadas para o site.</p>
-                </div>
-                <div className="flex flex-col justify-center items-center">
-                    <button className="bg-lbronze hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={abrir}>
-                        {aberto ? 'Fechar' : 'Abrir'}
-                    </button>
-                </div>
+                <div className="flex flex-col justify-center items-center bg-slate-900 rounded-lg p-4 mt-6">
+                 
+                   
+                   <h3 className='
+                     text-4xl font-bold text-lbronze
+                   '>Área do Membro</h3>
+                   <a href="/respondercontatos" className=" bg-slate-400 rounded-lg p-1 mt-2 hover:bg-slate-700 hover:text-white text-black" >Responder Contatos</a>
 
-                <div className="flex flex-col justify-center items-center">
-                    {
-                        aberto ? (
-                            <table className="table-fixed">
-                           
-
-<thead>
-    <tr>
-        <th className="w-1/4 px-4 py-2">Nome</th>
-        <th className="w-1/4 px-4 py-2">E-mail</th>
-        <th className="w-1/4 px-4 py-2">Telefone</th>
-        <th className="w-1/4 px-4 py-2">Mensagem</th>
-        <th className="w-1/4 px-4 py-2">Resposta</th> {/* Adicione esta linha */}
-        <th className="w-1/4 px-4 py-2">Ações</th>
-    </tr>
-</thead>
-<tbody>
-    {
-        contatos.map((contato) => (
-            <tr key={contato.id}>
-                <td className="border px-4 py-2">{contato.nome}</td>
-                <td className="border px-4 py-2">{contato.email}</td>
-                <td className="border px-4 py-2">{contato.telefone}</td>
-                <td className="border px-4 py-2">{contato.mensagem}</td>
-                <td className="border px-4 py-2"> {/* Adicione esta célula */}
-                    {
-                        selectedContato === contato.id ? (
-                            <input type="text" value={resposta} onChange={handleResponseChange} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-lbronze focus:border-gray-500" />
-                        ) : null
-                    }
-                </td>
-                <td className="border px-4 py-2">
-                    {
-                        selectedContato === contato.id ? (
-                            <button onClick={() => handleResponseSubmit(contato.id)}>
-                                Enviar
-                            </button>
-                        ) : (
-                            <button onClick={() => setSelectedContato(contato.id)}>
-                                Responder
-                            </button>
-                        )
-                    }
-                    <button className="bg-lbronze hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => handleDelete(contato.id)}>
-                        Excluir
-                    </button>
-                </td>
-            </tr>
-        ))
-    }
-</tbody>
-
-                            </table>
-                        ) : (
-                            <div></div>
-                        )
-                    }
                 </div>
-                <div className="flex flex-col justify-center items-center">
-                    <h1 className="text-4xl font-bold text-lbronze">Mensagens Respondidas</h1>
-                    <p className="text-xl text-lbronze">Aqui estão as mensagens que foram respondidas.</p>
-                    {
-                        respondedContatos.map((contato) => (
-                            <div key={contato.id}>
-                                <p><strong>Nome:</strong> {contato.nome}</p>
-                                <p><strong>Email:</strong> {contato.email}</p>
-                                <p><strong>Telefone:</strong> {contato.telefone}</p>
-                                <p><strong>Mensagem:</strong> {contato.mensagem}</p>
-                                <p><strong>Resposta:</strong> {contato.resposta}</p>
-                            </div>
-                        ))
-                    }
-                </div>
+               
             </div>
             <Footer />
         </>
