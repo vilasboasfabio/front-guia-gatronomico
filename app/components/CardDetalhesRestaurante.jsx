@@ -61,7 +61,7 @@ const CardDetalhesRestaurante = ({ restaurante, abrir }) => {
                     </div>
                     <div className="px-6 py-4 scroll-auto  ">
                         <div>
-                            <hr className='bg-lbronze h-0.5 opacity-20' />
+                            <hr className='bg-lbronze rounded-lg h-1 opacity-40' />
 
                             <h3 className='text-center text-md mt-4 font-bold text-lbronze'>Descrição</h3>
                             <div className="text-cm w-1/2 mx-auto text-justify text-white">{restaurante.descricao}</div>
