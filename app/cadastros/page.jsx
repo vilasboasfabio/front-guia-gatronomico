@@ -161,6 +161,7 @@ function CadastroRestaurante() {
         <hr className='bg-lbronze h-2 -mt-1' />
         <div className="flex flex-col items-center justify-center min-h-screen bg-slate-900 sm:px-6 lg:px-8 mb-10">
         <div className="space-y-8 w-screen bg-image-1 bg-slate-900">
+        <h2 className="text-3xl mt-10 font-bold text-center text-white mb-8 ">Cadastro de Restaurante</h2>
           <div className=' mx-auto mt-24 mb-20 opacity-1'>
             <RestauranteForm
               restaurante={restaurante}
