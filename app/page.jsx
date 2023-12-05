@@ -133,16 +133,15 @@ function ExibirRestaurantes() {
 
         <div className='flex resp-hid flex-col items-center justify-center min-h-screen  sm:px-6 lg:px-8 mb-10'>
 
-          <h1 className='text-4xl n-mt-2 font-bold text-white'>Guia Elite Chefes</h1>
+        <img src='/titulo.png' alt='Guia de Restaurante' className=' mb-auto'/>
           
-          <hr className='bg-lbronze h-1 mt-2 w-3/4' />
-          <input className='bg-lbronze rounded-lg border mt-24 border-gray-400 leading-normal resize-none w-full h-10 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white' type='text' placeholder='Pesquisar' onChange={(e) => setSearchTerm(e.target.value)} />
+        
+          <input className='bg-white rounded-lg border mb-96 border-gray-400 leading-normal resize-none w-full h-10 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white' type='text' placeholder='Pesquisar' onChange={(e) => setSearchTerm(e.target.value)} />
 
         </div>
       </div>
       <hr className='bg-lbronze h-2 -mt-1' />
-      <article className='flex flex-col items-center justify-center min-h-screen bg-slate-900 sm:px-6 lg:px-8 mb-10'>
-        <h2>Restaurantes Cadastrados</h2>
+      <article className='flex flex-col mt-10 items-center justify-center min-h-screen bg-slate-900 sm:px-6 lg:px-8 mb-10'>
         <div className='lg:flex'>
           <FilterDropdown
             label="Avaliação"
