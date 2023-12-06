@@ -150,7 +150,7 @@ function Contato() {
                    <h3 className='
                      text-4xl font-bold text-lbronze
                    '>Área do Membro</h3>
-                   <a href="/respondercontatos" className=" bg-slate-400 rounded-lg p-1 mt-2 hover:bg-slate-700 hover:text-white text-black" >Responder Contatos</a>
+                   <a href="/loginrespondercontatos" className=" bg-slate-400 rounded-lg p-1 mt-2 hover:bg-slate-700 hover:text-white text-black" >Responder Contatos</a>
 
                 </div>
                
