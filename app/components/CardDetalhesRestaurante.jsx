@@ -65,8 +65,8 @@ const CardDetalhesRestaurante = ({ restaurante, abrir }) => {
 
                             <h3 className='text-center text-md mt-4 font-bold text-lbronze'>Descrição</h3>
                             <div className="text-cm w-1/2 mx-auto text-justify text-white">{restaurante.descricao}</div>
-                            <h3 className='text-center text-md mt-4 font-bold text-lbronze'>Horário de funcionamento</h3>
-                            <div className='text-center text-white ml-5 mt-4'>{restaurante.funcionamento}</div>
+                            <h3 className='text-center text-md mt-4 font-bold text-lbronze'>Dias de funcionamento:</h3>
+                            <div className='text-center text-white ml-5 mt-4'>{restaurante.funcionamento.join(", ")}.</div>
                         </div>
                         <div>
                             <h3 className='text-center text-md mt-4 font-bold text-lbronze'>Localização:</h3>
@@ -75,7 +75,7 @@ const CardDetalhesRestaurante = ({ restaurante, abrir }) => {
                         </div>
                         <div>
                             <h3 className='text-center text-md mt-4 font-bold text-lbronze'>Formas de Pagamento:</h3>
-                            <div className='text-center text-white ml-5 mt-4'>{restaurante.pagamento}</div>
+                            <div className='text-center text-white ml-5 mt-4'>{restaurante.pagamento.join(", ")}.</div>
                         </div>
                     </div>
                 </article>
