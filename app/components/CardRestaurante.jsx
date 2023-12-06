@@ -17,7 +17,7 @@ function RestauranteCard({ restaurante, onEdit, onDelete }) {
   }
 
   return (
-    <div className="max-w-sm rounded-2xl mt-5 bg-bronze overflow-hidden transition-transform duration-500  shadow-lg border-bronze relative group">
+    <div className="max-w-sm rounded-2xl mt-5 bg-bronze overflow-hidden transition-transform duration-500 hover:cursor-pointer shadow-lg border-bronze relative group">
       {/* Descrição (inicialmente escondida e com transição suave) */}
       <div className="absolute top-0 inset-x-0 mt-8 px-6 py-4 opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out z-10">
         <p className="text-sm text-white">{descricaoCurta}</p>
