@@ -98,12 +98,24 @@ function CadastroRestaurante() {
     };
 
     const handleEdit = async (id, updatedRestaurante) => {
-
+        const valorNumerico = Number(updatedRestaurante.valor);
+        const avaliacaoNumerica = Number(updatedRestaurante.avaliacao);
+    
+        if (isNaN(valorNumerico) || isNaN(avaliacaoNumerica)) {
+            setErrors(['Valor e avaliação devem ser números.']);
+            return;
+        }
+    
+        const dadosFormatados = {
+            ...updatedRestaurante,
+            valor: valorNumerico,
+            avaliacao: avaliacaoNumerica
+        };
+    
         try {
-            const response = await axios.put(`/api/restaurantes/${id}`, updatedRestaurante);
-            setRestaurantes(restaurantes.map(restaurante =>
-                restaurante.id == id ? response.data : restaurante
-            ));
+            await axios.put(`/api/restaurantes/${id}`, dadosFormatados);
+            const response = await axios.get('/api/restaurantes');
+            setRestaurantes(response.data);
             setIsEditing(false);
             setRestaurante({
                 nome: '',
