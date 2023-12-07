@@ -190,8 +190,8 @@ function CadastroRestaurante() {
 
             </div>
 
-            <div className="flex flex-col border-t-bronze items-center justify-center min-h-screen w-screen bg-gradient-to-r from-slate-900 to-slate-900 py-2 lg:px-8">
-                <h2 className="mt-10 text-center text-3xl font-extrabold text-white">Restaurantes Cadastrados</h2>
+            <div className="flex flex-col border-t-bronze items-center justify-center  w-screen bg-gradient-to-r from-slate-900 to-slate-900 py-2 lg:px-8">
+               
                     {errors.length > 0 && (
                         <div>
                             {

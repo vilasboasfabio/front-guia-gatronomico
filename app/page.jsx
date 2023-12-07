@@ -66,12 +66,12 @@ function ExibirRestaurantes() {
 
   const pagamentoOptions = [
     { value: '', label: 'Qualquer forma de pagamento' },
-    { value: 'dinheiro', label: 'Dinheiro' },
-    { value: 'cartão de crédito', label: 'Cartão de Crédito' },
-    { value: 'cartão de débito', label: 'Cartão de Débito' },
-    { value: 'pix', label: 'Pix' },
-    { value: 'vale alimentação', label: 'Vale Alimentação' },
-    { value: 'vale refeição', label: 'Vale Refeição' },
+    { value: 'Dinheiro', label: 'Dinheiro' },
+    { value: 'Cartão de crédito', label: 'Cartão de Crédito' },
+    { value: 'Cartão de débito', label: 'Cartão de Débito' },
+    { value: 'Pix', label: 'Pix' },
+    { value: 'Vale alimentação', label: 'Vale Alimentação' },
+    { value: 'Vale refeição', label: 'Vale Refeição' },
   ];
 
   const avaliacaoOptions = [
@@ -84,14 +84,14 @@ function ExibirRestaurantes() {
   useEffect(() => {
     const fetchRestaurants = async () => {
       try {
-        const response = await axios.get(`/api/restaurantes`);
+        const response = await axios.get(`/api/restaurantes?avaliação=${filters.avaliacao}&valor=${filters.valor}&tipo=${filters.tipo}&pagamento=${filters.pagamento}`);
         let data = response.data;
 
         // Aplicar filtros
         if (filters.avaliacao || filters.valor || filters.tipo || filters.pagamento) {
           data = data.filter((restaurante) => {
-            return (!filters.avaliacao || restaurante.avaliacao === Number(filters.avaliacao)) &&
-              (!filters.valor || restaurante.valor === Number(filters.valor)) &&
+            return (!filters.avaliacao || Number(restaurante.avaliacao) === Number(filters.avaliacao)) &&
+              (!filters.valor || Number(restaurante.valor) === Number(filters.valor)) &&
               (!filters.tipo || restaurante.tipo === filters.tipo) &&
               (!filters.pagamento || restaurante.pagamento.includes(filters.pagamento));
           });
@@ -151,11 +151,13 @@ function ExibirRestaurantes() {
         <div className='flex resp-hid flex-col items-center justify-center min-h-screen  sm:px-6 lg:px-8 mb-10'>
 
 
-        <img src='/titulo.png' alt='Guia de Restaurante' className=' mb-auto'/>
-            <hr className='bg-lbronze h-1 mt-2 w-3/4' />
+        <img src='/titulo.png' alt='Guia de Restaurante' className='lg:ml-6'/>
+        <hr className='bg-lbronze h-1 w-3/4 mb-10 mt-0' />
+        <div className='flex flex-col -mb'>
+          
         
-          <input className='bg-white rounded-lg border mb-96 border-gray-400 leading-normal resize-none w-full h-10 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white' type='text' placeholder='Pesquisar' onChange={(e) => setSearchTerm(e.target.value)} />
-
+          <input className='bg-white rounded-lg border mb-96 border-gray-400 leading-normal resize-none w-96 h-10 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white' type='text' placeholder='Pesquisar' onChange={(e) => setSearchTerm(e.target.value)} />
+</div>
 
         </div>
       </div>

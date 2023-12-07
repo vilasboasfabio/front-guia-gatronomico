@@ -118,7 +118,9 @@
     opacity: 1;
     transform: translateX(0px); /* Mova a seta para a posição central */
   }
-  
+  .-mb{
+    margin-bottom: 16%;
+  }
   
 
 @media (max-width: 768px) {
