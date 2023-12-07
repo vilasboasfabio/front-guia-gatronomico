@@ -6,6 +6,8 @@ import FilterDropdown from './components/Filter';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import CardDetalhesRestaurante from './components/CardDetalhesRestaurante';
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
+
 
 
 function ExibirRestaurantes() {
@@ -19,6 +21,9 @@ function ExibirRestaurantes() {
   const [detalhes, setDetalhes] = useState(false);
   const [restauranteSelecionado, setRestauranteSelecionado] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const restaurantsPerPage = 8;
+  const [filteredAndSearchedRestaurants, setFilteredAndSearchedRestaurants] = useState([]);
 
   const valorOptions = [
     { value: '', label: 'Qualquer Valor' },
@@ -79,36 +84,48 @@ function ExibirRestaurantes() {
   useEffect(() => {
     const fetchRestaurants = async () => {
       try {
-        const response = await axios.get(`/api/restaurantes?avaliacao=${filters.avaliacao}&valor=${filters.valor}&tipo=${filters.tipo}&pagamento=${filters.pagamento}`);
+        const response = await axios.get(`/api/restaurantes`);
+        let data = response.data;
 
+        // Aplicar filtros
         if (filters.avaliacao || filters.valor || filters.tipo || filters.pagamento) {
-          setFiltredRestaurantes(response.data.filter((restaurante) => {
-            if (filters.avaliacao && restaurante.avaliacao !== Number(filters.avaliacao)) {
-              return false;
-            }
-            if (filters.valor && restaurante.valor !== Number(filters.valor)) {
-              return false;
-            }
-            if (filters.tipo && restaurante.tipo !== filters.tipo) {
-              return false;
-            }
-            if (filters.pagamento && !restaurante.pagamento.includes(filters.pagamento)) {
-              return false;
-            }
-            return true;
-          }));
-          console.log(filtredRestaurantes)
-        } else {
-          setFiltredRestaurantes(response.data);
+          data = data.filter((restaurante) => {
+            return (!filters.avaliacao || restaurante.avaliacao === Number(filters.avaliacao)) &&
+              (!filters.valor || restaurante.valor === Number(filters.valor)) &&
+              (!filters.tipo || restaurante.tipo === filters.tipo) &&
+              (!filters.pagamento || restaurante.pagamento.includes(filters.pagamento));
+          });
         }
 
+        // Aplicar pesquisa
+        if (searchTerm) {
+          data = data.filter((restaurante) => {
+            return restaurante.nome.toLowerCase().includes(searchTerm.toLowerCase());
+          });
+        }
+
+        setFiltredRestaurantes(data);
+        setFilteredAndSearchedRestaurants(data.slice((currentPage - 1) * restaurantsPerPage, currentPage * restaurantsPerPage));
       } catch (error) {
         console.error('Erro ao buscar restaurantes', error);
       }
     };
-    console.log(filters)
+
     fetchRestaurants();
-  }, [filters]);
+  }, [filters, searchTerm, currentPage]);
+
+
+  const indexOfLastRestaurant = currentPage * restaurantsPerPage;
+  const indexOfFirstRestaurant = indexOfLastRestaurant - restaurantsPerPage;
+
+  // Crie uma nova lista de restaurantes que será exibida na página atual
+  const currentRestaurants = filtredRestaurantes.slice(indexOfFirstRestaurant, indexOfLastRestaurant);
+
+  // Crie funções para alterar a página
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const nextPage = () => setCurrentPage(currentPage + 1);
+  const prevPage = () => setCurrentPage(currentPage - 1);
+
 
   const abrirDetalhes = (id) => {
     if (detalhes) {
@@ -133,10 +150,12 @@ function ExibirRestaurantes() {
 
         <div className='flex resp-hid flex-col items-center justify-center min-h-screen  sm:px-6 lg:px-8 mb-10'>
 
+
         <img src='/titulo.png' alt='Guia de Restaurante' className=' mb-auto'/>
-          
+            <hr className='bg-lbronze h-1 mt-2 w-3/4' />
         
           <input className='bg-white rounded-lg border mb-96 border-gray-400 leading-normal resize-none w-full h-10 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white' type='text' placeholder='Pesquisar' onChange={(e) => setSearchTerm(e.target.value)} />
+
 
         </div>
       </div>
@@ -163,11 +182,9 @@ function ExibirRestaurantes() {
             options={pagamentoOptions}
             onChange={handleFilterChange('pagamento')}
           />
-                <input className='bg-lbronze lg:hidden w-full rounded-lg border border-gray-400 leading-normal resize-none h-10 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white' type='text' placeholder='Pesquisar' onChange={(e) => setSearchTerm(e.target.value)} />
+          <input className='bg-lbronze lg:hidden w-full rounded-lg border border-gray-400 leading-normal resize-none h-10 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white' type='text' placeholder='Pesquisar' onChange={(e) => setSearchTerm(e.target.value)} />
 
         </div>
-
-
         <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {
             detalhes ? (
@@ -176,7 +193,7 @@ function ExibirRestaurantes() {
                 restaurante={filtredRestaurantes.find((restaurante) => restaurante.id === restauranteSelecionado)}
               />
             ) : (
-              filtredRestaurantes.filter(restaurante => restaurante.nome.toLowerCase().includes(searchTerm.toLowerCase())).map((restaurante) => (
+              filteredAndSearchedRestaurants.filter(restaurante => restaurante.nome.toLowerCase().includes(searchTerm.toLowerCase())).map((restaurante) => (
                 <RestauranteCardShow
                   key={restaurante.id}
                   restaurante={restaurante}
@@ -186,7 +203,19 @@ function ExibirRestaurantes() {
             )
           }
         </ul>
+        <div className='flex mx-auto mt-6'>
+          <button className='bg-lbronze hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' onClick={() => prevPage()} disabled={currentPage === 1}>
+            <span className="button-text">Anterior</span>
+            <AiOutlineArrowLeft className="button-icon" />
+          </button>
+          <span className='text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>{currentPage}</span>
+          <button className='bg-lbronze hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-2' onClick={() => nextPage()} disabled={currentPage === Math.ceil(filtredRestaurantes.length / restaurantsPerPage)}>
+            <span className="button-text">Próximo</span>
+            <AiOutlineArrowRight className="button-icon" />
+          </button>
+        </div>
       </article>
+
       <hr className='bg-lbronze h-2 -mt-1' />
       <Footer />
     </div>

@@ -17,7 +17,7 @@ function RestauranteCard({ restaurante, onEdit, onDelete }) {
   }
 
   return (
-    <div className="max-w-sm rounded-2xl mt-5 bg-bronze overflow-hidden transition-transform duration-500  shadow-lg border-bronze relative group">
+    <div className="max-w-sm rounded-2xl mt-5 bg-bronze overflow-hidden transition-transform duration-500 hover:cursor-pointer shadow-lg border-bronze relative group">
       {/* Descrição (inicialmente escondida e com transição suave) */}
       <div className="absolute top-0 inset-x-0 mt-8 px-6 py-4 opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out z-10">
         <p className="text-sm text-white">{descricaoCurta}</p>
@@ -33,12 +33,12 @@ function RestauranteCard({ restaurante, onEdit, onDelete }) {
             Deletar
           </button>
         </div>
-        
+
       </div>
       {/* Imagem do Restaurante */}
-      <img 
-        className="w-full h-64 relative z-0 group-hover:scale-150 group-hover:translate-y-full group-hover:opacity-0 transition-all duration-700 ease"
-        src={restaurante.img} 
+      <img
+        className="w-full h-64 relative z-0 group-hover:translate-y-[200%] transition-transform duration-500 ease-in-out"
+        src={restaurante.img}
         alt="Imagem do Restaurante"
       />
       {/* Conteúdo do Card */}
@@ -52,11 +52,18 @@ function RestauranteCard({ restaurante, onEdit, onDelete }) {
           <span className="rounded-full flex px-2 py-1 text-xs font-bold text-indigo-100 -ml-72">
             {Array(restaurante.avaliacao).fill(<TbMichelinStar className='text-lbronze' size={24} />)}
           </span>
+
         </div>
+
         <hr className='bg-lbronze h-0 mb-6 mt-6' />
+
+        <div className="flex w-full mt-4 text-white mr-36">{restaurante.funcionamento.join(', ')}.</div>
+        <div className="flex w-full text-white mt-4 mr-36">{restaurante.pagamento.join(', ')}.</div>
+        <hr className='bg-lbronze h-1 mb-6 mt-6' />
+
         <div className="flex mt-4 mr-36">
           <h3 className='font-bold text-xl mb-2 text-lbronze'>{restaurante.tipo}</h3>
-        
+
         </div>
       </div>
     </div>

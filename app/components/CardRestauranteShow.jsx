@@ -20,7 +20,7 @@ function RestauranteCardShow({ restaurante, abrirDetalhes}) {
 
   return (
 
-    <div className="max-w-sm rounded-2xl mt-5 bg-bronze overflow-hidden transition-transform duration-500  shadow-lg border-bronze relative group" onClick={() => abrirDetalhes(restaurante.id)}> 
+    <div className="max-w-sm rounded-2xl hover:cursor-pointer mt-5 bg-bronze overflow-hidden transition-transform duration-500  shadow-lg border-bronze relative group" onClick={() => abrirDetalhes(restaurante.id)}> 
        {/* Descrição (inicialmente escondida e com transição suave) */}
        <div className="absolute top-0 inset-x-0 mt-8 px-6 py-4 opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out z-10">
         <h3 className="font-bold text-xl mb-2 text-lbronze ">{restaurante.nome}</h3>

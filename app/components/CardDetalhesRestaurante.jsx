@@ -67,6 +67,7 @@ const CardDetalhesRestaurante = ({ restaurante, abrir }) => {
 
                             <h3 className='text-center text-2xl mt-4 font-bold text-lbronze'>Informações</h3>
 
+
                             
                                 <span className="text-lbronze justify-center mt-5 mx-auto flex rounded-full text-xs font-medium">
                                     {Array(restaurante.valor).fill(<MdAttachMoney className='text-lbronze' size={24} />)}
@@ -76,11 +77,23 @@ const CardDetalhesRestaurante = ({ restaurante, abrir }) => {
                             <h3 className='text-center text-md mt-4 font-bold text-lbronze'>Horário de funcionamento</h3>
                             <hr className=' bg-white mt-5 rounded-lg opacity-10 h-0.5' />
 
-                            <div className='text-center font-thin text-white ml-5 mt-4'>{restaurante.funcionamento}</div>
+                            <h3 className='text-center text-md mt-4 font-bold text-lbronze'>Descrição</h3>
+                            <div className="text-cm w-1/2 mx-auto text-justify text-white">{restaurante.descricao}</div>
+                            <h3 className='text-center text-md mt-4 font-bold text-lbronze'>Dias de funcionamento:</h3>
+                            <div className='text-center text-white ml-5 mt-4'>{restaurante.funcionamento.join(", ")}.</div>
+                        </div>
+                        <div>
+                            <h3 className='text-center text-md mt-4 font-bold text-lbronze'>Localização:</h3>
+                            <div className='text-center text-white ml-5 mt-4'>{restaurante.loc}</div>
+
+
+                            
                         </div>
                         <div>
                             <h3 className='text-center text-md mt-4 font-bold text-lbronze'>Formas de Pagamento:</h3>
-                            <div className='text-center font-thin text-white ml-5 mt-4'>{restaurante.pagamento}</div>
+
+                 <div className='text-center text-white ml-5 mt-4'>{restaurante.pagamento.join(", ")}.</div>
+
                         </div>
                     </div>
                 </article>

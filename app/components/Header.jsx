@@ -1,3 +1,4 @@
+'use client';
 import React, { useState } from 'react';
 import { BiMenuAltLeft } from 'react-icons/bi';
 import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
@@ -39,7 +40,7 @@ const Header = () => {
                        <img src='/logo1.png' width={112} height={112} alt='logo' className='mx-auto' />
                     </div>
                     </a>
-                    <a href="/cadastros" className="block mt-7 lg:inline-block lg:mt-0 text-white hover:text-gray-500 ml-9">
+                    <a href="/loginpaginacadastro" className="block mt-7 lg:inline-block lg:mt-0 text-white hover:text-gray-500 ml-9">
                         Restaurantes
                     </a>
                     <a href="/contato" className="block mt-7 lg:inline-block lg:mt-0 text-white hover:text-gray-500 ml-24">
@@ -47,7 +48,7 @@ const Header = () => {
                     </a>
                 </div>
                 <div className='n-mt'>
-                    <a href="/membros" className="inline-block w-36 h-8 pt-2 resp-hid lg:pl-7 text-sm mx-auto leading-none border rounded text-white border-white hover:border-transparent text-lbronze hover:bg-white lg:block">
+                    <a href="/logincadastromembros" className="inline-block w-36 h-8 pt-2 resp-hid lg:pl-7 text-sm mx-auto leading-none border rounded text-white border-white hover:border-transparent text-lbronze hover:bg-white lg:block">
                         Cadastre-se
                     </a>
                 </div>

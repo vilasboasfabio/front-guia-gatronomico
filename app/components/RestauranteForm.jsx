@@ -11,7 +11,7 @@ const RestauranteForm = ({
   formRef
 }) => {
 
-  const diasFuncionamento = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"];
+  const diasFuncionamento = ['Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sábado', 'Domingo'];
   const formasPagamento = ["Dinheiro", "Cartão de Crédito", "Cartão de Débito", "PIX", "Vale Refeição", "Vale Alimentação"];
   const tipoOptions = [
     {value:'', label: 'Qualquer tipo'},
