@@ -54,9 +54,13 @@ function RestauranteCard({ restaurante, onEdit, onDelete }) {
           </span>
 
         </div>
+
+        <hr className='bg-lbronze h-0 mb-6 mt-6' />
+
         <div className="flex w-full mt-4 text-white mr-36">{restaurante.funcionamento.join(', ')}.</div>
         <div className="flex w-full text-white mt-4 mr-36">{restaurante.pagamento.join(', ')}.</div>
         <hr className='bg-lbronze h-1 mb-6 mt-6' />
+
         <div className="flex mt-4 mr-36">
           <h3 className='font-bold text-xl mb-2 text-lbronze'>{restaurante.tipo}</h3>
 
