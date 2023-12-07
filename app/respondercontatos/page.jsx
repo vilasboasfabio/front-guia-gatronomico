@@ -72,6 +72,7 @@ function Contato() {
         axios.delete(`/api/contatos/${id}`)
             .then((response) => {
                 setContatos(contatos.filter((contato) => contato.id !== id));
+                setRespondedContatos(respondedContatos.filter((contato) => contato.id !== id));
             })
             .catch((error) => {
                 console.log(error);
@@ -178,6 +179,11 @@ function Contato() {
                                     <div className="px-6 pt-4 pb-2">
                                         <p><strong>Resposta:</strong> {contato.resposta}</p>
                                     </div>
+                                    <div className="px-6 pt-4 pb-2">
+                                        <button className="bg-lbronze hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => handleDelete(contato.id)}>
+                                            Excluir
+                                        </button>
+                                        </div>
                                 </div>
                             ))
                         }

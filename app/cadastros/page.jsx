@@ -7,6 +7,7 @@ import CardDetalhesRestaurante from '../components/CardDetalhesRestaurante';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
+
 function CadastroRestaurante() {
     const [restaurante, setRestaurante] = useState({
         nome: '',
