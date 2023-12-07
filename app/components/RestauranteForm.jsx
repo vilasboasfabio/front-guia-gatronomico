@@ -46,8 +46,8 @@ const RestauranteForm = ({
 
 
   return (
-    <div className="container mx-auto p-6 w-2/3 bg-transparente opacity-80 shadow-lg rounded-lg">
-      <h2 className="text-3xl font-bold text-center text-slate-900 mb-8 ">Cadastro de Restaurante</h2>
+    <div className="container mx-auto p-6 w-2/3 bg-transparente mb-10 opacity-80 shadow-lg rounded-lg">
+      
       <form  ref={formRef}>
         {/* Nome */}
         <div className="mb-4">
@@ -227,8 +227,8 @@ const RestauranteForm = ({
         <div className='mx-auto mt-4 lg:ml-80'>
         {
           isEditing
-            ? <button className="w-1/2 mx-auto bg-blue-950 hover:bg-gray-950 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline" onClick={() => handleEdit(restaurante.id, restaurante)} >Atualizar</button>
-            : <button className="w-1/2 mx-auto bg-blue-950 hover:bg-gray-950 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline" onClick={handleSubmit}>Cadastrar</button>
+            ? <button className="w-1/2 mx-auto bg-[#78594D]  hover:bg-[#7D665C] text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline" onClick={() => handleEdit(restaurante.id, restaurante)} >Atualizar</button>
+            : <button className="w-1/2 mx-auto bg-[#78594D]   hover:bg-[#7D665C] text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline" onClick={handleSubmit}>Cadastrar</button>
         }
       </div>
       </form>
