@@ -84,7 +84,7 @@ function ExibirRestaurantes() {
   useEffect(() => {
     const fetchRestaurants = async () => {
       try {
-        const response = await axios.get(`/api/restaurantes`);
+        const response = await axios.get(`/api/restaurantes?avaliação=${filters.avaliacao}&valor=${filters.valor}&tipo=${filters.tipo}&pagamento=${filters.pagamento}`);
         let data = response.data;
   
         // Aplicar filtros
