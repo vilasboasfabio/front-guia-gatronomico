@@ -196,7 +196,7 @@ function CadastroRestaurante() {
                         <div>
                             {
                                 errors.map((error) => (
-                                    <div key={error} className="text-red-500 text-xs italic">
+                                    <div key={error} className="text-red-500 text-sm italic mb-2">
                                         {error}
                                     </div>
                                 ))

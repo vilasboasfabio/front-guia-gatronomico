@@ -99,17 +99,10 @@ function Contato() {
             <div className="flex flex-col items-center justify-center min-h-screen py-2">
                 <div className="flex flex-col justify-center items-center">
                     <h1 className="text-4xl font-bold text-lbronze">Mensagens</h1>
-                    <p className="text-xl text-lbronze">Aqui estão as mensagens enviadas para o site.</p>
-                </div>
-                <div className="flex flex-col justify-center items-center">
-                    <button className="bg-lbronze hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={abrir}>
-                        {aberto ? 'Fechar' : 'Abrir'}
-                    </button>
                 </div>
 
                 <div className="flex flex-col justify-center items-center">
-                    {
-                        aberto ? (
+                 
                             <table className="table-fixed">
                                 <tbody>
                                     <div className="flex flex-wrap justify-center items-center">
@@ -154,10 +147,7 @@ function Contato() {
                                 </tbody>
 
                             </table>
-                        ) : (
-                            <div></div>
-                        )
-                    }
+                     
                 </div>
                 <div className="flex flex-col justify-center items-center">
                     <h1 className="text-4xl font-bold text-lbronze">Mensagens Respondidas</h1>

@@ -51,7 +51,7 @@ const RestauranteForm = ({
       <form  ref={formRef}>
         {/* Nome */}
         <div className="mb-4">
-          <label htmlFor="nome" className="block text-white text-sm font-bold mb-2">Nome:</label>
+          <label htmlFor="nome" className="block text-white text-base font-bold mb-0 ">Nome:</label>
           <input
             id="nome"
             name="nome"
@@ -65,7 +65,7 @@ const RestauranteForm = ({
 
         {/* Imagem */}
         <div>
-          <label htmlFor="imagem" className="block text-white text-sm font-bold mb-2">Imagem:</label>
+          <label htmlFor="imagem" className="block text-white text-base font-bold mb-0">Imagem:</label>
           <input
             id="imagem"
             name="img"
@@ -79,7 +79,7 @@ const RestauranteForm = ({
 
         {/* Localização */}
         <div>
-          <label htmlFor="localizacao" className="block text-white text-sm font-bold mb-2">Localização:</label>
+          <label htmlFor="localizacao" className="block text-white text-base font-bold mb-0 mt-4">Localização:</label>
           <input
             id="localizacao"
             name="loc"
@@ -93,7 +93,7 @@ const RestauranteForm = ({
 
         {/* Valor */}
         <div>
-          <label htmlFor="valor" className="block text-white text-sm font-bold mb-2">Valor:</label>
+          <label htmlFor="valor" className="block text-white text-base font-bold mb-0 mt-4">Valor:</label>
           <input
             id="valor"
             name="valor"
@@ -107,7 +107,7 @@ const RestauranteForm = ({
 
         {/* Tipo */}
         <div>
-          <label htmlFor="tipo" className="block text-white text-sm font-bold mb-2">Tipo:</label>
+          <label htmlFor="tipo" className="block text-white text-base font-bold mb-0 mt-4">Tipo:</label>
           <select
             id="tipo"
             name="tipo"
@@ -127,7 +127,7 @@ const RestauranteForm = ({
 
         {/* Chefe */}
         <div>
-          <label htmlFor="chefe" className="block text-white text-sm font-bold mb-2">Chefe:</label>
+          <label htmlFor="chefe" className="block text-white text-base font-bold mb-0 mt-4">Chefe:</label>
           <input
             id="chefe"
             name="chefe"
@@ -141,7 +141,7 @@ const RestauranteForm = ({
 
         {/* Descrição */}
         <div>
-          <label htmlFor="descricao" className="block text-white text-sm font-bold mb-2">Descrição:</label>
+          <label htmlFor="descricao" className="block text-white text-base font-bold mb-0 mt-4">Descrição:</label>
           <input
             id="descricao"
             name="descricao"
@@ -155,7 +155,7 @@ const RestauranteForm = ({
 
         {/* Funcionamento */}
         {/* Assumindo que você deseja manter os checkboxes para dias de funcionamento */}
-        <div className='lg:flex lg:ml-24'>
+        <div className='lg:flex lg:ml-4'>
           <fieldset className='ml-36 mt-5 mb-5 -ml5 ml30'>
             <legend className="block text-white text-lg font-bold mb-2"> Funcionamento</legend>
             {diasFuncionamento.map(dia => (
@@ -173,7 +173,7 @@ const RestauranteForm = ({
               </div>
             ))}
           </fieldset>
-          <hr className="bg-black lg:h-56 lg:w-1 w-full h-1 mt-3 lg:ml-24" />
+          <hr className="bg-bronze lg:h-56 lg:w-1 w-full h-1 mt-3 lg:ml-24" />
 
           {/* Pagamento */}
           {/* Assumindo que você deseja manter os checkboxes para formas de pagamento */}
@@ -198,7 +198,7 @@ const RestauranteForm = ({
         {/* Avaliação */}
 
         <div>
-          <label htmlFor="avaliacao" className="block text-white text-sm font-bold mb-2">Avaliação:</label>
+          <label htmlFor="avaliacao" className="block text-white text-base font-bold mb-0 mt-4">Avaliação:</label>
           <input
             id="avaliacao"
             name="avaliacao"
@@ -212,7 +212,7 @@ const RestauranteForm = ({
 
         {/* Data */}
         <div>
-          <label htmlFor="data" className="block text-white text-sm font-bold mb-2">Data:</label>
+          <label htmlFor="data" className="block text-white text-base font-bold mb-0 mt-4">Data:</label>
           <input
             id="data"
             name="data"
@@ -228,7 +228,7 @@ const RestauranteForm = ({
         {
           isEditing
             ? <button className="w-1/2 mx-auto bg-[#78594D]  hover:bg-[#7D665C] text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline" onClick={() => handleEdit(restaurante.id, restaurante)} >Atualizar</button>
-            : <button className="w-1/2 mx-auto bg-[#78594D]   hover:bg-[#7D665C] text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline" onClick={handleSubmit}>Cadastrar</button>
+            : <button className="w-1/2 mx-auto bg-[#78594D]   hover:bg-[#7D665C] text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline -ml-8" onClick={handleSubmit}>Cadastrar</button>
         }
       </div>
       </form>
