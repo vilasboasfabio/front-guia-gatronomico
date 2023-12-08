@@ -20,7 +20,7 @@ function Sobrenos() {
                     <p className="text-1xl mr-auto ml-36 mt-4 w-2/3 text-justify font-light">Se você é daqueles que consideram a experiência de saborear uma refeição como uma verdadeira celebração para os sentidos, então o Elite Chefs é o seu guia essencial. Embarque conosco em uma jornada sensorial através dos mais extraordinários restaurantes, onde cada prato conta uma história de inovação culinária e sabor autêntico.</p>
                 </div>
             </div>
-            <hr className='bg-lbronze h-2 -mt-1' />
+        
 
 
             <div>
@@ -29,38 +29,51 @@ function Sobrenos() {
 
 
             <div className="">
-                <div className="bg-slate-800 w-2/4 h-76 rounded-3xl mt-10 mb-6 border-bronze ">
-                    <img className="w-64 mt-6 ml-8 mb-2 rounded-lg drop-shadow-2xl  h-80" src="/fotojulia.jpg" alt="foto Ana Clara " />
-                    <p className="text-2xl font-light ml-20 mb-2 mt-6">Ana Clara Cavalcante</p>
-                    <p>Sou Ana Clara Cavalcante Reis, natural de Valinhos, e atualmente conto com 17 anos de idade. Encontro-me matriculada no curso de Desenvolvimento de Sistemas no SENAI. </p>
+                <div className="bg-slate-800 w-2/4 h-76 rounded-3xl mt-10 mb-6 border-bronze flex">
+                    <img className="w-64 mt-6 ml-8 mb-2 rounded-lg drop-shadow-2xl  h-80" src="/eu.png" alt="foto Ana Clara " />
+                    <div>
+                    <p className="text-2xl font-bold ml-20 mb-2 mt-6">Ana Clara Cavalcante</p>
+                    <p className="text-left font-bold ml-20 mb-2 mt-6">Sou Ana Clara Cavalcante Reis, natural de Valinhos, e atualmente conto com 17 anos de idade. Encontro-me matriculada no curso de Desenvolvimento de Sistemas no SENAI. </p>
+                    </div>
+                   
                 </div>
 
 
-                <div className="bg-slate-800 w-2/4 h-76 rounded-3xl mt-10 mb-6 border-bronze">
-                    <img className="w-64 mt-6 ml-8 mb-2 rounded-lg drop-shadow-2xl  h-80" src="/fotojulia.jpg" alt="foto fábio vilas boas " />
-                    <p className="text-2xl font-light ml-20 mb-2 mt-6">Fábio Vilas Boas</p>
-                    <p>Sou Fábio Vilas Boas Simões Junior, natural de Sorocaba, e atualmente conto com 16 anos de idade. Encontro-me matriculado no curso de Desenvolvimento de Sistemas no SENAI. </p>
+                <div className="bg-slate-800 w-2/4 h-76 rounded-3xl mt-10 mb-6 border-bronze flex">
+                    <img className="w-64 mt-6 ml-8 mb-2 rounded-lg drop-shadow-2xl  h-80" src="/fabiocirculo.png" alt="foto fábio vilas boas " />
+                    <div>
+                    <p className="text-2xl font-bold ml-20 mb-2 mt-6">Fábio Vilas Boas</p>
+                    <p className="text-left font-bold ml-20 mb-2 mt-6">Sou Fábio Vilas Boas Simões Junior, natural de Sorocaba, e atualmente conto com 16 anos de idade. Encontro-me matriculado no curso de Desenvolvimento de Sistemas no SENAI. </p>
+                    </div>
+                   
                 </div>
 
 
-                <div className="bg-slate-800 w-2/4 h-76 rounded-3xl mt-10 mb-6 border-bronze">
-                    <img className="w-64 mt-6 ml-8 mb-2 rounded-lg drop-shadow-2xl  h-80" src="/fotojulia.jpg" alt="foto giovana basílio " />
-                    <p className="text-2xl font-light ml-20 mb-2 mt-6">Giovana Basílio</p>
-                    <p>Sou Giovana Maia Basílio, natural de Campinas, e atualmente conto com 16 anos de idade. Encontro-me matriculada no curso de Desenvolvimento de Sistemas no SENAI.</p>
+                <div className="bg-slate-800 w-2/4 h-76 rounded-3xl mt-10 mb-6 border-bronze flex">
+                    <img className="w-64 mt-6 ml-8 mb-2 rounded-lg drop-shadow-2xl  h-80" src="/giofotot6.png" alt="foto giovana basílio " />
+                    <div>
+                    <p className="text-2xl font-bold ml-20 mb-2 mt-6">Giovana Basílio</p>
+                    <p className="text-left font-bold ml-20 mb-2 mt-6">Sou Giovana Maia Basílio, natural de Campinas, e atualmente conto com 16 anos de idade. Encontro-me matriculada no curso de Desenvolvimento de Sistemas no SENAI.</p>
+                    </div>
                 </div>
 
 
-                <div className="bg-slate-800 w-2/4 h-76 rounded-3xl mt-10 mb-6 border-bronze">
-                    <img className="w-64 mt-6 ml-8 mb-2 rounded-lg drop-shadow-2xl  h-80" src="/fotojulia.jpg" alt="foto julia martins " />
-                    <p className="text-2xl font-light ml-20 mb-2 mt-6">Julia Martins</p>
-                    <p>Sou Julia Martins Leite, natural de Campinas, e atualmente conto com 16 anos de idade. Encontro-me matriculada no curso de Desenvolvimento de Sistemas no SENAI.</p>
+                <div className="bg-slate-800 w-2/4 h-76 rounded-3xl mt-10 mb-6 border-bronze flex">
+                    <img className="w-64 mt-6 ml-8 mb-2 rounded-lg drop-shadow-2xl  h-80" src="/fotojulia.png" alt="foto julia martins " />
+                    <div>
+                    <p className="text-2xl font-bold ml-20 mb-2 mt-6">Julia Martins</p>
+                    <p className="text-left font-bold ml-20 mb-2 mt-6">Sou Julia Martins Leite, natural de Campinas, e atualmente conto com 16 anos de idade. Encontro-me matriculada no curso de Desenvolvimento de Sistemas no SENAI.</p>
+                    </div>
                 </div>
 
 
-                <div className="bg-slate-800 w-2/4 h-76 rounded-3xl mt-10 mb-6 border-bronze">
-                    <img className="w-64 mt-6 ml-8 mb-2 rounded-lg drop-shadow-2xl  h-80" src="/fotojulia.jpg" alt="foto julia martins " />
-                    <p className="text-2xl font-light ml-20 mb-2 mt-6">Samuel pinheiro</p>
-                    <p>Sou Samuel Pinheiros, natural de Campinas, e atualmente conto com 17 anos de idade. Encontro-me matriculado no curso de Desenvolvimento de Sistemas no SENAI.</p>
+                <div className="bg-slate-800 w-2/4 h-76 rounded-3xl mt-10 mb-6 border-bronze flex">
+                    <img className="w-64 mt-6 ml-8 mb-2 rounded-lg drop-shadow-2xl  h-80" src="/samuelfoto5.png" alt="foto julia martins " />
+                    <div>
+                    <p className="text-2xl  font-bold ml-20 mb-2 mt-6">Samuel pinheiro</p>
+                    <p className="text-left font-bold ml-20 mb-2 mt-6">Sou Samuel Pinheiros, natural de Campinas, e atualmente conto com 17 anos de idade. Encontro-me matriculado no curso de Desenvolvimento de Sistemas no SENAI.</p>
+                    </div>
+                   
                 </div>
             </div>
 
