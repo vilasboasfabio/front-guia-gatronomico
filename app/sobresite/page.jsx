@@ -8,20 +8,25 @@ import Header from "../components/Header";
 function PaginaSobre() {
     return (
         <main className="bg-slate-900 ">
-            <Header/>
+            <Header />
             <hr className='bg-lbronze h-2 -mt-1' />
-            
+
             <section className="mt-8">
                 <h1 className="text-4xl font-bold text-center mb-6 text-white">Bem-vindo ao Elite Chefs</h1>
                 <h1 className="text-2xl font-bold text-center mt-2 text-white">O Guia Definitivo para Experiências Gastronômicas Inesquecíveis</h1>
                 <p className="text-center mt-6 text-white">No mundo dinâmico e diversificado da gastronomia, há um lugar que se destaca como o guia essencial para os verdadeiros apreciadores de boa comida. Este guia meticulosamente elaborado é sua bússola confiável para explorar o universo culinário, apresentando uma seleção cuidadosamente curada dos melhores restaurantes que oferecem experiências gastronômicas verdadeiramente excepcionais.</p>
             </section>
-           
-            <section className="bg-bronze w-1/3 h-76 rounded-2xl ml-48 mt-10 border-bronze">
-                <h1 className="font-bold text-xl text-lbronze text-center  mb-4 mt-4 font">Descubra Destinos Gastronômicos Exclusivos:</h1>
-                <p className=" text-white ml-2 mr-2 text-center mb-4">Elite Chefs é mais do que um guia; é uma jornada gastronômica que o leva aos destinos mais exclusivos e emocionantes para paladares sofisticados. Seja você um entusiasta da cozinha internacional, um apaixonado por pratos regionais ou um explorador de novas tendências culinárias, o Elite Chefs tem a lista perfeita de restaurantes para satisfazer seus desejos.</p>
-            </section>
-            <hr className='bg-lbronze h-24 w-1 mx-auto mt-8' />
+
+            <hr className='bg-lbronze h-96 w-0.5 mx-auto mt-8 ' />
+            <div className="flex">
+                <section className="bg-bronze w-1/3 h-72 rounded-2xl ml-48 -mt-82 border-bronze">
+                    <h1 className="font-bold text-xl text-lbronze text-center  mb-4 mt-4 font">Descubra Destinos Gastronômicos Exclusivos:</h1>
+                    <p className=" text-white ml-2 mr-2 text-justify w-96">Elite Chefs é mais do que um guia; é uma jornada gastronômica que o leva aos destinos mais exclusivos e emocionantes para paladares sofisticados. Seja você um entusiasta da cozinha internacional, um apaixonado por pratos regionais ou um explorador de novas tendências culinárias, o Elite Chefs tem a lista perfeita de restaurantes para satisfazer seus desejos.</p>
+                </section>
+                <img className="ml-16 h-40" src="/pratocomida.png" alt="prato de comida" />
+            </div>
+
+
             <section className="bg-bronze w-1/3 h-76 rounded-2xl ml-auto mr-48 mt-10 border-bronze">
                 <h1 className="text-xl text-center text-lbronze font-bold mb-4 mt-4">Curadoria de Especialistas:</h1>
                 <p className=" text-white ml-2 mr-2 text-center mb-4">Nossa equipe de especialistas em gastronomia trabalha incansavelmente para oferecer a você um guia confiável e atualizado. Cada restaurante apresentado no Elite Chefs passa por um processo rigoroso de seleção, garantindo que apenas os estabelecimentos mais excepcionais e inovadores sejam destacados. Confie em nós para proporcionar uma experiência gastronômica digna dos verdadeiros apreciadores de comida.</p>
@@ -41,14 +46,14 @@ function PaginaSobre() {
                 <h1 className="font-bold text-xl text-lbronze text-center mb-4 mt-4">Planeje sua Próxima Experiência</h1>
                 <p className=" text-white ml-2 mr-2 text-center mb-4">Navegue pelo Elite Chefs para planejar sua próxima aventura gastronômica. Descubra novos sabores, encontre o local perfeito para cada ocasião e mergulhe em um mundo de possibilidades culinárias. Com recursos úteis, como avaliações, menus e dicas locais, estamos aqui para tornar sua jornada gastronômica memorável.</p>
             </section>
-            
+
             <section className="bg-bronze w-1/3 h-76 rounded-2xl ml-auto mr-48 mt-10 border-bronze mb-8">
                 <h1 className="font-bold text-xl text-lbronze  text-center mb-4 mt-4">Junte-se à Comunidade Elite:</h1>
                 <p className=" text-white ml-2 mr-2 text-center mb-4">Embarque nesta jornada gastronômica extraordinária com o Elite Chefs. Descubra, saboreie e celebre as melhores experiências culinárias ao redor do mundo. Sua próxima aventura gastronômica começa aqui.</p>
             </section>
 
             <hr className='bg-lbronze h-2 -mt-1' />
-            <Footer/>
+            <Footer />
 
         </main>
 
