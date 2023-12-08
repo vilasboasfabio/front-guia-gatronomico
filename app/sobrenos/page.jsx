@@ -24,7 +24,8 @@ function Sobrenos() {
 
 
             <div>
-                <p className=" text-center text-3xl mt-6 ml-36 font-bold">Conheça nossos diretores:</p>
+                <p className=" text-3xl mt-6 ml-36 font-bold">Conheça nossos diretores:</p>
+                <hr className='bg-lbronze h-0.5 -mt-1' />
             </div>
 
 
