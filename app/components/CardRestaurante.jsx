@@ -37,7 +37,7 @@ function RestauranteCard({ restaurante, onEdit, onDelete }) {
       </div>
       {/* Imagem do Restaurante */}
       <img
-        className="w-full h-64 relative z-0 group-hover:translate-y-[200%] transition-transform duration-500 ease-in-out"
+        className="w-full h-64 relative z-0 group-hover:scale-150 group-hover:translate-y-full group-hover:opacity-0 transition-all duration-700 ease"
         src={restaurante.img}
         alt="Imagem do Restaurante"
       />
