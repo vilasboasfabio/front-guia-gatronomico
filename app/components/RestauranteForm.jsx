@@ -155,7 +155,7 @@ const RestauranteForm = ({
 
         {/* Funcionamento */}
         {/* Assumindo que você deseja manter os checkboxes para dias de funcionamento */}
-        <div className='lg:flex lg:ml-24'>
+        <div className='lg:flex lg:ml-4'>
           <fieldset className='ml-36 mt-5 mb-5 -ml5 ml30'>
             <legend className="block text-white text-lg font-bold mb-2"> Funcionamento</legend>
             {diasFuncionamento.map(dia => (
@@ -228,7 +228,7 @@ const RestauranteForm = ({
         {
           isEditing
             ? <button className="w-1/2 mx-auto bg-[#78594D]  hover:bg-[#7D665C] text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline" onClick={() => handleEdit(restaurante.id, restaurante)} >Atualizar</button>
-            : <button className="w-1/2 mx-auto bg-[#78594D]   hover:bg-[#7D665C] text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline" onClick={handleSubmit}>Cadastrar</button>
+            : <button className="w-1/2 mx-auto bg-[#78594D]   hover:bg-[#7D665C] text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline -ml-8" onClick={handleSubmit}>Cadastrar</button>
         }
       </div>
       </form>
