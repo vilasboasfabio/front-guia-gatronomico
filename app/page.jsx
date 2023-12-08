@@ -8,7 +8,6 @@ import Footer from './components/Footer';
 import CardDetalhesRestaurante from './components/CardDetalhesRestaurante';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 
-
 function ExibirRestaurantes() {
   const [filters, setFilters] = useState({
     avaliacao: '',
@@ -23,6 +22,7 @@ function ExibirRestaurantes() {
   const [currentPage, setCurrentPage] = useState(1);
   const restaurantsPerPage = 8;
   const [filteredAndSearchedRestaurants, setFilteredAndSearchedRestaurants] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const valorOptions = [
     { value: '', label: 'Qualquer Valor' },
@@ -83,6 +83,7 @@ function ExibirRestaurantes() {
   useEffect(() => {
     const fetchRestaurants = async () => {
       try {
+        setIsLoading(true);
         const response = await axios.get(`/api/restaurantes?avaliação=${filters.avaliacao}&valor=${filters.valor}&tipo=${filters.tipo}&pagamento=${filters.pagamento}&nome=${searchTerm}`);
         let data = response.data;
   
@@ -105,6 +106,7 @@ function ExibirRestaurantes() {
   
         setFiltredRestaurantes(data);
         setFilteredAndSearchedRestaurants(data.slice((currentPage - 1) * restaurantsPerPage, currentPage * restaurantsPerPage));
+        setIsLoading(false);
       } catch (error) {
         console.error('Erro ao buscar restaurantes', error);
       }
@@ -141,6 +143,11 @@ function ExibirRestaurantes() {
   const handleFilterChange = (type) => (e) => {
     setFilters({ ...filters, [type]: e.target.value });
   };
+
+  function LoadingComponent() {
+   
+    return <img src='/loading1.webp' alt='Loading' className='w-1/5 mx-auto mt-10' /> ;
+  }
 
   return (
     <div className=' bg-slate-900'>
@@ -187,6 +194,9 @@ function ExibirRestaurantes() {
           <input className='bg-lbronze lg:hidden w-full rounded-lg border border-gray-400 leading-normal resize-none h-10 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white' type='text' placeholder='Pesquisar' onChange={(e) => setSearchTerm(e.target.value)} />
 
         </div>
+        {
+          isLoading && <LoadingComponent />
+        }
         <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {
             detalhes ? (

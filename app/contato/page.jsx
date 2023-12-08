@@ -25,7 +25,7 @@ function Contato() {
     const handleChange = (e) => {
         setContato({ ...contato, [e.target.name]: e.target.value });
     };
-    
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -58,25 +58,24 @@ function Contato() {
     return (
         <>
             <Header />
-            <div className="flex flex-col items-center justify-center min-h-screen py-2">
+            <hr className='bg-lbronze h-2 -mt-1' />
+
+            <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-slate-900 text-white">
                 <div className="flex flex-col justify-center items-center">
-                    <h1 className="text-4xl font-bold text-lbronze">Contato</h1>
-                    <p className="text-xl text-lbronze">Entre em contato conosco para tirar dúvidas, dar sugestões ou fazer reclamações.</p>
-                </div>
-                <div className="flex flex-col justify-center items-center">
-                    <ContactForm contato={contato} handleChange={handleChange} handleSubmit={handleSubmit} />
-                </div>
-                <div className="flex flex-col justify-center items-center bg-slate-900 rounded-lg p-4 mt-6">
-                 
-                   
-                   <h3 className='
-                     text-4xl font-bold text-lbronze
-                   '>Área do Membro</h3>
-                   <a href="/loginrespondercontatos" className=" bg-slate-400 rounded-lg p-1 mt-2 hover:bg-slate-700 hover:text-white text-black" >Responder Contatos</a>
+                    <h1 className="text-4xl mt-10 font-bold uppercase mx-auto">Contato</h1>
 
                 </div>
-               
+                <div className="flex  justify-center mt-10 items-center">
+                    <ContactForm contato={contato} handleChange={handleChange} handleSubmit={handleSubmit} />
+                </div>
+                <div className="flex flex-col justify-center items-center bg-lbronze rounded-lg p-4 mt-6">
+                    <a href="/loginrespondercontatos"  >Área dos diretores</a>
+
+                </div>
+
             </div>
+
+            <hr className='bg-lbronze h-2 -mt-1' />
             <Footer />
         </>
     )
