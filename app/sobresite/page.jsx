@@ -16,12 +16,12 @@ function PaginaSobre() {
                 <h1 className="text-2xl font-bold text-center mt-2 text-white">O Guia Definitivo para Experiências Gastronômicas Inesquecíveis</h1>
                 <p className="text-center mt-6 text-white">No mundo dinâmico e diversificado da gastronomia, há um lugar que se destaca como o guia essencial para os verdadeiros apreciadores de boa comida. Este guia meticulosamente elaborado é sua bússola confiável para explorar o universo culinário, apresentando uma seleção cuidadosamente curada dos melhores restaurantes que oferecem experiências gastronômicas verdadeiramente excepcionais.</p>
             </section>
-            <hr className='bg-lbronze h-24 w-1 mx-auto mt-8' />
+           
             <section className="bg-bronze w-1/3 h-76 rounded-2xl ml-48 mt-10 border-bronze">
                 <h1 className="font-bold text-xl text-lbronze text-center  mb-4 mt-4 font">Descubra Destinos Gastronômicos Exclusivos:</h1>
                 <p className=" text-white ml-2 mr-2 text-center mb-4">Elite Chefs é mais do que um guia; é uma jornada gastronômica que o leva aos destinos mais exclusivos e emocionantes para paladares sofisticados. Seja você um entusiasta da cozinha internacional, um apaixonado por pratos regionais ou um explorador de novas tendências culinárias, o Elite Chefs tem a lista perfeita de restaurantes para satisfazer seus desejos.</p>
             </section>
-
+            <hr className='bg-lbronze h-24 w-1 mx-auto mt-8' />
             <section className="bg-bronze w-1/3 h-76 rounded-2xl ml-auto mr-48 mt-10 border-bronze">
                 <h1 className="text-xl text-center text-lbronze font-bold mb-4 mt-4">Curadoria de Especialistas:</h1>
                 <p className=" text-white ml-2 mr-2 text-center mb-4">Nossa equipe de especialistas em gastronomia trabalha incansavelmente para oferecer a você um guia confiável e atualizado. Cada restaurante apresentado no Elite Chefs passa por um processo rigoroso de seleção, garantindo que apenas os estabelecimentos mais excepcionais e inovadores sejam destacados. Confie em nós para proporcionar uma experiência gastronômica digna dos verdadeiros apreciadores de comida.</p>
