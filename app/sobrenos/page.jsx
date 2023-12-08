@@ -30,55 +30,52 @@ function Sobrenos() {
 
             <div className="">
                 <div className="bg-slate-800 w-2/4 h-76 rounded-3xl mt-10 mb-6 border-bronze flex">
-                    <img className="w-64 mt-6 ml-8 mb-2 rounded-lg drop-shadow-2xl  h-80" src="/eu.png" alt="foto Ana Clara " />
+                    <img className="w-64 mt-6 ml-8 mb-2 rounded-lg drop-shadow-2xl  h-50" src="/eu.png" alt="foto Ana Clara " />
                     <div>
-                    <p className="text-2xl font-bold ml-20 mb-2 mt-6">Ana Clara Cavalcante</p>
-                    <p className="text-left font-bold ml-20 mb-2 mt-6">Sou Ana Clara Cavalcante Reis, natural de Valinhos, e atualmente conto com 17 anos de idade. Encontro-me matriculada no curso de Desenvolvimento de Sistemas no SENAI. </p>
+                    <p className=" text-center text-2xl font-bold ml-20 mb-2 mt-6 ">Ana Clara Cavalcante Reis</p>
+                    <p className="font-bold ml-20 mb-2 mt-6 text-center">Sou Ana Clara Cavalcante Reis, natural de Valinhos, e atualmente conto com 17 anos de idade. Encontro-me matriculada no curso de Desenvolvimento de Sistemas no SENAI Valinhos. </p>
                     </div>
                    
                 </div>
 
 
                 <div className="bg-slate-800 w-2/4 h-76 rounded-3xl mt-10 mb-6 border-bronze flex">
-                    <img className="w-64 mt-6 ml-8 mb-2 rounded-lg drop-shadow-2xl  h-80" src="/fabiocirculo.png" alt="foto fábio vilas boas " />
+                    <img className="w-64 mt-6 ml-8 mb-2 rounded-lg drop-shadow-2xl h-50" src="/fabiocirculo.png" alt="foto fábio vilas boas " />
                     <div>
-                    <p className="text-2xl font-bold ml-20 mb-2 mt-6">Fábio Vilas Boas</p>
-                    <p className="text-left font-bold ml-20 mb-2 mt-6">Sou Fábio Vilas Boas Simões Junior, natural de Sorocaba, e atualmente conto com 16 anos de idade. Encontro-me matriculado no curso de Desenvolvimento de Sistemas no SENAI. </p>
+                    <p className=" text-center text-2xl font-bold ml-20 mb-2 mt-6">Fábio Vilas Boas Simões Junior</p>
+                    <p className=" font-bold ml-20 mb-2 mt-6 text-center">Sou Fábio Vilas Boas Simões Junior, natural de Sorocaba, e atualmente conto com 16 anos de idade. Encontro-me matriculado no curso de Desenvolvimento de Sistemas no SENAI Valinhos. </p>
                     </div>
                    
                 </div>
 
 
                 <div className="bg-slate-800 w-2/4 h-76 rounded-3xl mt-10 mb-6 border-bronze flex">
-                    <img className="w-64 mt-6 ml-8 mb-2 rounded-lg drop-shadow-2xl  h-80" src="/giofotot6.png" alt="foto giovana basílio " />
+                    <img className="w-64 mt-6 ml-8 mb-2 rounded-lg drop-shadow-2xl  h-50" src="/giofotot6.png" alt="foto giovana basílio " />
                     <div>
-                    <p className="text-2xl font-bold ml-20 mb-2 mt-6">Giovana Basílio</p>
-                    <p className="text-left font-bold ml-20 mb-2 mt-6">Sou Giovana Maia Basílio, natural de Campinas, e atualmente conto com 16 anos de idade. Encontro-me matriculada no curso de Desenvolvimento de Sistemas no SENAI.</p>
+                    <p className=" text-center text-2xl font-bold ml-20 mb-2 mt-6">Giovana Maia Basílio</p>
+                    <p className=" font-bold ml-20 mb-2 mt-6 text-center">Sou Giovana Maia Basílio, natural de Campinas, e atualmente conto com 16 anos de idade. Encontro-me matriculada no curso de Desenvolvimento de Sistemas no SENAI Valinhos.</p>
                     </div>
                 </div>
 
 
                 <div className="bg-slate-800 w-2/4 h-76 rounded-3xl mt-10 mb-6 border-bronze flex">
-                    <img className="w-64 mt-6 ml-8 mb-2 rounded-lg drop-shadow-2xl  h-80" src="/fotojulia.png" alt="foto julia martins " />
+                    <img className="w-64 mt-6 ml-8 mb-2 rounded-lg drop-shadow-2xl  h-50" src="/fotojulia.png" alt="foto julia martins " />
                     <div>
-                    <p className="text-2xl font-bold ml-20 mb-2 mt-6">Julia Martins</p>
-                    <p className="text-left font-bold ml-20 mb-2 mt-6">Sou Julia Martins Leite, natural de Campinas, e atualmente conto com 16 anos de idade. Encontro-me matriculada no curso de Desenvolvimento de Sistemas no SENAI.</p>
+                    <p className="text-2xl text-center font-bold ml-20 mb-2 mt-6">Julia Martins Leite</p>
+                    <p className="text-center font-bold ml-20 mb-2 mt-6">Sou Julia Martins Leite, natural de Campinas, e atualmente conto com 16 anos de idade. Encontro-me matriculada no curso de Desenvolvimento de Sistemas no SENAI Valinhos.</p>
                     </div>
                 </div>
 
 
                 <div className="bg-slate-800 w-2/4 h-76 rounded-3xl mt-10 mb-6 border-bronze flex">
-                    <img className="w-64 mt-6 ml-8 mb-2 rounded-lg drop-shadow-2xl  h-80" src="/samuelfoto5.png" alt="foto julia martins " />
+                    <img className="w-64 mt-6 ml-8 mb-2 rounded-lg drop-shadow-2xl  h-50" src="/samuelfoto5.png" alt="foto julia martins " />
                     <div>
-                    <p className="text-2xl  font-bold ml-20 mb-2 mt-6">Samuel pinheiro</p>
-                    <p className="text-left font-bold ml-20 mb-2 mt-6">Sou Samuel Pinheiros, natural de Campinas, e atualmente conto com 17 anos de idade. Encontro-me matriculado no curso de Desenvolvimento de Sistemas no SENAI.</p>
+                    <p className="text-2xl text-center font-bold ml-20 mb-2 mt-6">Samuel pinheiro</p>
+                    <p className="text-center font-bold ml-20 mb-2 mt-6">Sou Samuel Pinheiro, natural de Campinas, e atualmente conto com 17 anos de idade. Encontro-me matriculado no curso de Desenvolvimento de Sistemas no SENAI Valinhos.</p>
                     </div>
                    
                 </div>
             </div>
-
-
-
 
 
 
