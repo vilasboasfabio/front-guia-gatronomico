@@ -84,35 +84,36 @@ function ExibirRestaurantes() {
   useEffect(() => {
     const fetchRestaurants = async () => {
       try {
-        const response = await axios.get(`/api/restaurantes?avaliação=${filters.avaliacao}&valor=${filters.valor}&tipo=${filters.tipo}&pagamento=${filters.pagamento}`);
+        const response = await axios.get(`/api/restaurantes`);
         let data = response.data;
-
+  
         // Aplicar filtros
         if (filters.avaliacao || filters.valor || filters.tipo || filters.pagamento) {
           data = data.filter((restaurante) => {
             return (!filters.avaliacao || Number(restaurante.avaliacao) === Number(filters.avaliacao)) &&
-              (!filters.valor || Number(restaurante.valor) === Number(filters.valor)) &&
-              (!filters.tipo || restaurante.tipo === filters.tipo) &&
-              (!filters.pagamento || restaurante.pagamento.includes(filters.pagamento));
+                   (!filters.valor || Number(restaurante.valor) === Number(filters.valor)) &&
+                   (!filters.tipo || restaurante.tipo === filters.tipo) &&
+                   (!filters.pagamento || restaurante.pagamento.some(p => p.toLowerCase() === filters.pagamento.toLowerCase())); // Verifica se a forma de pagamento está no array
           });
         }
-
+  
         // Aplicar pesquisa
         if (searchTerm) {
           data = data.filter((restaurante) => {
             return restaurante.nome.toLowerCase().includes(searchTerm.toLowerCase());
           });
         }
-
+  
         setFiltredRestaurantes(data);
         setFilteredAndSearchedRestaurants(data.slice((currentPage - 1) * restaurantsPerPage, currentPage * restaurantsPerPage));
       } catch (error) {
         console.error('Erro ao buscar restaurantes', error);
       }
     };
-
+  
     fetchRestaurants();
   }, [filters, searchTerm, currentPage]);
+  
 
 
   const indexOfLastRestaurant = currentPage * restaurantsPerPage;
