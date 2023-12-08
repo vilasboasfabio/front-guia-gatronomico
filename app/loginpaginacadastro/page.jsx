@@ -41,7 +41,7 @@ function Login() {
                         <div className='rounded-lg mb-12 mt-3'>
                             <div className='mt-6 text-center'><p className='text-lbronze text-justify'>Para acessar as páginas destinadas às funcionalidades dos membros da Elite Chefs, por favor, faça login com as suas respectivas credenciais para validarmos a sua entrada.</p></div>
                             <div className='mt-6 text-center'><p className='text-lbronze text-justify'>Caso você não seja um membro da Elite Chefs, por favor, entre em contato conosco pela nossa página de contatos.</p></div>
-                            <a href='/contato' className=' text-center hover:text-slate-900 ml-9 text-lbronze'>Clique aqui para ir para a página de contatos</a>
+                            <a href='/logincadastromembros' className=' text-center hover:text-slate-900 ml-9 text-lbronze'>Clique aqui para ir para a página de contatos</a>
 
                             <form className='mt-8' onSubmit={handleSubmit}>
                                 {error && <p className='text-red-500'>{error}</p>}

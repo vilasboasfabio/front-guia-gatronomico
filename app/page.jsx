@@ -9,7 +9,6 @@ import CardDetalhesRestaurante from './components/CardDetalhesRestaurante';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 
 
-
 function ExibirRestaurantes() {
   const [filters, setFilters] = useState({
     avaliacao: '',
