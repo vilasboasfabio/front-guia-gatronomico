@@ -67,7 +67,7 @@ function Login() {
                 <div className='max-w-md w-full space-y-8'>
                     <div>
                         <h2 className='mt-6 text-center text-3xl font-extrabold text-lbronze'>
-                           Olá, deseja se tornar um colobarodaor da Elite Chefs?
+                           Olá, deseja se tornar um colaborador da Elite Chefs?
                         </h2>
                         <div className='rounded-lg mb-12 mt-3'>
                             <h4 className='text-justify text-xl font-bold text-gray-300 mb-3'>Você pode se tornar um membro da Elite Chefs e ter acesso a área de membros, onde você pode auxiliar na nossa curadoria, cadastrar restaurantes e muito mais.</h4>

@@ -151,19 +151,19 @@ function ExibirRestaurantes() {
         <div className='flex resp-hid flex-col items-center justify-center min-h-screen  sm:px-6 lg:px-8 mb-10'>
 
 
-        <img src='/titulo.png' alt='Guia de Restaurante' className='lg:ml-6'/>
-        <hr className='bg-lbronze h-1 w-3/4 mb-10 mt-0' />
+        <img src='/titulo.png' alt='Guia de Restaurante' className='lg:ml-6 mt-36 mb-2 w-max'/>
+        {/* { <hr className='bg-lbronze h-1 w-3/4 mt-0' /> } */}
         <div className='flex flex-col -mb'>
           
         
-          <input className='bg-white rounded-lg border mb-96 border-gray-400 leading-normal resize-none w-96 h-10 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white' type='text' placeholder='Pesquisar' onChange={(e) => setSearchTerm(e.target.value)} />
+          <input className='bg-white rounded-lg border mb-96 -mt-16 border-gray-400 leading-normal resize-none w-96 h-10 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white' type='text' placeholder='Pesquisar' onChange={(e) => setSearchTerm(e.target.value)} />
 </div>
 
         </div>
       </div>
       <hr className='bg-lbronze h-2 -mt-1' />
       <article className='flex flex-col mt-10 items-center justify-center min-h-screen bg-slate-900 sm:px-6 lg:px-8 mb-10'>
-        <div className='lg:flex'>
+        <div className='lg:flex -ml-16'>
           <FilterDropdown
             label="Avaliação"
             options={avaliacaoOptions}
