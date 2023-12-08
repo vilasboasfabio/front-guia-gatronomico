@@ -30,7 +30,7 @@ function Sobrenos() {
 
             <div className="">
                 <div className="bg-slate-800 w-2/4 h-76 rounded-3xl mt-10 mb-6 border-bronze ">
-                    <img className="w-64 mt-6 ml-8 mb-2 rounded-lg drop-shadow-2xl  h-80" src="/fotojulia.jpg" alt="foto Ana Clara " />
+                    <img className="w-64 mt-6 ml-8 mb-2 rounded-lg drop-shadow-2xl h-80" src="/fotojulia.jpg" alt="foto Ana Clara " />
                     <p className="text-2xl font-light ml-20 mb-2 mt-6">Ana Clara Cavalcante</p>
                     <p>Sou Ana Clara Cavalcante Reis, natural de Valinhos, e atualmente conto com 17 anos de idade. Encontro-me matriculada no curso de Desenvolvimento de Sistemas no SENAI. </p>
                 </div>
