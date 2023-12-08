@@ -8,7 +8,6 @@ import Footer from './components/Footer';
 import CardDetalhesRestaurante from './components/CardDetalhesRestaurante';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 
-
 function ExibirRestaurantes() {
   const [filters, setFilters] = useState({
     avaliacao: '',
@@ -146,7 +145,8 @@ function ExibirRestaurantes() {
   };
 
   function LoadingComponent() {
-    return <div className='text-white'>Loading...</div>;
+   
+    return <img src='/loading1.webp' alt='Loading' className='w-1/5 mx-auto mt-10' /> ;
   }
 
   return (
