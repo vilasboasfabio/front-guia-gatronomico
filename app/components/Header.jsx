@@ -13,18 +13,18 @@ const Header = () => {
     };
 
     return (
-        <nav className="flex items-center justify-between flex-wrap bg-slate-900 p-6">
+        <nav className="flex items-center justify-between flex-wrap bg-slate-900 p-4 lg:p-6">
 
-            <div className="block mb-0">
+            <div className="mb-0 ml-0 -mr-12">
                 <button
                     onClick={toggleMenu}
-                    className="flex items-center rounded text-lbronze lg:hidden sm:block hover:text-white "
+                    className="rounded text-lbronze lg:hidden sm:block hover:text-white "
                 >
                     
                     <BiMenuAltLeft size={38} />
                 </button>
             </div>
-            <div className=" items-center lg:hidden -mb-6 -mt-6 flex-no-shrink text-white mr-40">
+            <div className="lg:hidden -mb-6 -mt-6 flex-no-shrink text-white mx-auto">
                        <img src='/logo1.png' width={112} height={112} alt='logo' />
                     </div>
             <div className=" w-full block -mb-6 ml-lg  flex-grow lg:flex lg:items-center lg:w-auto">
