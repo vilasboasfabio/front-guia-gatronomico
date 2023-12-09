@@ -180,7 +180,7 @@ function ExibirRestaurantes() {
       </div>
       <hr className='bg-lbronze h-2 -mt-1' />
       <article className='flex flex-col mt-10 items-center justify-center min-h-screen bg-slate-900 sm:px-6 lg:px-8 mb-10'>
-        <div className='lg:flex -ml-16'>
+        <div className='lg:flex lg:-ml-16'>
           <FilterDropdown
             label="Avaliação"
             options={avaliacaoOptions}
