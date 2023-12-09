@@ -20,10 +20,10 @@ const Footer = () => {
             </section>
             <hr className=" mt-20 mb-20 mx-auto lg:w-5/6 w-full"  />
 
-            <section className="flex w-full lg:ml-24 mb-20 mt-0 text-center font-extralight">
+            <section className="flex w-f lg:w-6/5 -ml-22 lg:ml-24 mb-20 mt-0 text-center font-extralight">
                 <img src="/logo.png" alt="logo"  className=" w-20 -mt-9 "/>
 
-                <p className="text-xs font-thin lg:ml-[60%] ">© 2023 - Todos os direitos reservados</p>
+                <p className="text-xs font-thin lg:ml-[63%] ">© 2023 - Todos os direitos reservados</p>
              
             </section>
         </div>

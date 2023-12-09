@@ -13,11 +13,11 @@ const SideMenu = ({ onClose }) => {
                         {/* Panel */}
                         <div className="relative flex flex-col h-full bg-white shadow-xl overflow-y-scroll">
                             <div className="flex-1 py-6 sm:px-6">
-                                <div className=" -ml-6 flex w-100 items-start -mt-6 h-12 justify-between bg-lbronze ">
-                                    <h2 className="text-lg ml-3 font-medium text-gray-50 mt-3" id="slide-over-heading ">
+                                <div className=" -ml-6 flex items-start pb-2 -mt-6 h-14 bg-lbronze ">
+                                    <h2 className="text-lg -ml-28 font-medium text-gray-50 mt-3" >
                                         Menu
                                     </h2>
-                                    <div className="ml-3 h-7 flex items-center">
+                                    <div className="-ml-36 mb-2 h-7 flex items-center">
                                         <button
                                             className="bg-lbronze mt-3 -ml-12 rounded-md text-gray-600 hover:text-gray-500 focus:outline-none"
                                             onClick={onClose}
@@ -40,16 +40,24 @@ const SideMenu = ({ onClose }) => {
                                             {/* Icon */}
                                             Nosso Conceito
                                         </a>
-                                        <a href="/cadastros" className="text-gray-600 hover:bg-gray-100 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
+                                        <a href="/loginpaginacadastro" className="text-gray-600 hover:bg-gray-100 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
                                             {/* Icon */}
                                             Cadastro de Restaurantes
                                         </a>
-                                        <a href="/membros" className="text-gray-600 hover:bg-gray-100 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
+                                        <a href="/logincadastromembros" className="text-gray-600 hover:bg-gray-100 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
                                             {/* Icon */}
                                             Cadastro de Clientes
                                         </a>
+                                        <a href="/contato" className="text-gray-600 hover:bg-gray-100 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
+                                            {/* Icon */}
+                                            Contato
+                                        </a>
                                     </nav>
-
+                                    <div className='ml-3 mt-6'>
+                                        <a href="/logincadastromembros" className="inline-block w-36 h-8 pt-2 lg:pl-7 text-sm mx-auto leading-none border rounded border-dbronze px-6 hover:border-transparent text-white bg-lbronze pb-2 hover:bg-white">
+                                            Cadastre-se
+                                        </a>
+                                    </div>
 
                                 </div>
                             </div>

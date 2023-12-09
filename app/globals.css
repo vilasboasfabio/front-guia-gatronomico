@@ -134,6 +134,9 @@
     .resp-hid{
         display: none;
     }
+    .w-f{
+        width: 100%;
+    }
     
     
 }
