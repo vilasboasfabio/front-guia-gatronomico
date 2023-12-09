@@ -42,10 +42,11 @@ export async function POST(request) {
             console.log("[Order_Post]", error);
             if (error.response && error.response.data) {
                 // Retorna o erro de forma que o frontend possa capturá-lo
+                console.log(error.response.data)
                 return new NextResponse(JSON.stringify(error.response.data), { status: error.response.status });
             } else {
-                return new NextResponse("Erro do servidor dentro do route", { status: 500 });
+                return new NextResponse("Erro do servidor dentro do route", {status: 500});
             }
-        }
     }
+}
     

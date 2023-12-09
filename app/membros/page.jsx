@@ -4,6 +4,8 @@ import axios from 'axios';
 import Footer from "../components/Footer";
 import React from "react";
 import { useState, useEffect } from "react";
+import ErrorPopup from "../components/ErrorPopUp";
+import MemberForm from "../components/MembroForm";
 
 function Membros() {
 
@@ -18,6 +20,7 @@ function Membros() {
     const [membros, setMembros] = useState([]);
     const [editando, setEditando] = useState(false);
     const [selecionado, setSelecionado] = useState(null);
+    const [error, setErrors] = useState([]); // New state for error message
 
     const formRef = React.useRef(null);
 
@@ -37,8 +40,14 @@ function Membros() {
                 descricao: '',
                 senha: '',
             });
-        } catch (erro) {
-            console.error(erro);
+            setErrors(null); // Clear error message on successful operation
+        } catch (error) {
+            if (error.response && error.response.data && error.response.data.erros) {
+                setErrors(error.response.data.erros);
+                console.log(error.response.data.erros);
+            } else {
+                setErrors(['Ocorreu um erro ao enviar o formulário.']);
+            }
         }
     }
 
@@ -70,7 +79,6 @@ function Membros() {
     }
 
     const handleUpdate = async (id, updatedMembro) => {
-
         try {
             const response = await axios.put(`/api/membros/${id}`, updatedMembro);
             setMembros(membros.map(membro => (membro._id === id ? response.data : membro)));
@@ -83,11 +91,18 @@ function Membros() {
             });
             setEditando(false);
             setSelecionado(null);
-        } catch (erro) {
-            console.error(erro);
+            
+        } catch (error) {
+            if (error.response && error.response.data && error.response.data.erros) {
+                setErrors(error.response.data.erros);
+                console.log(error.response.data.erros);
+                setTimeout(() => setErrors(null), 5000); // Clear error message after 5 seconds
+            } else {
+                setErrors(['Ocorreu um erro ao enviar o formulário.']);
+                setTimeout(() => setErrors(null), 5000); // Clear error message after 5 seconds
+            }
         }
     }
-
     //useEffect para renderizar a página novamente quando o estado de restaurantes for alterado
     useEffect(() => {
         axios.get('/api/membros')
@@ -105,50 +120,33 @@ function Membros() {
     return (
         <>
             <Header />
-            <div className="container mx-auto px-4">
-                <div className="flex flex-wrap">
-                    <div className="w-full">
-                        <h1 className="text-4xl text-center font-bold mb-4">Membros</h1>
+            <ErrorPopup errors={error} />
+            <div className="container mx-auto bg-slate-900 ">
+                <div className="w-screen pt-10 lg:-ml-20 -mt-6 pb-8 justify-center bg-image4 ">
+
+                    <div className="w-full mx-auto mb-6 lg:w-1/2">
+                        <h1 className="text-4xl text-white text-center font-bold mb-4">Membros</h1>
+                        <hr className="bg-lbronze h-1 w-1/4 mx-auto mb-6" />
                     </div>
-                </div>
-                <div className="flex flex-wrap">
-                    <div className="w-full">
-                        <form className="space-y-4 bg-white p-6 rounded shadow-md w-1/2 mx-auto" ref={formRef}>
-                            <div className="flex flex-col">
-                                <label htmlFor="nome" className="mb-2">Nome</label>
-                                <input type="text" className="border p-2" id="nome" name="nome" value={membro.nome} onChange={handleChange} />
-                            </div>
-                            <div className="flex flex-col">
-                                <label htmlFor="idade" className="mb-2">Idade</label>
-                                <input type="text" className="border p-2" id="idade" name="idade" value={membro.idade} onChange={handleChange} />
-                            </div>
-                            <div className="flex flex-col">
-                                <label htmlFor="posicao" className="mb-2">Posição</label>
-                                <input type="text" className="border p-2" id="posicao" name="posicao" value={membro.posicao} onChange={handleChange} />
-                            </div>
-                            <div className="flex flex-col">
-                                <label htmlFor="descricao" className="mb-2">Descrição</label>
-                                <input type="text" className="border p-2" id="descricao" name="descricao" value={membro.descricao} onChange={handleChange} />
-                            </div>
-                            <div className="flex flex-col">
-                                <label htmlFor="senha" className="mb-2">Senha</label>
-                                <input type="text" className="border p-2" id="senha" name="senha" value={membro.senha} onChange={handleChange} />
-                            </div>
-                            {
-                                editando ? (
-                                    <button className="bg-yellow-500 text-white px-4 py-2 rounded" onClick={() => handleUpdate(selecionado.id, membro)}>
-                                        Atualizar
-                                    </button>
-                                ) : (
-                                    <button className="bg-blue-500  text-white px-4 py-2 rounded" onClick={handleSubmit}>
-                                        Cadastrar
-                                    </button>
-                                )
-                            }
-                        </form>
+
+                    <div className="flex flex-wrap">
+
+                        <div className="w-2/3 mx-auto ">
+                            <MemberForm
+                                membro={membro}
+                                handleChange={handleChange}
+                                handleSubmit={handleSubmit}
+                                handleUpdate={handleUpdate}
+                                editando={editando}
+                                selecionado={selecionado}
+                            />
+                        </div>
                     </div>
+
+
                 </div>
-                <div className="flex flex-wrap w-full h-full p-5">
+                <hr className="bg-lbronze lg:-ml-20 h-2 w-screen mb-6" />
+                <div className="flex flex-wrap w-screen lg:-ml-20 -mt-6 pb-12 bg-slate-900 p-4">
                     {membros.map((membro) => (
                         <div className="w-full md:w-1/2 lg:w-1/3 p-4" key={membro.id}>
                             <div className="border p-4 rounded shadow-md bg-white">
@@ -156,15 +154,16 @@ function Membros() {
                                     <h5 className="text-2xl font-bold">{membro.nome} - {membro.posicao}</h5>
                                     <p className="text-sm mt-3">{membro.idade}</p>
                                     <p className="text-sm mt-3">{membro.descricao}</p>
-                                    <p className="text-sm mt-3">{membro.senha}</p>
                                 </div>
-                                <button className="bg-red-500 text-white px-4 py-2 rounded mr-2" onClick={() => handleDelete(membro.id)}>Excluir</button>
-                                <button className="bg-yellow-500 text-white px-4 py-2 rounded" onClick={() => handleEdit(membro)}>Editar</button>
+                                <button className="bg-bronze text-white p-2 rounded-lg hover:bg-gray-700 mr-4" onClick={() => handleDelete(membro.id)}>Excluir</button>
+                                <button className="bg-bronze text-white p-2 rounded-lg hover:bg-gray-700" onClick={() => handleEdit(membro)}>Editar</button>
                             </div>
                         </div>
                     ))}
+
                 </div>
             </div>
+            <hr className="bg-lbronze h-2 w-screen" />
             <Footer />
         </>
     );

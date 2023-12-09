@@ -149,6 +149,16 @@ function ExibirRestaurantes() {
     return <img src='/loading1.webp' alt='Loading' className='w-1/5 mx-auto mt-10' /> ;
   }
 
+  function NoRestaurantsWarning() {
+    return (
+      <div className="text-center my-10">
+        <h2 className="text-2xl text-white font-bold">Nenhum restaurante encontrado.</h2>
+        <p className="text-white mt-2">Tente mudar os filtros ou verificar novamente mais tarde.</p>
+      </div>
+    );
+  }
+  
+
   return (
     <div className=' bg-slate-900'>
       <Header />
@@ -214,7 +224,11 @@ function ExibirRestaurantes() {
               ))
             )
           }
+        
         </ul>
+        {
+            filteredAndSearchedRestaurants.length === 0 && !isLoading && <NoRestaurantsWarning />
+        }
         <div className='flex mx-auto mt-6'>
           <button className='bg-lbronze hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' onClick={() => prevPage()} disabled={currentPage === 1}>
             <span className="button-text">Anterior</span>

@@ -16,10 +16,10 @@ function Login() {
             const response = await axios.get('/api/membros');
             const membros = response.data;
 
-            const membro = membros.find(membro => membro.nome === nome && '123456e' === senha);
+            const membro = membros.find(membro => membro.nome === nome && membro.senha === senha);
 
             if (membro) {
-                window.location.href = '/respondercontatos';
+                window.location.href = '/membros';
             } else {
                 setError('Nome de usuário ou senha inválidos');
             }
