@@ -2,10 +2,13 @@
 
 
 
+import React, { useState, useEffect, useRef } from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import TinderCard from 'react-tinder-card';
-import React, { useState, useEffect } from "react";
+
 
 function Sobrenos() {
 
@@ -37,85 +40,88 @@ function Sobrenos() {
             descricao: 'Sou Samuel, natural de Campinas-SP, e atualmente conto com 17 anos de idade. Encontro-me matriculado no curso de Desenvolvimento de Sistemas no SENAI Valinhos-SP. Sou apaixonado por tecnologia e por tudo que ela pode nos proporcionar, e por isso, estou sempre buscando aprender mais sobre o assunto. Além disso, sou uma pessoa muito comunicativa e gosto de trabalhar em equipe, pois acredito que a troca de conhecimentos é essencial para o crescimento profissional e pessoal de todos.'
         },
     ];
-    const [currentIndex, setCurrentIndex] = useState(cardData.length - 1);
-    const [cards, setCards] = useState(cardData);
+    const [autoplay, setAutoplay] = useState(true);
+    const [progress, setProgress] = useState(0);
+    const [sliderIndex, setSliderIndex] = useState(0); // Adicione esta linha
+    const sliderRef = useRef();
 
-   
-    const onCardLeftScreen = (myIdentifier) => {
-        console.log(myIdentifier + ' left the screen');
-        setCurrentIndex((prevIndex) => prevIndex - 1);
-    };
-
-    // Verificar se o último cartão foi deslizado e reiniciar o carrossel
     useEffect(() => {
-        if (currentIndex < 0) {
-            setCurrentIndex(cardData.length - 1);
-        }
-    }, [currentIndex, cardData.length]);
+        if (autoplay && progress < 100) {
+            const timer = setTimeout(() => {
+                setProgress(progress + 2); // Incrementa a barra de progresso
+            }, 100); // Intervalo de atualização da barra de progresso
 
-    const onSwipe = (direction, index) => {
-        console.log(`You swiped ${direction} on ${index}`);
-        // Se for o último cartão, reinicia os cartões
-        if (index === 0) {
-            setCards([...cardData]); // Recria uma nova instância do array de cartões
-            setCurrentIndex(cardData.length - 1); // Reseta o índice
-        } else {
-            setCurrentIndex(currentIndex - 1); // Decrementa o índice
+            return () => clearTimeout(timer);
+        } else if (progress >= 100) {
+            // Se a barra de progresso completou, avança para o próximo slide
+            sliderRef.current.slickNext();
+            setProgress(0);
         }
+    }, [progress, autoplay]);
+
+    const settings = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: autoplay,
+        autoplaySpeed: 5000,
+        pauseOnHover: false,
+        beforeChange: () => setProgress(0),
+        afterChange: (index) => {
+            setProgress(0);
+            setSliderIndex(index); // Agora essa função está definida
+        },
+        ref: sliderRef
     };
 
     return (
-        <div className=" bg-slate-900 min-h-screen flex flex-col text-slate-200">
-            <Header />
-            <hr className='bg-lbronze h-2 -mt-1' />
+        <div>
+            <div className="bg-slate-900 min-h-screen flex flex-col text-slate-200">
+                {/* Your code here */}
+                <Header />
+                <hr className='bg-lbronze h-2 -mt-1' />
 
-
-            <div className="relative ">
-                <img className="w-full h-auto opacity-50" src="/equipechefs.jpg" alt="Equipe Chefs" />
-                <div className="absolute top-0 left-0 right-0 bottom-0 items-center justify-center resp-hid">
-                    <p className="text-6xl font-bold mr-auto ml-36 mt-80 text-slate-300">Sobre Nós</p>
-                    <p className="text-1xl mr-auto ml-36 mt-4 w-2/3 text-justify font-light ">Se você é daqueles que consideram a experiência de saborear uma refeição como uma verdadeira celebração para os sentidos, então o Elite Chefs é o seu guia essencial. Embarque conosco em uma jornada sensorial através dos mais extraordinários restaurantes, onde cada prato conta uma história de inovação culinária e sabor autêntico.</p>
+                <div className="relative ">
+                    <img className="w-full h-auto opacity-50" src="/equipechefs.jpg" alt="Equipe Chefs" />
+                    <div className="absolute top-0 left-0 right-0 bottom-0 items-center justify-center resp-hid">
+                        <p className="text-6xl font-bold mr-auto ml-36 mt-80 text-slate-300">Sobre Nós</p>
+                        <p className="text-1xl mr-auto ml-36 mt-4 w-2/3 text-justify font-light ">Se você é daqueles que consideram a experiência de saborear uma refeição como uma verdadeira celebração para os sentidos, então o Elite Chefs é o seu guia essencial. Embarque conosco em uma jornada sensorial através dos mais extraordinários restaurantes, onde cada prato conta uma história de inovação culinária e sabor autêntico.</p>
+                    </div>
                 </div>
-            </div>
 
+                <div className='mx-auto mb-6'>
+                    <p className=" text-3xl mt-6 ml-6 mb-6 w-auto font-bold">Conheça nossos diretores:</p>
+                    <hr className='bg-lbronze h-0.5 lg:w-96 w-48 mx-auto lg:ml-6 mt-1' />
+                </div>
 
-
-            <div>
-                <p className=" text-3xl mt-6 ml-36 w-auto font-bold">Conheça nossos diretores:</p>
-                <hr className='bg-lbronze h-0.5 lg:w-96 w-48 mx-auto lg:ml-36 mt-1' />
-            </div>
-
-
-            <div className="min-h-screen mb-12">
-
-
-             
-            <div className="flex justify-center mt-12">
-                {cards.map((card, index) => (
-                    <TinderCard
-                        key={index}
-                        onSwipe={(dir) => onSwipe(dir, index)}
-                        onCardLeftScreen={() => onCardLeftScreen(card.name)}
-                        preventSwipe={['up', 'down']}
-                        className={`absolute ${index === currentIndex ? '' : 'hidden'}`} // Use 'hidden' para esconder os cartões não ativos
-                    >
-                        <div className="bg-slate-800 lg:w-96 w-80 h-76 rounded-3xl border-bronze p-4">
-                            <img className="w-full h-50 rounded-lg" src={card.url} alt={card.name} />
-                            <h3 className="text-center text-2xl font-bold mt-4">{card.name}</h3>
-                            <p className="text-center text-justify mt-4">{card.descricao}</p>
-                          
+                <div className="min-h-screen mb-12">
+                    <div className="relative mt-6">
+                        <div className="max-w-xl mx-auto overflow-hidden">
+                            <Slider ref={sliderRef} {...settings}>
+                                {cardData.map((card, index) => (
+                                    <div key={index} onClick={() => setAutoplay(!autoplay)}  className="px-4 flex justify-center items-cente bg-slate-800 border-bronze rounded-md p-8">
+                                        <div className="max-w-md mx-auto">
+                                            <img src={card.url} alt={card.name} className="mx-auto" style={{ height: '300px', objectFit: 'cover', borderRadius: '8px' }} />
+                                            <h2 className="text-2xl font-bold mb-4 mt-4 text-center">{card.name}</h2>
+                                            <hr className='bg-lbronze h-0.5 mb-3 w-48 mx-auto mt-1' />
+                                            <p className="text-justify">{card.descricao}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </Slider>
+                            <div className='w-full h-2 bg-gray-200 my-4'>
+                                <div className='h-full bg-lbronze' style={{ width: `${progress}%` }}></div>
+                            </div>
                         </div>
-                    </TinderCard>
-                ))}
+                       
+                    </div>
+                </div>
+
+                <hr className='bg-lbronze h-2 -mt-1' />
+                <Footer />
             </div>
-
-
-            </div>
-
-
-
-            <hr className='bg-lbronze h-2 -mt-1' />
-            <Footer />
         </div>
     )
 }
