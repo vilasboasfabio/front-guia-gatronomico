@@ -136,6 +136,10 @@
 .absolute {
     position: absolute;
 }
+.slick-prev,
+.slick-next {
+    display: none !important;
+}
 
 
 @media (max-width: 768px) {
