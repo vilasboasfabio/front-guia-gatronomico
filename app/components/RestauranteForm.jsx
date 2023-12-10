@@ -46,7 +46,7 @@ const RestauranteForm = ({
 
 
   return (
-    <div className="container mx-auto p-6 w-2/3 bg-transparente mb-10 opacity-80 shadow-lg rounded-lg">
+    <div className="container mx-auto p-6 w-5/6 lg:w-2/3 bg-transparente mb-10 opacity-80 shadow-lg rounded-lg">
       
       <form  ref={formRef}>
         {/* Nome */}
@@ -155,8 +155,8 @@ const RestauranteForm = ({
 
         {/* Funcionamento */}
         {/* Assumindo que você deseja manter os checkboxes para dias de funcionamento */}
-        <div className='lg:flex lg:ml-4'>
-          <fieldset className='ml-36 mt-5 mb-5 -ml5 ml30'>
+        <div className='lg:flex lg:ml-20'>
+          <fieldset className='lg:ml-36 mt-5 mb-5 -ml5 ml30'>
             <legend className="block text-white text-lg font-bold mb-2"> Funcionamento</legend>
             {diasFuncionamento.map(dia => (
               <div key={dia} className='text-white'>
@@ -177,7 +177,7 @@ const RestauranteForm = ({
 
           {/* Pagamento */}
           {/* Assumindo que você deseja manter os checkboxes para formas de pagamento */}
-          <fieldset className=' ml-24 mt-5 mb-5 ml30'>
+          <fieldset className=' lg:ml-24 mt-5 mb-5 ml30'>
             <legend className="block text-white text-lg font-bold mb-2">Formas de Pagamento</legend>
             {formasPagamento.map(forma => (
               <div key={forma} className='text-white'>
@@ -228,7 +228,7 @@ const RestauranteForm = ({
         {
           isEditing
             ? <button className="w-1/2 mx-auto bg-[#78594D]  hover:bg-[#7D665C] text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline" onClick={() => handleEdit(restaurante.id, restaurante)} >Atualizar</button>
-            : <button className="w-1/2 mx-auto bg-[#78594D]   hover:bg-[#7D665C] text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline -ml-8" onClick={handleSubmit}>Cadastrar</button>
+            : <button className="lg:w-1/2 lg:mx-auto bg-[#78594D] w-full hover:bg-[#7D665C] text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline lg:-ml-8" onClick={handleSubmit}>Cadastrar</button>
         }
       </div>
       </form>
