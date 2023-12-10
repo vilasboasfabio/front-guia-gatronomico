@@ -14,12 +14,12 @@ const SideMenu = ({ onClose }) => {
                         <div className="relative flex flex-col h-full bg-white shadow-xl overflow-y-scroll">
                             <div className="flex-1 py-6 sm:px-6">
                                 <div className=" -ml-6 flex items-start pb-2 -mt-6 h-14 bg-lbronze ">
-                                    <h2 className="text-lg -ml-28 font-medium text-gray-50 mt-3" >
+                                    <h2 className="text-lg -ml-20 font-medium text-gray-50 mt-3" >
                                         Menu
                                     </h2>
-                                    <div className="-ml-36 mb-2 h-7 flex items-center">
+                                    <div className="-ml-28 mb-2 h-7 flex items-center">
                                         <button
-                                            className="bg-lbronze mt-3 -ml-12 rounded-md text-gray-600 hover:text-gray-500 focus:outline-none"
+                                            className="bg-lbronze mt-3 rounded-md text-gray-600 hover:text-gray-500 focus:outline-none"
                                             onClick={onClose}
                                         >
                                             <span className="sr-only">Close panel</span>

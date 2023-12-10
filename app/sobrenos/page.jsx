@@ -103,7 +103,7 @@ function Sobrenos() {
                             <img className="w-full h-50 rounded-lg" src={card.url} alt={card.name} />
                             <h3 className="text-center text-2xl font-bold mt-4">{card.name}</h3>
                             <p className="text-center text-justify mt-4">{card.descricao}</p>
-                            {/* ... */}
+                          
                         </div>
                     </TinderCard>
                 ))}

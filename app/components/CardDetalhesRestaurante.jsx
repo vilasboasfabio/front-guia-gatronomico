@@ -28,7 +28,7 @@ const CardDetalhesRestaurante = ({ restaurante, abrir }) => {
             <div className="bg-black bg-opacity-50 absolute inset-0" onClick={abrir}></div>
             <main className="bg-opacity-100 shadow-lg rounded-lg overflow-y-auto w-full h-full relative z-10 p-4 bg-image-2 ">
                 <button
-                    className=" mt-3  rounded-md text-gray-600 hover:text-gray-500 focus:outline-none"
+                    className=" mt-3 hover:bg-gray-500 rounded-md text-gray-600 hover:text-gray-500 focus:outline-none"
                     onClick={abrir}
                 >
                     <span className="sr-only">Close panel</span>

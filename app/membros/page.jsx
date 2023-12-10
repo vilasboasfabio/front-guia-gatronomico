@@ -6,6 +6,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import ErrorPopup from "../components/ErrorPopUp";
 import MemberForm from "../components/MembroForm";
+import MembroCard from "../components/MembroCard";
 
 function Membros() {
 
@@ -76,6 +77,7 @@ function Membros() {
         setEditando(true);
         setSelecionado(membro);
         setMembro(membro);
+        formRef.current.scrollIntoView({ behavior: 'smooth' });
     }
 
     const handleUpdate = async (id, updatedMembro) => {
@@ -91,7 +93,7 @@ function Membros() {
             });
             setEditando(false);
             setSelecionado(null);
-            
+
         } catch (error) {
             if (error.response && error.response.data && error.response.data.erros) {
                 setErrors(error.response.data.erros);
@@ -120,8 +122,9 @@ function Membros() {
     return (
         <>
             <Header />
+            <hr className='bg-lbronze h-2 -mt-1' />
             <ErrorPopup errors={error} />
-            <div className="container mx-auto bg-slate-900 ">
+            <div className="container mx-16 mt-6 bg-slate-900 ">
                 <div className="w-screen pt-10 lg:-ml-20 -mt-6 pb-8 justify-center bg-image4 ">
 
                     <div className="w-full mx-auto mb-6 lg:w-1/2">
@@ -131,7 +134,7 @@ function Membros() {
 
                     <div className="flex flex-wrap">
 
-                        <div className="lg:w-2/3 w-5/6 mx-auto">
+                        <div className="lg:w-2/3 w-5/6 mx-auto" ref={formRef}>
                             <MemberForm
                                 membro={membro}
                                 handleChange={handleChange}
@@ -148,22 +151,11 @@ function Membros() {
                 <hr className="bg-lbronze lg:-ml-20 h-2 w-screen mb-6" />
                 <div className="flex flex-wrap w-screen lg:-ml-20 -mt-6 pb-12 bg-slate-900 p-4">
                     {membros.map((membro) => (
-                        <div className="w-full md:w-1/2 lg:w-1/3 p-4" key={membro.id}>
-                            <div className="border p-4 rounded shadow-md bg-white">
-                                <div className="mb-4 ">
-                                    <h5 className="text-2xl font-bold">{membro.nome} - {membro.posicao}</h5>
-                                    <p className="text-sm mt-3">{membro.idade}</p>
-                                    <p className="text-sm mt-3">{membro.descricao}</p>
-                                </div>
-                                <button className="bg-bronze text-white p-2 rounded-lg hover:bg-gray-700 mr-4" onClick={() => handleDelete(membro.id)}>Excluir</button>
-                                <button className="bg-bronze text-white p-2 rounded-lg hover:bg-gray-700" onClick={() => handleEdit(membro)}>Editar</button>
-                            </div>
-                        </div>
+                        <MembroCard membro={membro} handleDelete={handleDelete} handleEdit={handleEdit} />
                     ))}
-
                 </div>
             </div>
-            <hr className="bg-lbronze h-2 w-screen" />
+            <hr className="bg-lbronze h-2 w-full" />
             <Footer />
         </>
     );
