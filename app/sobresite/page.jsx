@@ -39,11 +39,11 @@ function PaginaSobre() {
             url: '/parceria.png',
             descricao: 'Embarque nesta jornada gastronômica extraordinária com o Elite Chefs. Descubra, saboreie e celebre as melhores experiências culinárias ao redor do mundo. Sua próxima aventura gastronômica começa aqui.'
         },
-      
+
     ];
     const [currentIndex, setCurrentIndex] = useState(cardData.length - 1);
     const [lastDirection, setLastDirection] = useState();
-
+    const [allSwiped, setAllSwiped] = useState(false);
     const childRefs = React.useMemo(() => Array(cardData.length).fill(0).map(i => React.createRef()), [cardData]);
     const currentIndexRef = useRef(currentIndex); // Ref para rastrear o currentIndex atual
 
@@ -77,7 +77,33 @@ function PaginaSobre() {
         height: '100vh',
         overflow: 'hidden'
     };
-    
+
+    useEffect(() => {
+        if (currentIndex < 0) {
+            setAllSwiped(true);
+        }
+    }, [currentIndex]);
+
+    // Função para resetar o carrossel
+    const resetCarousel = () => {
+        setAllSwiped(false);
+        updateCurrentIndex(cardData.length - 1);
+    };
+
+    // Renderiza a mensagem e o botão se allSwiped for verdadeiro
+    const renderEndOfCardsMessage = () => (
+        <div className="text-center my-16">
+            <h3  className="text-xl font-bold text-lbronze">Obrigado por escolher a Elite Chefs</h3>
+            <button
+                className="mt-5 bg-lbronze mx-auto text-white py-2 px-4 rounded-xl font-bold"
+                onClick={resetCarousel}
+            >
+                Recomeçar
+            </button>
+        </div>
+    );
+
+
     return (
         <main className="bg-slate-900 ">
             <Header />
@@ -144,30 +170,32 @@ function PaginaSobre() {
             </article>
             <article className="lg:hidden min-h-screen">
 
-            <div style={containerStyles}>
-                <div className="flex justify-center mt-12">
-                    {cardData.map((card, index) => (
-                        <TinderCard
-                            ref={childRefs[index]}
-                            key={index}
-                            onSwipe={(dir) => onSwipe(dir, index)}
-                            onCardLeftScreen={() => onCardLeftScreen(card.name)}
-                            preventSwipe={['up', 'down']}
-                            className={`absolute ${index === currentIndex ? '' : 'hidden'}`}
-                        >
-                            {/* ... contéudo do cartão ... */}
-                            <div className="px-4 flex justify-center w-80 items-cente bg-bronze border-bronze rounded-xl text-white p-8">
-                                <div className=" mx-auto">
-                                    <img src={card.url} alt={card.name} className="mx-auto" style={{ height: '300px', objectFit: 'cover', borderRadius: '8px' }} />
-                                    <h2 className="text-2xl font-bold mb-4 mt-4 text-center">{card.name}</h2>
-                                    <hr className='bg-lbronze h-0.5 mb-3 w-48 mx-auto mt-1' />
-                                    <p className="text-justify">{card.descricao}</p>
+                <div style={containerStyles}>
+                    <div className="flex justify-center mt-12">
+                        {allSwiped ? (
+                            renderEndOfCardsMessage()
+                        ) : (cardData.map((card, index) => (
+                            <TinderCard
+                                ref={childRefs[index]}
+                                key={index}
+                                onSwipe={(dir) => onSwipe(dir, index)}
+                                onCardLeftScreen={() => onCardLeftScreen(card.name)}
+                                preventSwipe={['up', 'down']}
+                                className={`absolute ${index === currentIndex ? '' : 'hidden'}`}
+                            >
+                                {/* ... contéudo do cartão ... */}
+                                <div className="px-4 flex justify-center w-80 items-cente bg-bronze border-bronze rounded-xl text-white p-8">
+                                    <div className=" mx-auto">
+                                        <img src={card.url} alt={card.name} className="mx-auto" style={{ height: '300px', objectFit: 'cover', borderRadius: '8px' }} />
+                                        <h2 className="text-2xl font-bold mb-4 mt-4 text-center">{card.name}</h2>
+                                        <hr className='bg-lbronze h-0.5 mb-3 w-48 mx-auto mt-1' />
+                                        <p className="text-justify">{card.descricao}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </TinderCard>
-                    ))}
+                            </TinderCard>
+                        )))}
+                    </div>
                 </div>
-            </div>
             </article>
 
             <hr className='bg-lbronze h-2 -mt-1' />
