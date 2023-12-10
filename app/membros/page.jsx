@@ -131,7 +131,7 @@ function Membros() {
 
                     <div className="flex flex-wrap">
 
-                        <div className="w-2/3 mx-auto ">
+                        <div className="lg:w-2/3 w-5/6 mx-auto">
                             <MemberForm
                                 membro={membro}
                                 handleChange={handleChange}

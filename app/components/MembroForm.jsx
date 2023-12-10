@@ -2,7 +2,7 @@ import React from "react";
 
 function MemberForm({ membro, handleChange, handleSubmit, handleUpdate, editando, selecionado }) {
     return (
-        <form className="space-y-4 bg-white p-6 rounded-xl shadow-md">
+        <form className="space-y-4 bg-white lg:p-6 p-4 rounded-xl shadow-md">
             {/* Campos do Formulário */}
             <div className="flex flex-col">
                 <label htmlFor="nome" className="mb-2">Nome</label>
@@ -27,16 +27,17 @@ function MemberForm({ membro, handleChange, handleSubmit, handleUpdate, editando
 
             {
                 editando ? (
-                    <button className="w-1/2 lg:ml-56 ml-14 bg-[#78594D] hover:bg-[#7D665C] text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline" onClick={() => handleUpdate(selecionado.id, membro)}>
+                    <button className="w-1/2 lg:ml-56 mx-auto bg-[#78594D] hover:bg-[#7D665C] text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline" onClick={() => handleUpdate(selecionado.id, membro)}>
                         Atualizar
                     </button>
                 ) : (
-                    <button className="w-1/2 lg:ml-56 ml-14 bg-[#78594D] hover:bg-[#7D665C] text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline" onClick={handleSubmit}>
+                    <button className="lg:w-1/2 w-full lg:ml-56 mx-auto bg-bronze hover:bg-[#7D665C] text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline" onClick={handleSubmit}>
                         Cadastrar
                     </button>
                 )
             }
         </form>
+        
     );
 }
 
