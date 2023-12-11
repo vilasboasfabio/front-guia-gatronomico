@@ -2,15 +2,19 @@ import React from 'react';
 
 function MembroCard({ membro, handleDelete, handleEdit }) {
     return (
-        <div className="w-full md:w-1/2 lg:w-1/3 p-4" key={membro.id}>
-            <div className="border p-4 rounded shadow-md bg-white">
+        <div className="w-full md:w-1/2 lg:w-2/4 h-2/4 p-4" key={membro.id}>
+            <div className="border-bronze p-4 rounded-lg shadow-md bg-bronze opacity-80">
                 <div className="mb-4 ">
-                    <h5 className="text-2xl font-bold">{membro.nome} - {membro.posicao}</h5>
-                    <p className="text-sm mt-3">{membro.idade}</p>
-                    <p className="text-sm mt-3">{membro.descricao}</p>
+                    <h5 className="text-2xl font-bold text-white ">{membro.nome} - {membro.posicao}</h5>
+                    <hr className="bg-lbronze h-0.5 w-3/4 mx-auto mb-6 ml-0" />
+                    <p className="text-sm -mt-2 font-light text-white">Idade: {membro.idade}</p>
+                    <p className="text-sm mt-3 font-light text-white">{membro.descricao}</p>
                 </div>
-                <button className="bg-bronze text-white p-2 rounded-lg hover:bg-gray-700 mr-4" onClick={() => handleDelete(membro.id)}>Excluir</button>
-                <button className="bg-bronze text-white p-2 rounded-lg hover:bg-gray-700" onClick={() => handleEdit(membro)}>Editar</button>
+                <div className='flex'>
+                <button className="bg-lbronze text-black p-2 rounded-lg hover:bg-sky-950 hover:text-white mr-4" onClick={() => handleDelete(membro.id)}>Excluir</button>
+                <button className="bg-lbronze text-black p-2 rounded-lg hover:bg-sky-950 hover:text-white" onClick={() => handleEdit(membro)}>Editar</button>
+                </div>
+                
             </div>
         </div>
     );
