@@ -291,28 +291,25 @@ function PaginaSobre() {
         </div>
       </article>
 
-      <section data-aos="fade-up" className="flex flex-wrap border-bronze -mt-20 mb-12 lg:flex-nowrap w-5/6 mx-auto justify-center items-center p-4">
-        <div className="w-full lg:w-1/3">
-          {/* serve para conter o slider*/}
-          <Slider {...sliderSettings}>
-            {sliderImages.map((image, index) => (
-              <div key={index} className="w-full h-auto">
-                {/* Certifique-se de que o caminho para as imagens está correto */}
-                <img src={image} alt={`Slide ${index}`} className="w-full" />
-              </div>
-            ))}
-          </Slider>
-        </div>
-        <div className="w-full lg:w-1/2 text-white p-4">
-          {/* serve ´para renderizar a mensagem e o botão se allSwiped for verdadeiro
-            */}
-          <h2 className="text-4xl font-bold mb-4">Obrigado por escolher Elite Chefes.</h2>
-          <hr className="bg-lbronze h-1 my-4" />
-          <p className="text-justify">
-            Se você é daqueles que consideram a experiência de saborear uma refeição como uma verdadeira celebração para os sentidos, então o Elite Chefs é o seu guia essencial. Embarque conosco em uma jornada sensorial através dos mais extraordinários restaurantes, onde cada prato conta uma história de inovação culinária e sabor autêntico.
-          </p>
-        </div>
-      </section>
+            <section data-aos="fade-up"  className="flex flex-wrap border-bronze -mt-20 mb-12 lg:flex-nowrap w-5/6 mx-auto justify-center items-center p-4">
+                    <div className="w-full lg:w-1/3">
+                        <Slider {...sliderSettings}>
+                            {sliderImages.map((image, index) => (
+                                <div key={index} className="w-full h-auto">
+                                    {/* Certifique-se de que o caminho para as imagens está correto */}
+                                    <img src={image} alt={`Slide ${index}`} className="w-full" />
+                                </div>
+                            ))}
+                        </Slider>
+                    </div>
+                    <div className="w-full lg:w-1/2 text-white p-4">
+                        <h2 className="text-4xl font-bold mb-4">Obrigado por escolher Elite Chefes.</h2>
+                        <hr className="bg-lbronze h-1 my-4" />
+                        <p className="text-justify">
+                            Se você é daqueles que consideram a experiência de saborear uma refeição como uma verdadeira celebração para os sentidos, então o Elite Chefs é o seu guia essencial. Embarque conosco em uma jornada sensorial através dos mais extraordinários restaurantes, onde cada prato conta uma história de inovação culinária e sabor autêntico.
+                        </p>
+                    </div>
+                </section>
 
       <hr className='bg-lbronze h-2 -mt-1' />
       <Footer />

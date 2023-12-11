@@ -124,7 +124,7 @@ function Membros() {
             <Header />
             <hr className='bg-lbronze h-2 -mt-1' />
             <ErrorPopup errors={error} />
-            <div className="container mx-16 mt-6 bg-slate-900 ">
+            <div className="container lg:mx-20 mt-6 bg-slate-900 ">
                 <div className="w-screen pt-10 lg:-ml-20 -mt-6 pb-8 justify-center bg-image4 ">
 
                     <div className="w-full mx-auto mb-6 lg:w-1/2">
