@@ -14,7 +14,13 @@ function MemberForm({ membro, handleChange, handleSubmit, handleUpdate, editando
             </div>
             <div className="flex flex-col">
                 <label htmlFor="posicao" className="mb-2">Posição</label>
-                <input type="text" className="border p-2 rounded-lg border-bronze" id="posicao" name="posicao" value={membro.posicao} onChange={handleChange} />
+                <select className="border p-2 rounded-lg border-bronze" id="posicao" name="posicao" value={membro.posicao} onChange={handleChange}>
+                    <option value="cliente">Cliente</option>
+                    <option value="chef">Chef</option>
+                    <option value="critico">Crítico</option>
+                    <option value="membro">Membro</option>
+                    <option value="techlider">Techlider</option>
+                </select>
             </div>
             <div className="flex flex-col">
                 <label htmlFor="descricao" className="mb-2 ">Descrição</label>
