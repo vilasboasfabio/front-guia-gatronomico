@@ -49,8 +49,8 @@ const CardDetalhesRestaurante = ({ restaurante, abrir }) => {
                             <div className=" text-base mt-3 text-lbronze w-auto p-1 rounded-lg mx-auto">{restaurante.tipo}</div>
 
                             <dt className="sr-only">Valor</dt>
-                            <div className=" mx-auto justify-between  items-center">
-                                <span className="rounded-full ml-11 flex px-2 py-1 text-xs font-bold text-indigo-100 mt-5 ">
+                            <div className=" mx-auto justify-between items-center">
+                                <span className="rounded-full mx-20 flex px-2 py-1 text-xs font-bold text-indigo-100 mt-5 ">
                                     {Array(restaurante.avaliacao).fill(<TbMichelinStar className='text-lbronze' size={24} />)}
                                 </span>
                                 <div className="text-xs text-white mt-5">{getEstrelasLegenda(restaurante.avaliacao)}</div>
