@@ -85,7 +85,7 @@ function Contato() {
             setErrors(['A resposta não pode estar vazia.']);
             return;
         }
-    
+
         try {
             const response = await axios.put(`/api/contatos/${id}`, { resposta });
             const updatedContato = contatos.find((contato) => contato.id === id);
@@ -108,90 +108,94 @@ function Contato() {
         <>
             <Header />
             <ErrorPopup errors={errors} />
-            <div className="flex flex-col items-center justify-center min-h-screen py-2">
+            <hr className='bg-lbronze h-1 -mt-1' />
+
+            <div className="flex flex-col items-center bg-slate-900 justify-center min-h-screen py-2">
                 <div className="flex flex-col justify-center items-center">
-                    <h1 className="text-4xl font-bold text-lbronze">Mensagens</h1>
+                    <h1 className="text-4xl font-bold uppercase text-lbronze">Mensagens</h1>
                 </div>
 
                 <div className="flex flex-col justify-center items-center">
-                 
-                            <table className="table-fixed">
-                                <tbody>
-                                    <div className="flex flex-wrap justify-center items-center">
-                                        {
-                                            contatos.map((contato) => (
-                                                <div key={contato.id} className="max-w-sm rounded overflow-hidden shadow-lg m-4">
-                                                    <div className="px-6 py-4">
-                                                        <div className="font-bold text-xl mb-2">{contato.nome}</div>
-                                                        <p className="text-gray-700 text-base">
-                                                            {contato.mensagem}
-                                                        </p>
-                                                    </div>
-                                                    <div className="px-6 pt-4 pb-2">
-                                                        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Email: {contato.email}</span>
-                                                        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Telefone: {contato.telefone}</span>
-                                                    </div>
-                                                    <div className="px-6 pt-4 pb-2">
-                                                        {
-                                                            selectedContato === contato.id ? (
-                                                                <input type="text" value={resposta} onChange={handleResponseChange} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-lbronze focus:border-gray-500" />
-                                                            ) : null
-                                                        }
-                                                        {
-                                                            selectedContato === contato.id ? (
-                                                                <button className="bg-lbronze hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => handleResponseSubmit(contato.id)}>
-                                                                    Enviar
-                                                                </button>
-                                                            ) : (
-                                                                <button className="bg-lbronze hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => { setIsResponding(true); setSelectedContato(contato.id) }}>
-                                                                    Responder
-                                                                </button>
-                                                            )
-                                                        }
-                                                        <button className="bg-lbronze hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => handleDelete(contato.id)}>
-                                                            Excluir
+
+                    <table className="table-fixed">
+                        <tbody>
+                            <div className="flex flex-wrap justify-center  items-center">
+                                {
+                                    contatos.map((contato) => (
+                                        <div key={contato.id} className="max-w-sm border-bronze bg-slate-800 rounded overflow-hidden shadow-lg m-4">
+                                            <div className="px-6 py-4">
+                                                <div className="font-bold text-white text-xl mb-2">{contato.nome}</div>
+                                                <p className="text-white text-base">
+                                                    {contato.mensagem}
+                                                </p>
+                                            </div>
+                                            <div className="px-6 pt-4 pb-2">
+                                                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Email: {contato.email}</span>
+                                                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Telefone: {contato.telefone}</span>
+                                            </div>
+                                            <div className="px-6 pt-4 pb-2 flex">
+                                                {
+                                                    selectedContato === contato.id ? (
+                                                        <input type="text" value={resposta} onChange={handleResponseChange} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-lbronze focus:border-gray-500" />
+                                                    ) : null
+                                                }
+                                                {
+                                                    selectedContato === contato.id ? (
+                                                        <button className="bg-lbronze hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => handleResponseSubmit(contato.id)}>
+                                                            Enviar
                                                         </button>
-                                                    </div>
-                                                </div>
-                                            ))
-                                        }
-                                    </div>
-                                </tbody>
+                                                    ) : (
+                                                        <button className="bg-lbronze hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => { setIsResponding(true); setSelectedContato(contato.id) }}>
+                                                            Responder
+                                                        </button>
+                                                    )
+                                                }
+                                                <button className="bg-lbronze ml-5 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => handleDelete(contato.id)}>
+                                                    Excluir
+                                                </button>
+                                            </div>
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                        </tbody>
 
-                            </table>
-                     
+                    </table>
+
                 </div>
-                <div className="flex flex-col justify-center items-center">
-                    <h1 className="text-4xl font-bold text-lbronze">Mensagens Respondidas</h1>
-                    <p className="text-xl text-lbronze">Aqui estão as mensagens que foram respondidas.</p>
+                <div className="flex flex-col justify-center mt-10 items-center">
+                    <h1 className="text-4xl font-bold text-lbronze uppercase text-center">Mensagens Respondidas</h1>
+
                     <div className="flex flex-wrap justify-center items-center">
                         {
                             respondedContatos.map((contato) => (
-                                <div key={contato.id} className="max-w-sm rounded overflow-hidden shadow-lg m-4">
-                                    <div className="px-6 py-4">
-                                        <div className="font-bold text-xl mb-2">{contato.nome}</div>
-                                        <p className="text-gray-700 text-base">
+                                <div key={contato.id} className="max-w-sm border-bronze bg-slate-800 rounded overflow-hidden shadow-lg m-4">
+                                    <div className="px-6 py-4 ">
+                                        <div className="font-bold text-white text-xl mb-2">{contato.nome}</div>
+                                        <p className="text-white text-base">
                                             {contato.mensagem}
                                         </p>
                                     </div>
-                                    <div className="px-6 pt-4 pb-2">
+                                    <div className="px-6  pt-4 pb-2">
                                         <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Email: {contato.email}</span>
                                         <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Telefone: {contato.telefone}</span>
                                     </div>
-                                    <div className="px-6 pt-4 pb-2">
+                                    <div className="px-6 text-white      pt-4 pb-2">
                                         <p><strong>Resposta:</strong> {contato.resposta}</p>
                                     </div>
                                     <div className="px-6 pt-4 pb-2">
                                         <button className="bg-lbronze hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => handleDelete(contato.id)}>
                                             Excluir
                                         </button>
-                                        </div>
+                                    </div>
                                 </div>
                             ))
                         }
                     </div>
                 </div>
             </div>
+
+            <hr className='bg-lbronze h-1 -mt-1' />
             <Footer />
         </>
     )
