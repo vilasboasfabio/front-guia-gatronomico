@@ -133,12 +133,14 @@ function ExibirRestaurantes() {
     if (detalhes) {
       setDetalhes(false);
       setRestauranteSelecionado(null);
+      document.body.style.overflow = 'auto'; // Enable scrolling on body
     } else {
       setDetalhes(true);
       setRestauranteSelecionado(id);
+      document.body.style.overflow = 'hidden'; // Disable scrolling on body
     }
   };
-
+  
 
   const handleFilterChange = (type) => (e) => {
     setFilters({ ...filters, [type]: e.target.value });

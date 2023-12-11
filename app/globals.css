@@ -141,6 +141,26 @@
     display: none !important;
 }
 
+/* Estilização da barra de rolagem para Chrome, Edge e Safari */
+::-webkit-scrollbar {
+    width: 12px; /* Largura da barra de rolagem vertical */
+    height: 12px; /* Altura da barra de rolagem horizontal */
+}
+
+::-webkit-scrollbar-track {
+    background: #020b3a; /* Cor de fundo da barra */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(207, 181, 145); /* Cor do controle de rolagem */
+    border-radius: 20px; /* Raio da borda do controle de rolagem */
+    border: 3px solid #05062b; /* Borda do controle de rolagem */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(15, 23, 42); /* Cor do controle de rolagem ao passar o mouse */
+}
+
 
 @media (max-width: 768px) {
     .resp-hid{
