@@ -50,9 +50,10 @@ const CardDetalhesRestaurante = ({ restaurante, abrir }) => {
 
                             <dt className="sr-only">Valor</dt>
                             <div className=" mx-auto justify-between  items-center">
-                                <span className="rounded-full flex px-2 py-1 text-xs font-bold text-indigo-100 mt-5 ">
+                                <span className="rounded-full ml-11 flex px-2 py-1 text-xs font-bold text-indigo-100 mt-5 ">
                                     {Array(restaurante.avaliacao).fill(<TbMichelinStar className='text-lbronze' size={24} />)}
                                 </span>
+                                <div className="text-xs text-white mt-5">{getEstrelasLegenda(restaurante.avaliacao)}</div>
                             </div>
                         </dl>
                     </div>
@@ -72,6 +73,7 @@ const CardDetalhesRestaurante = ({ restaurante, abrir }) => {
                             <span className="text-lbronze justify-center mt-5 mx-auto flex rounded-full text-xs font-medium">
                                 {Array(restaurante.valor).fill(<MdAttachMoney className='text-lbronze' size={24} />)}
                             </span>
+                            <div className="text-xs text-white mt-5 text-center">{getPrecoLegenda(restaurante.valor)}</div>
 
                             <hr className=' bg-white  mt-10 rounded-lg opacity-10 h-0.5' />
                             <h3 className='text-center text-md mt-4 font-bold text-lbronze'>Dias de funcionamento:</h3>
