@@ -25,7 +25,7 @@ const Header = () => {
                 </button>
             </div>
             <div className="lg:hidden -mb-6 -mt-6 flex-no-shrink text-white mx-auto">
-                       <img src='/logo1.png' width={112} height={112} alt='logo' />
+                     <a href='/'><img src='/logo1.png' width={112} height={112} alt='logo'/></a>
                     </div>
             <div className=" w-full block -mb-6 ml-lg  flex-grow lg:flex lg:items-center lg:w-auto">
                 <div className="text-md w-full flex -ml-44 mt-3 resp-hid">
