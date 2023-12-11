@@ -40,23 +40,60 @@ function Sobrenos() {
     ];
     const [autoplay, setAutoplay] = useState(true);
     const [progress, setProgress] = useState(0);
-    const [sliderIndex, setSliderIndex] = useState(0); // Adicione esta linha
-    const sliderRef = useRef();
+    const [isPaused, setIsPaused] = useState(false);
+    const sliderRef = useRef(null);
+    const progressInterval = useRef(null);
 
+    // Function to start the progress bar
+    const startProgress = () => {
+        // Clear any existing intervals
+        if (progressInterval.current) clearInterval(progressInterval.current);
+
+        // Set a new interval
+        progressInterval.current = setInterval(() => {
+            setProgress((prevProgress) => {
+                const nextProgress = prevProgress + 5; // Update progress
+                if (nextProgress >= 100) {
+                    // If progress is complete, go to the next slide and reset progress
+                    clearInterval(progressInterval.current);
+                    sliderRef.current.slickNext();
+                    return 0;
+                }
+                return nextProgress;
+            });
+        }, 200); // The interval time controls the speed of the progress bar
+    };
+
+    // Effect to start the progress bar when autoplay is true
     useEffect(() => {
-        if (autoplay && progress < 100) {
-            const timer = setTimeout(() => {
-                setProgress(progress + 2); // Incrementa a barra de progresso
-            }, 100); // Intervalo de atualização da barra de progresso
-
-            return () => clearTimeout(timer);
-        } else if (progress >= 100) {
-            // Se a barra de progresso completou, avança para o próximo slide
-            sliderRef.current.slickNext();
-            setProgress(0);
+        if (autoplay && !isPaused) {
+            startProgress();
         }
-    }, [progress, autoplay]);
 
+        // Cleanup interval on unmount
+        return () => {
+            if (progressInterval.current) clearInterval(progressInterval.current);
+        };
+    }, [autoplay, isPaused]);
+
+    // Effect to clear the interval when the progress is paused
+    useEffect(() => {
+        if (isPaused && progressInterval.current) {
+            clearInterval(progressInterval.current);
+        }
+    }, [isPaused]);
+
+    // Function to toggle the autoplay and pause states
+    const toggleAutoplayAndPause = () => {
+        setAutoplay(!autoplay);
+        setIsPaused(!isPaused);
+        if (isPaused) {
+            // If currently paused, resume the progress bar
+            startProgress();
+        }
+    };
+
+    // Slider settings
     const settings = {
         dots: false,
         infinite: true,
@@ -66,13 +103,19 @@ function Sobrenos() {
         autoplay: autoplay,
         autoplaySpeed: 5000,
         pauseOnHover: false,
-        beforeChange: () => setProgress(0),
-        afterChange: (index) => {
-            setProgress(0);
-            setSliderIndex(index); // Agora essa função está definida
+        beforeChange: () => {
+            // Clear interval when the slide is about to change
+            if (progressInterval.current) clearInterval(progressInterval.current);
         },
-        ref: sliderRef
+        afterChange: () => {
+            // Restart the progress bar after slide change
+            setProgress(0);
+            if (!isPaused) {
+                startProgress();
+            }
+        },
     };
+
 
     return (
         <div>
@@ -88,20 +131,20 @@ function Sobrenos() {
                         <p className="text-1xl mr-auto ml-36 mt-4 w-2/3 text-justify font-light ">Se você é daqueles que consideram a experiência de saborear uma refeição como uma verdadeira celebração para os sentidos, então o Elite Chefs é o seu guia essencial. Embarque conosco em uma jornada sensorial através dos mais extraordinários restaurantes, onde cada prato conta uma história de inovação culinária e sabor autêntico.</p>
                     </div>
                     {/*   a div acima é responsável por colocar o texto sobre a imagem */}
-                    
-            </div>
+
+                </div>
 
                 <div className='mx-auto mb-6'>
                     <p className=" text-3xl mt-6 ml-6 mb-6 w-auto font-bold">Conheça nossos diretores:</p>
                     <hr className='bg-lbronze h-0.5 lg:w-96 w-48 mx-auto lg:ml-6 mt-1' />
                 </div>
                 {/*na div acima está o título da página
-*/}             <div className="min-h-screen mb-12">
+    */}             <div className="min-h-screen mb-12">
                     <div className="relative mt-6">
                         <div className="max-w-xl mx-auto overflow-hidden">
                             <Slider ref={sliderRef} {...settings}>
                                 {cardData.map((card, index) => (
-                                    <div key={index} onClick={() => setAutoplay(!autoplay)}  className="px-4 flex justify-center items-cente bg-slate-800 border-bronze rounded-md p-8">
+                                    <div key={index} onClick={() => setAutoplay(!autoplay)} className="px-4 flex justify-center items-cente bg-slate-800 border-bronze rounded-md p-8">
                                         <div className="max-w-md mx-auto">
                                             {/* essa div é usada para colocar os cards em um carrossel*/}
                                             <img src={card.url} alt={card.name} className="mx-auto" style={{ height: '300px', objectFit: 'cover', borderRadius: '8px' }} />
@@ -113,12 +156,13 @@ function Sobrenos() {
                                 ))}
                             </Slider>
                             {/* ESSA DIV É usada abaixo é usada para colocar a barra de progresso do carrossel
-*/} 
+    */}
                             <div className='w-11/12 ml-5 h-2 bg-gray-200 my-4'>
-                                <div className='h-full bg-lbronze' style={{ width: `${progress}%` }}></div>
+                                <div className='barra-progresso h-full bg-lbronze' style={{ width: `${progress}%` }}></div>
                             </div>
+
                         </div>
-                       
+
                     </div>
                 </div>
 

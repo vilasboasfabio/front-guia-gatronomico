@@ -160,6 +160,10 @@
 ::-webkit-scrollbar-thumb:hover {
     background-color: rgb(15, 23, 42); /* Cor do controle de rolagem ao passar o mouse */
 }
+.barra-progresso {
+    transition: width 0.5s ease-out;
+  }
+  
 
 
 @media (max-width: 768px) {
