@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Footer from "../components/Footer";
-
+import ErrorPopup from '../components/ErrorPopUp';
 import Header from '../components/Header';
 
 function Contato() {
@@ -19,6 +19,7 @@ function Contato() {
     const [resposta, setResposta] = useState('');
     const [isResponding, setIsResponding] = useState(false);
     const [respondedContatos, setRespondedContatos] = useState([]);
+    const [errors, setErrors] = useState([]);
 
     const formRef = React.useRef(null);
 
@@ -79,23 +80,34 @@ function Contato() {
             });
     }
 
-    const handleResponseSubmit = (id) => {
-        axios.put(`/api/contatos/${id}`, { resposta })
-            .then((response) => {
-                const updatedContato = contatos.find((contato) => contato.id === id);
-                updatedContato.resposta = resposta;
-                setRespondedContatos([...respondedContatos, updatedContato]);
-                setContatos(contatos.filter((contato) => contato.id !== id));
-                setResposta('');
-                setSelectedContato(null);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+    const handleResponseSubmit = async (id) => {
+        if (!resposta.trim()) {
+            setErrors(['A resposta não pode estar vazia.']);
+            return;
+        }
+    
+        try {
+            const response = await axios.put(`/api/contatos/${id}`, { resposta });
+            const updatedContato = contatos.find((contato) => contato.id === id);
+            updatedContato.resposta = resposta;
+            setRespondedContatos([...respondedContatos, updatedContato]);
+            setContatos(contatos.filter((contato) => contato.id !== id));
+            setResposta('');
+            setSelectedContato(null);
+            setErrors(null); // Clear error message on successful operation
+        } catch (error) {
+            if (error.response && error.response.data && error.response.data.erros) {
+                setErrors(error.response.data.erros);
+                console.log(error.response.data.erros);
+            } else {
+                setErrors(['Ocorreu um erro ao enviar a resposta.']);
+            }
+        }
     };
     return (
         <>
             <Header />
+            <ErrorPopup errors={errors} />
             <div className="flex flex-col items-center justify-center min-h-screen py-2">
                 <div className="flex flex-col justify-center items-center">
                     <h1 className="text-4xl font-bold text-lbronze">Mensagens</h1>

@@ -20,22 +20,27 @@ export async function GET() {
     }
     }
 
-export async function POST(request) {
-    const parametros = await request.json();
-    try {
-        const resposta = await axios.post(url, parametros);
-        return NextResponse.json(resposta.data);
-    } catch (error) {
-        console.log("[Contatos_Post]", error);
-        if (error.response && error.response.data) {
-        return new NextResponse(JSON.stringify(error.response.data), {
-            status: error.response.status,
-        });
-        } else {
-        return new NextResponse("Erro do servidor dentro do route", {
-            status: 500,
-        });
-        }
+    export async function POST(request) {
+
+        const pararametros = await request.json();
+        console.log("[Parametros]", pararametros);
+    
+    
+        try{
+            const resposta = await axios.post(url, pararametros);
+            console.log("[Resposta]", resposta.data);
+    
+            return NextResponse.json(resposta.data);
+    
+        } catch (error) {
+            console.log("[Order_Post]", error);
+            if (error.response && error.response.data) {
+                // Retorna o erro de forma que o frontend possa capturá-lo
+                return new NextResponse(JSON.stringify(error.response.data), { status: error.response.status });
+            } else {
+                return new NextResponse("Erro do servidor dentro do route", {status: 500});
+            }
+    
     }
     }
 

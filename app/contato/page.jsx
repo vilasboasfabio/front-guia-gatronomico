@@ -4,6 +4,7 @@ import axios from 'axios';
 import Footer from "../components/Footer";
 import ContactForm from '../components/ContatosForm';
 import Header from '../components/Header';
+import ErrorPopup from '../components/ErrorPopUp';
 
 function Contato() {
 
@@ -19,6 +20,7 @@ function Contato() {
     const [resposta, setResposta] = useState('');
     const [isResponding, setIsResponding] = useState(false);
     const [respondedContatos, setRespondedContatos] = useState([]);
+    const [errors, setErrors] = useState([]);
 
     const formRef = React.useRef(null);
 
@@ -26,22 +28,27 @@ function Contato() {
         setContato({ ...contato, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-
-        axios.post('/api/contatos', contato)
-            .then((response) => {
-                setContatos(prevContatos => [...prevContatos, response.data]);
-                setContato({
-                    nome: '',
-                    email: '',
-                    telefone: '',
-                    mensagem: ''
-                });
-            })
-            .catch((error) => {
-                console.log(error);
+    
+        try {
+            const response = await axios.post('/api/contatos', contato);
+            setContatos([...contatos, response.data]);
+            setContato({
+                nome: '',
+                email: '',
+                telefone: '',
+                mensagem: ''
             });
+            setErrors(null); // Clear error message on successful operation
+        } catch (error) {
+            if (error.response && error.response.data && error.response.data.erros) {
+                setErrors(error.response.data.erros);
+                console.log(error.response.data.erros);
+            } else {
+                setErrors(['Ocorreu um erro ao enviar o formulário.']);
+            }
+        }
     }
 
     useEffect(() => {
@@ -58,6 +65,7 @@ function Contato() {
     return (
         <>
             <Header />
+            <ErrorPopup errors={errors} />
             <hr className='bg-lbronze h-2 -mt-1' />
 
             <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-slate-900 text-white">
