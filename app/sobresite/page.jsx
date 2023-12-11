@@ -185,8 +185,7 @@ function PaginaSobre() {
 
         <hr className='bg-lbronze h-80 w-0.5 mx-auto -mt-2 resp-hid ' />
         <div className="lg:flex">
-          {/* essa div serve para conter o texto sobre a image
-*/}
+          {/* essa div serve para conter o texto sobre a image*/}
           <section data-aos="fade-up" className="bg-bronze w-1/3 h-64 rounded-2xl ml-48 mr-56 -mt-72 border-bronze ">
             <h1 className="font-bold text-xl text-lbronze text-center mb-4 mt-4">Explore Diversidade de Sabores:</h1>
             <p className=" text-white ml-2 mr-2 text-center mb-4 font-light">Do requinte clássico à vanguarda culinária, nosso guia abrange uma variedade de estilos e influências. De restaurantes premiados a joias escondidas, cada escolha reflete a paixão e o compromisso com a excelência. Deixe-se levar por uma jornada sensorial enquanto explora uma rica tapeçaria de sabores.</p>

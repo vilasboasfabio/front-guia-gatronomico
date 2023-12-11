@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 const url = process.env.BASE_URL + "membros";
 
 export async function GET() {
-    
+    // funcao de listar todos
         try {
             console.log("Passou no try")
             const resposta = await axios.get(url);
@@ -27,9 +27,10 @@ export async function GET() {
     }
 
 export async function POST(request) {
-    
+    // funcao de criar
         const pararametros = await request.json();
         console.log("[Parametros]", pararametros);
+        // Verificar se o erro é um erro de resposta da API (como um erro 404)
 
         try {
             const resposta = await axios.post(url, pararametros);

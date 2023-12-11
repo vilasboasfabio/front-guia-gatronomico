@@ -2,9 +2,10 @@ import axios from "axios";
 import { NextResponse } from "next/server";
 
 const url = process.env.BASE_URL + "contatos";
+// caminho usado para facilitar o uso da api
 
 export async function PUT(request, { params }) {
-
+// funcao de atualizar por id
     const { id } = params;
     const body = await request.json();
   
@@ -22,6 +23,7 @@ export async function PUT(request, { params }) {
 }
 
 export async function DELETE(request, { params }) {
+  // funcao de deletar
     const { id } = params;
     try {
       const response = await axios.delete(`${url}/${id}`);

@@ -2,8 +2,10 @@ import axios from 'axios';
 import { NextResponse } from 'next/server';
 
 const url = process.env.BASE_URL + "membros";
+//caminho usado para facilitar o uso da api
 
 export async function GET(request, {params}) {
+    // selecionar membro por id
     const {id} = params;
 
     try {
@@ -28,6 +30,7 @@ export async function GET(request, {params}) {
 }
 
 export async function PUT(request, {params}){
+    // atualizar membro por id
     const { id } = params;
     const body = await request.json();
 
@@ -43,6 +46,7 @@ export async function PUT(request, {params}){
 }
 
 export async function DELETE(request, {params}){
+    // deletar membro por id
     const { id } = params;
 
     try {

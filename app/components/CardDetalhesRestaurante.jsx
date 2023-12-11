@@ -12,7 +12,7 @@ const CardDetalhesRestaurante = ({ restaurante, abrir }) => {
             case 4: return 'Para dias especiais';
             default: return '';
         }
-    }
+    }// Função para retornar a legenda do preço
 
     const getEstrelasLegenda = (avaliacao) => {
         switch (avaliacao) {
@@ -21,7 +21,7 @@ const CardDetalhesRestaurante = ({ restaurante, abrir }) => {
             case 3: return 'Espetacular, vale a pena fazer a loucura';
             default: return '';
         }
-    }
+    }// Função para retornar a legenda das estrelas
 
     return (
         <div className="fixed inset-0 h-screen flex items-center justify-center z-50">
@@ -31,15 +31,18 @@ const CardDetalhesRestaurante = ({ restaurante, abrir }) => {
                     className=" mt-3 hover:bg-gray-500 rounded-md text-gray-600 hover:text-gray-500 focus:outline-none"
                     onClick={abrir}
                 >
+                    {/* Botão para fechar o painel */}
                     <span className="sr-only">Close panel</span>
                     <AiOutlineClose color='#CEB591' className="h-8 w-8  rounded-md" aria-hidden="true" />
                 </button>
                 <article>
 
                     <div>
+                        {/* Imagem do Restaurante */}
                         <img className=" w-11/12 mb-10 mx-auto h-80  object-cover rounded-lg mt-8" src={restaurante.img} alt="Imagem do Restaurante" />
                     </div>
                     <div className="px-6 py-4 text-center">
+                        {/* Conteúdo do Card */}
                         <div className="font-bold text-4xl mb-2 text-lbronze "  >{restaurante.nome} - {restaurante.chefe}</div>
 
                         <div className='text-center text-1xl font-thin text-white ml-5 mt-4'>{restaurante.loc}</div>
@@ -49,14 +52,15 @@ const CardDetalhesRestaurante = ({ restaurante, abrir }) => {
                             <div className=" text-base mt-3 text-lbronze w-auto p-1 rounded-lg mx-auto">{restaurante.tipo}</div>
 
                             <dt className="sr-only">Valor</dt>
+                            {/* Preço */}
                             <div className=" mx-auto justify-between  items-center">
                                 <span className="rounded-full flex px-2 py-1 text-xs font-bold text-indigo-100 mt-5 ">
                                     {Array(restaurante.avaliacao).fill(<TbMichelinStar className='text-lbronze' size={24} />)}
-                                </span>
+                                </span>{/* Estrelas */}
                             </div>
                         </dl>
                     </div>
-                    <div className="px-6 py-4 scroll-auto  ">
+                    <div className="px-6 py-4 scroll-auto  ">{/* Descrição */}
                         <div>
                             <hr className=' bg-white rounded-lg opacity-10 h-0.5' />
 
@@ -71,7 +75,7 @@ const CardDetalhesRestaurante = ({ restaurante, abrir }) => {
 
                             <span className="text-lbronze justify-center mt-5 mx-auto flex rounded-full text-xs font-medium">
                                 {Array(restaurante.valor).fill(<MdAttachMoney className='text-lbronze' size={24} />)}
-                            </span>
+                            </span>{/* array de  preços */}
 
                             <hr className=' bg-white  mt-10 rounded-lg opacity-10 h-0.5' />
                             <h3 className='text-center text-md mt-4 font-bold text-lbronze'>Dias de funcionamento:</h3>
@@ -83,6 +87,7 @@ const CardDetalhesRestaurante = ({ restaurante, abrir }) => {
 
                         </div>
                         <div>
+                            {/* localização do restaurante */}
                             <h3 className='text-center text-md mt-4 font-bold text-lbronze'>Localização:</h3>
                             <div className='text-center text-white ml-5 mt-4'>{restaurante.loc}</div>
 
@@ -90,6 +95,7 @@ const CardDetalhesRestaurante = ({ restaurante, abrir }) => {
 
                         </div>
                         <div>
+                             {/* formas de pagamento */}
                             <h3 className='text-center text-md mt-4 font-bold text-lbronze'>Formas de Pagamento:</h3>
 
                             <div className='text-center text-white ml-5 mt-4'>{restaurante.pagamento.join(", ")}.</div>

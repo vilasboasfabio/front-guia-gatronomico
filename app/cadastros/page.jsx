@@ -21,33 +21,36 @@ function CadastroRestaurante() {
         pagamento: [],
         avaliacao: '',
         data: ''
-    });
-    const [restaurantes, setRestaurantes] = useState([]);
-    const [isEditing, setIsEditing] = useState(false);
-    const [editingRestaurante, setEditingRestaurante] = useState(null);
-    const [errors, setErrors] = useState([]);
-    const [aberto, setAberto] = useState(false);
-    const [selectedRestaurante, setSelectedRestaurante] = useState(null);
+    });// array de restaurantes
+    const [restaurantes, setRestaurantes] = useState([]);// array de restaurantes
+    const [isEditing, setIsEditing] = useState(false);// restaurantes editados
+    const [editingRestaurante, setEditingRestaurante] = useState(null);// restarantes sendo editados
+    const [errors, setErrors] = useState([]);// array de erros
+    const [aberto, setAberto] = useState(false);// sendo editado
+    const [selectedRestaurante, setSelectedRestaurante] = useState(null);// restaurante selecionado
 
     const formRef = React.useRef(null);
 
     const handleChange = (e) => {
         setRestaurante({ ...restaurante, [e.target.name]: e.target.value });
+        // altera o restaurante
     };
 
     const abrir = () => {
         if (aberto) {
             setAberto(false);
+            // se estiver aberto fecha
         }
         else {
             setAberto(true);
+            // se não estiver aberto abre
         }
     }
 
     const handleCheckboxChange = (e) => {
         const { name, value } = e.target;
         let newSelection;
-
+       // verifica a data do  restaurante em funcionamento
         if (name === "funcionamento") {
             newSelection = restaurante.funcionamento.includes(value)
                 ? restaurante.funcionamento.filter(day => day !== value)
@@ -57,6 +60,7 @@ function CadastroRestaurante() {
                 ? restaurante.pagamento.filter(form => form !== value)
                 : [...restaurante.pagamento, value];
         }
+        // verifica a data do  restaurante em pagamento
 
         setRestaurante({ ...restaurante, [name]: newSelection });
     };
@@ -68,11 +72,13 @@ function CadastroRestaurante() {
             valor: Number(restaurante.valor),
             avaliacao: Number(restaurante.avaliacao)
         };
+        // formata os dados
 
         if (isEditing) {
             handleEdit(editingRestaurante, dadosFormatados);
         } else {
             try {
+                // envia os dados e alimenta os arrays
                 const response = await axios.post('/api/restaurantes', dadosFormatados);
                 setRestaurante({
                     nome: '',
@@ -99,8 +105,8 @@ function CadastroRestaurante() {
     };
 
     const handleEdit = async (id, updatedRestaurante) => {
-        const valorNumerico = Number(updatedRestaurante.valor);
-        const avaliacaoNumerica = Number(updatedRestaurante.avaliacao);
+        const valorNumerico = Number(updatedRestaurante.valor);//preço
+        const avaliacaoNumerica = Number(updatedRestaurante.avaliacao);//avaliaçao com nota
 
         if (isNaN(valorNumerico) || isNaN(avaliacaoNumerica)) {
             setErrors(['Valor e avaliação devem ser números.']);
@@ -114,6 +120,7 @@ function CadastroRestaurante() {
         };
 
         try {
+            // ele busca os dados pelo id
             await axios.put(`/api/restaurantes/${id}`, dadosFormatados);
             const response = await axios.get('/api/restaurantes');
             setRestaurantes(response.data);
@@ -138,6 +145,7 @@ function CadastroRestaurante() {
 
     const handleDelete = async (id) => {
         try {
+            // deleta o restaurante pelo id
             await axios.delete(`/api/restaurantes/${id}`);
             setRestaurantes(restaurantes.filter(restaurante => restaurante.id !== id));
         } catch (erro) {
@@ -148,6 +156,7 @@ function CadastroRestaurante() {
     useEffect(() => {
         const fetchRestaurantes = async () => {
             try {
+                //  mostra todos os restaurantes
                 const response = await axios.get('/api/restaurantes');
                 setRestaurantes(response.data);
             } catch (error) {
@@ -165,16 +174,18 @@ function CadastroRestaurante() {
         setIsEditing(true);
         setEditingRestaurante(id);
         formRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
+    }// edita os inputs
 
 
     return (
         <main className='bg-slate-900'>
+                {/* componentes de cabeçalho */}
             <Header />
             <hr className='bg-lbronze h-2 -mt-1' />
             <div className="flex flex-col items-center justify-center min-h-screen bg-slate-900 sm:px-6 lg:px-8 mb-10">
                 <div className="space-y-8 w-screen bg-image-1 bg-slate-900">
                     <div className=' mx-auto mt-24 mb-20 opacity-1'>
+                        {/* formulario de restaurante */}
                         <RestauranteForm
                             restaurante={restaurante}
                             handleChange={handleChange}
@@ -209,7 +220,7 @@ function CadastroRestaurante() {
                                 setErrors([]);
                             }, 4000)
                         )
-                    }
+                    }{/* mostra os erros */}
 
                 </div>
 

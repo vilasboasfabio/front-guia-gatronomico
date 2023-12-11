@@ -10,9 +10,11 @@ const RestauranteForm = ({
   handleEdit,
   formRef
 }) => {
-
+// serve para controlar o form
   const diasFuncionamento = ['Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sábado', 'Domingo'];
+  // array de dias de funcionamento
   const formasPagamento = ["Dinheiro", "Cartão de Crédito", "Cartão de Débito", "PIX", "Vale Refeição", "Vale Alimentação"];
+  // array de formas de pagamento
   const tipoOptions = [
     {value:'', label: 'Qualquer tipo'},
     { value: 'Brasileira', label: 'Brasileira' },
@@ -43,6 +45,7 @@ const RestauranteForm = ({
     {value: 'Mista', label: 'Mista'},
     { value: 'Outra', label: 'Outra' },
   ];
+  // array de opções de tipo de restaurante
 
 
   return (

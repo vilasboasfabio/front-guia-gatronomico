@@ -32,28 +32,28 @@ const SideMenu = ({ onClose }) => {
                                 <div className="mt-8">
                                     <nav className="flex flex-col space-y-1">
                                         <a href="/" className="text-gray-600 hover:bg-gray-100 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
-                                            {/* Icon */}
+                                            {/* Icone */}
                                             Home
                                         </a>
-                                        {/* Add more nav links here */}
+                                        {/* adiciona links de navegaçao aqui */}
                                         <a href="/sobresite" className="text-gray-600 hover:bg-gray-100 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
-                                            {/* Icon */}
+                                            {/* Icone */}
                                             Nosso Conceito
                                         </a>
                                         <a href="/loginpaginacadastro" className="text-gray-600 hover:bg-gray-100 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
-                                            {/* Icon */}
+                                            {/* Icone */}
                                             Cadastro de Restaurantes
                                         </a>
                                         <a href="/logincadastromembros" className="text-gray-600 hover:bg-gray-100 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
-                                            {/* Icon */}
+                                            {/* Icone */}
                                             Cadastro de Clientes
                                         </a>
                                         <a href="/sobrenos" className="text-gray-600 hover:bg-gray-100 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
-                                            {/* Icon */}
+                                            {/* Icone */}
                                             Sobre Nós
                                         </a>
                                         <a href="/contato" className="text-gray-600 hover:bg-gray-100 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
-                                            {/* Icon */}
+                                            {/* Icone */}
                                             Contato
                                         </a>
                                     </nav>
