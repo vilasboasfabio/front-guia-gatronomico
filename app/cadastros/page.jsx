@@ -6,6 +6,7 @@ import RestauranteForm from '../components/RestauranteForm';
 import CardDetalhesRestaurante from '../components/CardDetalhesRestaurante';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import ErrorPopup from '../components/ErrorPopUp';
 
 
 function CadastroRestaurante() {
@@ -91,8 +92,11 @@ function CadastroRestaurante() {
             } catch (error) {
                 if (error.response && error.response.data && error.response.data.erros) {
                     setErrors(error.response.data.erros);
+                    console.log(error.response.data.erros);
+                     // Clear error message after 5 seconds
                 } else {
                     setErrors(['Ocorreu um erro ao enviar o formulário.']);
+                     // Clear error message after 5 seconds
                 }
             }
         }
@@ -132,7 +136,14 @@ function CadastroRestaurante() {
                 data: ''
             });
         } catch (error) {
-            console.error('Erro ao atualizar o restaurante:', error);
+            if (error.response && error.response.data && error.response.data.erros) {
+                setErrors(error.response.data.erros);
+                console.log(error.response.data.erros);
+                 // Clear error message after 5 seconds
+            } else {
+                setErrors(['Ocorreu um erro ao enviar o formulário.']);
+               // Clear error message after 5 seconds
+            }
         }
     };
 
@@ -172,6 +183,7 @@ function CadastroRestaurante() {
         <main className='bg-slate-900'>
             <Header />
             <hr className='bg-lbronze h-2 -mt-1' />
+            <ErrorPopup errors={errors} />
             <div className="flex flex-col items-center justify-center min-h-screen bg-slate-900 sm:px-6 lg:px-8 mb-10">
                 <div className="space-y-8 w-screen bg-image-1 bg-slate-900">
                     <div className=' mx-auto mt-24 mb-20 opacity-1'>
@@ -191,29 +203,10 @@ function CadastroRestaurante() {
             </div>
 
             <div className="flex flex-col border-t-bronze items-center justify-center  w-screen bg-gradient-to-r from-slate-900 to-slate-900 py-2 lg:px-8">
-               
-                    {errors.length > 0 && (
-                        <div>
-                            {
-                                errors.map((error) => (
-                                    <div key={error} className="text-red-500 text-sm italic mb-2">
-                                        {error}
-                                    </div>
-                                ))
-                            }
-                        </div>
-                    )}
-                    {
-                        errors.length > 0 && (
-                            setTimeout(() => {
-                                setErrors([]);
-                            }, 4000)
-                        )
-                    }
 
                 </div>
 
-                <div className="flex flex-col border-t-bronze items-center justify-center min-h-screen w-screen bg-gradient-to-r from-slate-900 to-slate-900 py-2 lg:px-8">
+                <div className="flex flex-col items-center justify-center min-h-screen w-screen bg-gradient-to-r from-slate-900 to-slate-900 py-2 lg:px-8">
                     <h2 className="mt-6 text-center text-3xl font-extrabold text-white">Restaurantes Cadastrados</h2>
 
                     <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
