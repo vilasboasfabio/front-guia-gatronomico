@@ -1,7 +1,5 @@
 'use client';
 
-
-
 import React, { useState, useEffect, useRef } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -79,7 +77,7 @@ function Sobrenos() {
     return (
         <div>
             <div className="bg-slate-900 min-h-screen flex flex-col text-slate-200">
-                {/* Your code here */}
+                {/*cabeçalho */}
                 <Header />
                 <hr className='bg-lbronze h-2 -mt-1' />
 
@@ -89,20 +87,23 @@ function Sobrenos() {
                         <p className="text-6xl font-bold mr-auto ml-36 mt-80 text-slate-300">Sobre Nós</p>
                         <p className="text-1xl mr-auto ml-36 mt-4 w-2/3 text-justify font-light ">Se você é daqueles que consideram a experiência de saborear uma refeição como uma verdadeira celebração para os sentidos, então o Elite Chefs é o seu guia essencial. Embarque conosco em uma jornada sensorial através dos mais extraordinários restaurantes, onde cada prato conta uma história de inovação culinária e sabor autêntico.</p>
                     </div>
-                </div>
+                    {/*   a div acima é responsável por colocar o texto sobre a imagem */}
+                    
+            </div>
 
                 <div className='mx-auto mb-6'>
                     <p className=" text-3xl mt-6 ml-6 mb-6 w-auto font-bold">Conheça nossos diretores:</p>
                     <hr className='bg-lbronze h-0.5 lg:w-96 w-48 mx-auto lg:ml-6 mt-1' />
                 </div>
-
-                <div className="min-h-screen mb-12">
+                {/*na div acima está o título da página
+*/}             <div className="min-h-screen mb-12">
                     <div className="relative mt-6">
                         <div className="max-w-xl mx-auto overflow-hidden">
                             <Slider ref={sliderRef} {...settings}>
                                 {cardData.map((card, index) => (
                                     <div key={index} onClick={() => setAutoplay(!autoplay)}  className="px-4 flex justify-center items-cente bg-slate-800 border-bronze rounded-md p-8">
                                         <div className="max-w-md mx-auto">
+                                            {/* essa div é usada para colocar os cards em um carrossel*/}
                                             <img src={card.url} alt={card.name} className="mx-auto" style={{ height: '300px', objectFit: 'cover', borderRadius: '8px' }} />
                                             <h2 className="text-2xl font-bold mb-4 mt-4 text-center">{card.name}</h2>
                                             <hr className='bg-lbronze h-0.5 mb-3 w-48 mx-auto mt-1' />
@@ -111,7 +112,9 @@ function Sobrenos() {
                                     </div>
                                 ))}
                             </Slider>
-                            <div className='w-full h-2 bg-gray-200 my-4'>
+                            {/* ESSA DIV É usada abaixo é usada para colocar a barra de progresso do carrossel
+*/} 
+                            <div className='w-11/12 ml-5 h-2 bg-gray-200 my-4'>
                                 <div className='h-full bg-lbronze' style={{ width: `${progress}%` }}></div>
                             </div>
                         </div>
