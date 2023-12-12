@@ -186,8 +186,10 @@ function ExibirRestaurantes() {
       {/* puxamos o header e declaramos a cor tema*/}
       <Header />
       <hr className='bg-lbronze h-2 -mt-1' />
-      <div className='flex justify-center bg-image-3 h-96'>
+      <div className='flex justify-center bg-image-3 h-80 lg:h-96'>
         {/*usamos o hr e  a div para  */}
+        <img src='/titulo.png' alt='Guia de Restaurante' className='lg:ml-6 mt-14 lg:hidden mb-14' />
+
         <div className='flex resp-hid flex-col items-center justify-center min-h-screen  sm:px-6 lg:px-8 mb-10'>
 
 
