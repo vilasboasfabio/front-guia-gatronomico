@@ -147,7 +147,7 @@ function ExibirRestaurantes() {
   const nextPage = () => setCurrentPage(currentPage + 1);
   const prevPage = () => setCurrentPage(currentPage - 1);
 
-// abrir detalhes do restaurante selecionado
+  // abrir detalhes do restaurante selecionado
   const abrirDetalhes = (id) => {
     if (detalhes) {
       setDetalhes(false);
@@ -165,7 +165,7 @@ function ExibirRestaurantes() {
     setFilters({ ...filters, [type]: e.target.value });
   };
 
-// serve para mostrar o loading
+  // serve para mostrar o loading
   function LoadingComponent() {
     return <img src='/loading1.webp' alt='Loading' className='w-1/5 mx-auto mt-10' />;
   }
@@ -183,11 +183,11 @@ function ExibirRestaurantes() {
 
   return (
     <div className=' bg-slate-900'>
-      {/* puxamos o header e declaramos a cor tema*/} 
+      {/* puxamos o header e declaramos a cor tema*/}
       <Header />
       <hr className='bg-lbronze h-2 -mt-1' />
       <div className='flex justify-center bg-image-3 h-96'>
- {/*usamos o hr e  a div para  */} 
+        {/*usamos o hr e  a div para  */}
         <div className='flex resp-hid flex-col items-center justify-center min-h-screen  sm:px-6 lg:px-8 mb-10'>
 
 
@@ -204,25 +204,25 @@ function ExibirRestaurantes() {
       <hr className='bg-lbronze h-2 -mt-1' />
       <article className='flex flex-col mt-10 items-center justify-center min-h-screen bg-slate-900 sm:px-6 lg:px-8 mb-10'>
         <div className='lg:flex lg:-ml-16'>
-        {/*filtro por avaliaçâo */}
+          {/*filtro por avaliaçâo */}
           <FilterDropdown
             label="Avaliação"
             options={avaliacaoOptions}
             onChange={handleFilterChange('avaliacao')}
           />
-            {/*filtro por Valor */}
+          {/*filtro por Valor */}
           <FilterDropdown
             label="Valor"
             options={valorOptions}
             onChange={handleFilterChange('valor')}
           />
-            {/*filtro por Tipo */}
+          {/*filtro por Tipo */}
           <FilterDropdown
             label="Tipo"
             options={tipoOptions}
             onChange={handleFilterChange('tipo')}
           />
-            {/*filtro por Pagamento */}
+          {/*filtro por Pagamento */}
           <FilterDropdown
             label="Pagamento"
             options={pagamentoOptions}
@@ -232,9 +232,13 @@ function ExibirRestaurantes() {
 
         </div>
         {
-          isLoading && <LoadingComponent />
+          isLoading &&
+          <div className='flex flex-col items-center justify-center min-h-screen mx-auto bg-slate-900 '>
+            <p className='text-2xl text-lbronze'>Carregando...</p>
+            <LoadingComponent />
+          </div>
         }
-          
+
         <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {
             detalhes ? (
@@ -243,7 +247,7 @@ function ExibirRestaurantes() {
                 restaurante={filtredRestaurantes.find((restaurante) => restaurante.id === restauranteSelecionado)}
               />
             ) : (
-              
+
               filteredAndSearchedRestaurants.filter(restaurante => restaurante.nome.toLowerCase().includes(searchTerm.toLowerCase())).map((restaurante) => (
                 <RestauranteCardShow
                   key={restaurante.id}
@@ -255,7 +259,7 @@ function ExibirRestaurantes() {
           }
 
         </ul>
-        
+
         {
           filteredAndSearchedRestaurants.length === 0 && !isLoading && <NoRestaurantsWarning />
         }

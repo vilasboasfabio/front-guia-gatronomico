@@ -32,6 +32,7 @@ function CadastroRestaurante() {
     const [searchTerm, setSearchTerm] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [restaurantsPerPage] = useState(9);
+    const [isLoading, setIsLoading] = useState(false);
 
     const formRef = React.useRef(null);
 
@@ -161,14 +162,17 @@ function CadastroRestaurante() {
 
     useEffect(() => {
         const fetchRestaurantes = async () => {
+            setIsLoading(true);
             try {
                 const response = await axios.get('/api/restaurantes');
                 setRestaurantes(response.data);
+                setIsLoading(false);
             } catch (error) {
                 console.error('Erro ao buscar restaurantes', error);
+                setIsLoading(false);
             }
         };
-
+    
         fetchRestaurantes();
     }, [restaurante]);
 
@@ -207,6 +211,9 @@ function CadastroRestaurante() {
         setCurrentPage(currentPage - 1);
     };
 
+    function LoadingComponent() {
+        return <img src='/loading1.webp' alt='Loading' className='w-1/2 mx-auto mt-5' />;
+      }
     return (
         <main className='bg-slate-900'>
             <Header />
@@ -246,8 +253,16 @@ function CadastroRestaurante() {
                             className='mt-6 mb-6 w-96 px-4 py-2 rounded-md bg-gray-100 text-gray-900 focus:outline-none focus:ring-2 focus:ring-lbronze focus:border-transparent'
                         />
                     </div>
-
+                    {
+                            isLoading &&
+                            
+                            <div className='flex flex-col items-center justify-center min-h-screen mx-auto bg-slate-900 '>
+                                <p className='text-2xl text-lbronze'>Carregando...</p>
+                                <LoadingComponent />
+                            </div>
+                        }
                     <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                        
                         {currentRestaurantes.map(restaurante => (
                             <RestauranteCard
                                 key={restaurante.id}
