@@ -16,6 +16,7 @@ function ExibirRestaurantes() {
     valor: '',
     tipo: '',
     pagamento: '',
+    loc: '',
   });
   //as categorias de filtro que aparecem no dropdown
   const [filtredRestaurantes, setFiltredRestaurantes] = useState([]);
@@ -93,24 +94,68 @@ function ExibirRestaurantes() {
     { value: 3, label: '3 estrelas' },
   ];
   // array de possiveis avaliações
+  const paisesOptions = [
+    { value: "", label: 'Qualquer país' },
+   //opções de paises em que o guia michelin está presente
+    { value: 'Alemanha', label: 'Alemanha' },
+    { value: 'Argentina', label: 'Argentina' },
+    { value: 'Austrália', label: 'Austrália' },
+    { value: 'Áustria', label: 'Áustria' },
+    { value: 'Bélgica', label: 'Bélgica' },
+    { value: 'Brasil', label: 'Brasil' },
+    { value: 'China', label: 'China' },
+    { value: 'Coreia do Sul', label: 'Coreia do Sul' },
+    { value: 'Dinamarca', label: 'Dinamarca' },
+    { value: 'Espanha', label: 'Espanha' },
+    { value: 'Estados Unidos', label: 'Estados Unidos' },
+    { value: 'Finlândia', label: 'Finlândia' },
+    { value: 'França', label: 'França' },
+    { value: 'Grécia', label: 'Grécia' },
+    { value: 'Hong Kong', label: 'Hong Kong' },
+    { value: 'Hungria', label: 'Hungria' },
+    { value: 'Índia', label: 'Índia' },
+    { value: 'Irlanda', label: 'Irlanda' },
+    { value: 'Itália', label: 'Itália' },
+    { value: 'Japão', label: 'Japão' },
+    { value: 'Luxemburgo', label: 'Luxemburgo' },
+    { value: 'Macau', label: 'Macau' },
+    { value: 'Malásia', label: 'Malásia' },
+    { value: 'Noruega', label: 'Noruega' },
+    { value: 'Países Baixos', label: 'Países Baixos' },
+    { value: 'Polônia', label: 'Polônia' },
+    { value: 'Portugal', label: 'Portugal' },
+    { value: 'Reino Unido', label: 'Reino Unido' },
+    { value: 'República Checa', label: 'República Checa' },
+    { value: 'Rússia', label: 'Rússia' },
+    { value: 'Singapura', label: 'Singapura' },
+    { value: 'Suécia', label: 'Suécia' },
+    { value: 'Suíça', label: 'Suíça' },
+    { value: 'Taiwan', label: 'Taiwan' },
+    { value: 'Tailândia', label: 'Tailândia' },
+    { value: 'Turquia', label: 'Turquia' },
+  ];
 
   useEffect(() => {
     const fetchRestaurants = async () => {
       // fetchRestaurants é uma função assíncrona que busca os restaurantes na API
       try {
         setIsLoading(true);
-        const response = await axios.get(`/api/restaurantes?avaliação=${filters.avaliacao}&valor=${filters.valor}&tipo=${filters.tipo}&pagamento=${filters.pagamento}&nome=${searchTerm}`);
+        const response = await axios.get(`/api/restaurantes?avaliação=${filters.avaliacao}&valor=${filters.valor}&tipo=${filters.tipo}&pagamento=${filters.pagamento}&nome=${searchTerm}&loc=${filters.loc}`);
         // response  serve para solicitar os dados da api
         let data = response.data;
         //data recebe os dados na api
 
         // Aplicar filtros
-        if (filters.avaliacao || filters.valor || filters.tipo || filters.pagamento) {
+        if (filters.avaliacao || filters.valor || filters.tipo || filters.pagamento || filters.loc) {
           data = data.filter((restaurante) => {
             return (!filters.avaliacao || Number(restaurante.avaliacao) === Number(filters.avaliacao)) &&
               (!filters.valor || Number(restaurante.valor) === Number(filters.valor)) &&
               (!filters.tipo || restaurante.tipo === filters.tipo) &&
-              (!filters.pagamento || restaurante.pagamento.some(p => p.toLowerCase() === filters.pagamento.toLowerCase())); // Verifica se a forma de pagamento está no array
+              (!filters.pagamento || restaurante.pagamento.some(p => p.toLowerCase() === filters.pagamento.toLowerCase())) &&
+              // Verifica se a forma de pagamento está no array
+              //verificar se o valor do país selecionado está na string da localização
+              (!filters.loc || restaurante.loc.includes(filters.loc));
+
           });
         }
 
@@ -188,7 +233,7 @@ function ExibirRestaurantes() {
       <hr className='bg-lbronze h-2 -mt-1' />
       <div className='flex justify-center bg-image-3 h-80 lg:h-96'>
         {/*usamos o hr e  a div para  */}
-        <img src='/titulo.png' alt='Guia de Restaurante' className='lg:ml-6 mt-14 lg:hidden mb-14' />
+        <img src='/titulo.png' alt='Guia de Restaurante' className='lg:ml-6 mt-14 lg:hidden mb-16' />
 
         <div className='flex resp-hid flex-col items-center justify-center min-h-screen  sm:px-6 lg:px-8 mb-10'>
 
@@ -229,6 +274,12 @@ function ExibirRestaurantes() {
             label="Pagamento"
             options={pagamentoOptions}
             onChange={handleFilterChange('pagamento')}
+          />
+          {/*filtro por País */}
+          <FilterDropdown
+            label="País"
+            options={paisesOptions}
+            onChange={handleFilterChange('loc')}
           />
           <input className='bg-lbronze lg:hidden w-full rounded-lg border border-gray-400 leading-normal resize-none h-10 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white' type='text' placeholder='Pesquisar' onChange={(e) => setSearchTerm(e.target.value)} />
 
