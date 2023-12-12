@@ -33,6 +33,7 @@ function CadastroRestaurante() {
     const [currentPage, setCurrentPage] = useState(1);
     const [restaurantsPerPage] = useState(9);
     const [isLoading, setIsLoading] = useState(false);
+    const [successMessage, setSuccessMessage] = useState('');
 
     const formRef = React.useRef(null);
 
@@ -79,6 +80,8 @@ function CadastroRestaurante() {
         } else {
             try {
                 const response = await axios.post('/api/restaurantes', dadosFormatados);
+                // Defina a mensagem de sucesso com a mensagem retornada pela API
+                setSuccessMessage(response.data.message);
                 setRestaurante({
                     nome: '',
                     img: '',
@@ -92,6 +95,9 @@ function CadastroRestaurante() {
                     avaliacao: '',
                     data: ''
                 });
+                setTimeout(() => {
+                    setSuccessMessage('');
+                }, 5000);
                 setErrors([]);
             } catch (error) {
                 if (error.response && error.response.data && error.response.data.erros) {
@@ -172,7 +178,7 @@ function CadastroRestaurante() {
                 setIsLoading(false);
             }
         };
-    
+
         fetchRestaurantes();
     }, [restaurante]);
 
@@ -213,7 +219,7 @@ function CadastroRestaurante() {
 
     function LoadingComponent() {
         return <img src='/loading1.webp' alt='Loading' className='w-1/2 mx-auto mt-5' />;
-      }
+    }
     return (
         <main className='bg-slate-900'>
             <Header />
@@ -234,7 +240,7 @@ function CadastroRestaurante() {
                         />
                     </div>
 
-
+                    {successMessage && <div className=' ml-[38%] pb-8' ><p className=' text-xl text-green-400'>{successMessage}</p></div>}
                 </div>
 
                 <div className="flex flex-col border-t-bronze items-center justify-center  w-screen bg-gradient-to-r from-slate-900 to-slate-900 py-2 lg:px-8">
@@ -254,15 +260,15 @@ function CadastroRestaurante() {
                         />
                     </div>
                     {
-                            isLoading &&
-                            
-                            <div className='flex flex-col items-center justify-center min-h-screen mx-auto bg-slate-900 '>
-                                <p className='text-2xl text-lbronze'>Carregando...</p>
-                                <LoadingComponent />
-                            </div>
-                        }
+                        isLoading &&
+
+                        <div className='flex flex-col items-center justify-center min-h-screen mx-auto bg-slate-900 '>
+                            <p className='text-2xl text-lbronze'>Carregando...</p>
+                            <LoadingComponent />
+                        </div>
+                    }
                     <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                        
+
                         {currentRestaurantes.map(restaurante => (
                             <RestauranteCard
                                 key={restaurante.id}
@@ -279,32 +285,32 @@ function CadastroRestaurante() {
                 </div>
 
                 <div className="pagination flex justify-center items-center mt-6 space-x-4">
-                <button 
-                    onClick={prevPage} 
-                    disabled={currentPage === 1}
-                    className={`py-2 px-4 rounded ${currentPage === 1 ? 'bg-gray-500' : 'bg-lbronze'}`}
-                >
-                    Anterior
-                </button>
-
-                {[...Array(Math.ceil(filteredRestaurantes.length / restaurantsPerPage)).keys()].map(number => (
-                    <button 
-                        key={number + 1} 
-                        onClick={() => paginate(number + 1)}
-                        className={`py-2 px-4 rounded ${currentPage === number + 1 ? 'bg-lbronze' : 'bg-gray-300'}`}
+                    <button
+                        onClick={prevPage}
+                        disabled={currentPage === 1}
+                        className={`py-2 px-4 rounded ${currentPage === 1 ? 'bg-gray-500' : 'bg-lbronze'}`}
                     >
-                        {number + 1}
+                        Anterior
                     </button>
-                ))}
 
-                <button 
-                    onClick={nextPage} 
-                    disabled={currentPage === Math.ceil(filteredRestaurantes.length / restaurantsPerPage)}
-                    className={`py-2 px-4 rounded ${currentPage === Math.ceil(filteredRestaurantes.length / restaurantsPerPage) ? 'bg-gray-500' : 'bg-lbronze'}`}
-                >
-                    Próxima
-                </button>
-            </div>
+                    {[...Array(Math.ceil(filteredRestaurantes.length / restaurantsPerPage)).keys()].map(number => (
+                        <button
+                            key={number + 1}
+                            onClick={() => paginate(number + 1)}
+                            className={`py-2 px-4 rounded ${currentPage === number + 1 ? 'bg-lbronze' : 'bg-gray-300'}`}
+                        >
+                            {number + 1}
+                        </button>
+                    ))}
+
+                    <button
+                        onClick={nextPage}
+                        disabled={currentPage === Math.ceil(filteredRestaurantes.length / restaurantsPerPage)}
+                        className={`py-2 px-4 rounded ${currentPage === Math.ceil(filteredRestaurantes.length / restaurantsPerPage) ? 'bg-gray-500' : 'bg-lbronze'}`}
+                    >
+                        Próxima
+                    </button>
+                </div>
 
             </div>
             <hr className='bg-lbronze h-2 mb-10' />
