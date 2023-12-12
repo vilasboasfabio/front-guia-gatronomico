@@ -29,6 +29,9 @@ function CadastroRestaurante() {
     const [errors, setErrors] = useState([]);
     const [aberto, setAberto] = useState(false);
     const [selectedRestaurante, setSelectedRestaurante] = useState(null);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const [restaurantsPerPage] = useState(9);
 
     const formRef = React.useRef(null);
 
@@ -93,10 +96,10 @@ function CadastroRestaurante() {
                 if (error.response && error.response.data && error.response.data.erros) {
                     setErrors(error.response.data.erros);
                     console.log(error.response.data.erros);
-                     // Clear error message after 5 seconds
+                    // Clear error message after 5 seconds
                 } else {
                     setErrors(['Ocorreu um erro ao enviar o formulário.']);
-                     // Clear error message after 5 seconds
+                    // Clear error message after 5 seconds
                 }
             }
         }
@@ -139,10 +142,10 @@ function CadastroRestaurante() {
             if (error.response && error.response.data && error.response.data.erros) {
                 setErrors(error.response.data.erros);
                 console.log(error.response.data.erros);
-                 // Clear error message after 5 seconds
+                // Clear error message after 5 seconds
             } else {
                 setErrors(['Ocorreu um erro ao enviar o formulário.']);
-               // Clear error message after 5 seconds
+                // Clear error message after 5 seconds
             }
         }
     };
@@ -178,6 +181,31 @@ function CadastroRestaurante() {
         formRef.current.scrollIntoView({ behavior: 'smooth' });
     }
 
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
+        setCurrentPage(1); // Reset para a primeira página com a nova pesquisa
+    };
+
+    // Filtrar restaurantes com base no termo de pesquisa
+    const filteredRestaurantes = restaurantes.filter(
+        restaurante => restaurante.nome.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    // Obter os restaurantes atuais para a página atual
+    const indexOfLastRestaurante = currentPage * restaurantsPerPage;
+    const indexOfFirstRestaurante = indexOfLastRestaurante - restaurantsPerPage;
+    const currentRestaurantes = filteredRestaurantes.slice(indexOfFirstRestaurante, indexOfLastRestaurante);
+
+    // Mudar página
+    const paginate = pageNumber => setCurrentPage(pageNumber);
+
+    const nextPage = () => {
+        setCurrentPage(currentPage + 1);
+    };
+
+    const prevPage = () => {
+        setCurrentPage(currentPage - 1);
+    };
 
     return (
         <main className='bg-slate-900'>
@@ -200,46 +228,73 @@ function CadastroRestaurante() {
                     </div>
 
 
-            </div>
+                </div>
 
-            <div className="flex flex-col border-t-bronze items-center justify-center  w-screen bg-gradient-to-r from-slate-900 to-slate-900 py-2 lg:px-8">
+                <div className="flex flex-col border-t-bronze items-center justify-center  w-screen bg-gradient-to-r from-slate-900 to-slate-900 py-2 lg:px-8">
 
                 </div>
 
                 <div className="flex flex-col items-center justify-center min-h-screen w-screen bg-gradient-to-r from-slate-900 to-slate-900 py-2 lg:px-8">
                     <h2 className="mt-6 text-center text-3xl font-extrabold text-white">Restaurantes Cadastrados</h2>
 
+                    <div className="search-container">
+                        <input
+                            type="text"
+                            placeholder="Pesquisar restaurante"
+                            value={searchTerm}
+                            onChange={handleSearchChange}
+                            className='mt-6 mb-6 w-96 px-4 py-2 rounded-md bg-gray-100 text-gray-900 focus:outline-none focus:ring-2 focus:ring-lbronze focus:border-transparent'
+                        />
+                    </div>
+
                     <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                        {
-                            //se estiver aberto mostra o card de detalhes
-                            aberto ? <CardDetalhesRestaurante restaurante={selectedRestaurante} abrir={abrir} />
-                                :
-                                //se não mostra o card normal
-                                restaurantes.map(restaurante => (
-
-                                    <RestauranteCard
-                                        key={restaurante.id}
-                                        restaurante={restaurante}
-                                        onDelete={handleDelete}
-                                        onEdit={editInputs}
-                                        abrir={() => {
-                                            setSelectedRestaurante(restaurante);
-                                            abrir();
-                                        }}
-                                    />
-
-                                ))
-
-                        }
+                        {currentRestaurantes.map(restaurante => (
+                            <RestauranteCard
+                                key={restaurante.id}
+                                restaurante={restaurante}
+                                onDelete={handleDelete}
+                                onEdit={editInputs}
+                                abrir={() => {
+                                    setSelectedRestaurante(restaurante);
+                                    abrir();
+                                }}
+                            />
+                        ))}
                     </ul>
                 </div>
 
+                <div className="pagination flex justify-center items-center mt-6 space-x-4">
+                <button 
+                    onClick={prevPage} 
+                    disabled={currentPage === 1}
+                    className={`py-2 px-4 rounded ${currentPage === 1 ? 'bg-gray-500' : 'bg-lbronze'}`}
+                >
+                    Anterior
+                </button>
 
+                {[...Array(Math.ceil(filteredRestaurantes.length / restaurantsPerPage)).keys()].map(number => (
+                    <button 
+                        key={number + 1} 
+                        onClick={() => paginate(number + 1)}
+                        className={`py-2 px-4 rounded ${currentPage === number + 1 ? 'bg-lbronze' : 'bg-gray-300'}`}
+                    >
+                        {number + 1}
+                    </button>
+                ))}
 
-        </div>
-        <hr className='bg-lbronze h-2 mb-10' />
-        <Footer />
-       </main>
+                <button 
+                    onClick={nextPage} 
+                    disabled={currentPage === Math.ceil(filteredRestaurantes.length / restaurantsPerPage)}
+                    className={`py-2 px-4 rounded ${currentPage === Math.ceil(filteredRestaurantes.length / restaurantsPerPage) ? 'bg-gray-500' : 'bg-lbronze'}`}
+                >
+                    Próxima
+                </button>
+            </div>
+
+            </div>
+            <hr className='bg-lbronze h-2 mb-10' />
+            <Footer />
+        </main>
 
     );
 
