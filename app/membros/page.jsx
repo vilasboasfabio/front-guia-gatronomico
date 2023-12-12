@@ -22,6 +22,7 @@ function Membros() {
     const [editando, setEditando] = useState(false);
     const [selecionado, setSelecionado] = useState(null);
     const [error, setErrors] = useState([]); // New state for error message
+    const [isLoading, setIsLoading] = useState(false);
 
     const formRef = React.useRef(null);
 
@@ -53,12 +54,15 @@ function Membros() {
     }
 
     useEffect(() => {
+        setIsLoading(true);
         axios.get('/api/membros')
             .then((response) => {
                 setMembros(response.data);
+                setIsLoading(false);
             })
             .catch((error) => {
                 console.log(error);
+                setIsLoading(false);
             });
     }, []);
 
@@ -117,7 +121,9 @@ function Membros() {
     }, [membro]);
 
 
-
+    function LoadingComponent() {
+        return <img src='/loading1.webp' alt='Loading' className='w-1/2 mx-auto mt-5' />;
+    }
 
     return (
         <>
@@ -149,7 +155,16 @@ function Membros() {
 
                 </div>
                 <hr className="bg-lbronze lg:-ml-20 h-2 w-screen mb-6" />
+
                 <div className="flex flex-wrap w-screen lg:-ml-20 -mt-6 pb-12 bg-slate-900 p-4">
+                    {
+                        isLoading &&
+
+                        <div className='flex flex-col items-center justify-center min-h-screen mx-auto bg-slate-900 '>
+                            <p className='text-2xl text-lbronze'>Carregando...</p>
+                            <LoadingComponent />
+                        </div>
+                    }
                     {membros.map((membro) => (
                         <MembroCard membro={membro} handleDelete={handleDelete} handleEdit={handleEdit} />
                     ))}
