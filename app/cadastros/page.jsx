@@ -256,7 +256,7 @@ function CadastroRestaurante() {
                             placeholder="Pesquisar restaurante"
                             value={searchTerm}
                             onChange={handleSearchChange}
-                            className='mt-6 mb-6 w-96 px-4 py-2 rounded-md bg-gray-100 text-gray-900 focus:outline-none focus:ring-2 focus:ring-lbronze focus:border-transparent'
+                            className='mt-6 mb-6 w-auto lg:w-96 px-4 py-2 rounded-md bg-gray-100 text-gray-900 focus:outline-none focus:ring-2 focus:ring-lbronze focus:border-transparent'
                         />
                     </div>
                     {
