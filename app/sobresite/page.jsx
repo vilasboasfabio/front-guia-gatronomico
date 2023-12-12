@@ -291,7 +291,7 @@ function PaginaSobre() {
         </div>
       </article>
 
-            <section data-aos="fade-up"  className="flex flex-wrap border-bronze -mt-20 mb-12 lg:flex-nowrap w-5/6 mx-auto justify-center items-center p-4">
+            <section data-aos="fade-up"  className="flex flex-wrap border-bronze mt-2 mb-12 lg:flex-nowrap w-5/6 mx-auto justify-center items-center p-4">
                     <div className="w-full lg:w-1/3">
                         <Slider {...sliderSettings}>
                             {sliderImages.map((image, index) => (
