@@ -19,9 +19,6 @@
     
 }
 
-
-/*colocar transparencia no background no hover*/
-
 .text-lbronze{
     color: #CEB591;
 }
@@ -163,9 +160,26 @@
 .barra-progresso {
     transition: width 0.5s ease-out;
   }
+
+  .filters-section {
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+    max-height: 0;
+    width: 100%; /* ou max-width se você quiser limitar a largura */
+  box-sizing: border-box; /* para incluir padding e border na largura total */
+  padding: 0 15px;
+  }
   
-
-
+  .filters-section.show {
+    max-height: 180rem /* Ajuste para a altura máxima que seus filtros podem ocupar */
+  }
+  /* Se você tiver um botão ou outro elemento que controla a visibilidade dos filtros */
+  .toggle-filters-button {
+    margin-right: 15px; /* ajuste o espaço no lado direito */
+  }
+  .filters-section.hide {
+    max-height: 0;
+  }
 @media (max-width: 768px) {
     .resp-hid{
         display: none;

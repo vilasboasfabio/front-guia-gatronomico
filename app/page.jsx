@@ -9,6 +9,7 @@ import CardDetalhesRestaurante from './components/CardDetalhesRestaurante';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 
 
+
 function ExibirRestaurantes() {
   //essa function serve para fazer a paginação
   const [filters, setFilters] = useState({
@@ -35,6 +36,8 @@ function ExibirRestaurantes() {
   // o array de restaurantes filtrados e pesquisados
   const [isLoading, setIsLoading] = useState(true);
   // o estado que controla se a página está carregando ou não
+  const [showFilters, setShowFilters] = useState(false);
+  // o estado que controla se os filtros estão sendo mostrados ou não
 
   const valorOptions = [
     { value: '', label: 'Qualquer Valor' },
@@ -96,7 +99,7 @@ function ExibirRestaurantes() {
   // array de possiveis avaliações
   const paisesOptions = [
     { value: "", label: 'Qualquer país' },
-   //opções de paises em que o guia michelin está presente
+    //opções de paises em que o guia michelin está presente
     { value: 'Alemanha', label: 'Alemanha' },
     { value: 'Argentina', label: 'Argentina' },
     { value: 'Austrália', label: 'Austrália' },
@@ -225,6 +228,9 @@ function ExibirRestaurantes() {
     );
   }
 
+  const toggleFilters = () => {
+    setShowFilters(!showFilters);
+  };
 
   return (
     <div className=' bg-slate-900'>
@@ -250,7 +256,13 @@ function ExibirRestaurantes() {
       </div>
       <hr className='bg-lbronze h-2 -mt-1' />
       <article className='flex flex-col mt-10 items-center justify-center min-h-screen bg-slate-900 sm:px-6 lg:px-8 mb-10'>
-        <div className='lg:flex lg:-ml-16'>
+        <button onClick={toggleFilters} className="
+          bg-lbronze hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-6
+        ">
+          {showFilters ? 'Esconder Filtros' : 'Mostrar Filtros'}
+        </button>
+
+        <div className={`lg:flex filters-section ${showFilters ? 'show' : 'hide'}`}>
           {/*filtro por avaliaçâo */}
           <FilterDropdown
             label="Avaliação"

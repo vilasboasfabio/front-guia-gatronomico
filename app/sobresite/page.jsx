@@ -114,9 +114,13 @@ function PaginaSobre() {
 
 
   const sliderImages = [
-    '/pratocomida.png',
-    '/cardapio.png',
-    '/restaurante.png',
+    '/salao.png',
+    '/dom.png',
+    '/champagne.png',
+    '/japa.png',
+    '/laduree.png',
+    '/achef.png',
+
   ];
   // sliderImages serve para armazenar os caminhos das imagens do slider
 
@@ -259,7 +263,7 @@ function PaginaSobre() {
 
       </article>
 
-      <article className="lg:hidden min-h-screen">
+      <article className="lg:hidden lg:min-h-screen">
 
         <div style={containerStyles}>
           <div className="flex justify-center mt-12">
@@ -290,12 +294,12 @@ function PaginaSobre() {
           </div>
         </div>
       </article>
-
-            <section data-aos="fade-up"  className="flex flex-wrap border-bronze mt-2 mb-12 lg:flex-nowrap w-5/6 mx-auto justify-center items-center p-4">
-                    <div className="w-full lg:w-1/3">
+              <hr className='bg-lbronze h-2 -mt-6 lg:hidden' />
+            <section data-aos="fade-up"  className="flex flex-wrap border-bronze mt-8 lg:-mt-20 mb-12 lg:flex-nowrap w-5/6 mx-auto justify-center items-center">
+                    <div className="w-full lg:w-1/2">
                         <Slider {...sliderSettings}>
                             {sliderImages.map((image, index) => (
-                                <div key={index} className="w-full h-auto">
+                                <div key={index} className="w-full h-full">
                                     {/* Certifique-se de que o caminho para as imagens está correto */}
                                     <img src={image} alt={`Slide ${index}`} className="w-full" />
                                 </div>
