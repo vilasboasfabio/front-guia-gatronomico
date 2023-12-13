@@ -15,14 +15,7 @@ function Contato() {
         mensagem: ''
     });
     const [contatos, setContatos] = useState([]);
-    const [aberto, setAberto] = useState(false);
-    const [selectedContato, setSelectedContato] = useState(null);
-    const [resposta, setResposta] = useState('');
-    const [isResponding, setIsResponding] = useState(false);
-    const [respondedContatos, setRespondedContatos] = useState([]);
     const [errors, setErrors] = useState([]);
-
-    const formRef = React.useRef(null);
 
     const handleChange = (e) => {
         setContato({ ...contato, [e.target.name]: e.target.value });

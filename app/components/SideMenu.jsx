@@ -58,7 +58,7 @@ const SideMenu = ({ onClose }) => {
                                         </a>
                                     </nav>
                                     <div className='ml-3 mt-6'>
-                                        <a href="/logincadastromembros" className="inline-block w-36 h-8 pt-2 lg:pl-7 text-sm mx-auto leading-none border rounded border-dbronze px-6 hover:border-transparent text-white bg-lbronze pb-2 hover:bg-white">
+                                        <a href="/contatoparacadastro" className="inline-block w-36 h-8 pt-2 lg:pl-7 text-sm mx-auto leading-none border rounded border-dbronze px-6 hover:border-transparent text-white bg-lbronze pb-2 hover:bg-white">
                                             Cadastre-se
                                         </a>
                                     </div>

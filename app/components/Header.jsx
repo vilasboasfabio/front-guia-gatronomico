@@ -47,9 +47,9 @@ const Header = () => {
                         Contato
                     </a>
                 </div>
-                <div className='n-mt'>
-                    <a href="/logincadastromembros" className="inline-block w-36 h-8 pt-2 resp-hid lg:pl-7 text-sm mx-auto leading-none border rounded text-white border-white hover:border-transparent text-lbronze hover:bg-white lg:block">
-                        Cadastre-se
+                <div className='n-mt text-center'>
+                    <a href="/logincadastromembros" className="inline-block w-36 h-12 pt-2 resp-hid p-1 text-sm mx-auto leading-none border rounded text-white border-white hover:border-transparent text-lbronze hover:bg-white lg:block">
+                        Cadastro de Membros
                     </a>
                 </div>
             </div>
