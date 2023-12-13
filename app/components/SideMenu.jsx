@@ -3,7 +3,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 
 const SideMenu = ({ onClose }) => {
     return (
-        <div className="fixed z-40 inset-0 overflow-hidden">
+        <div className="fixed w-screen z-40 inset-0 overflow-hidden">
             <div className="absolute inset-0 overflow-hidden">
                 <section className="absolute inset-y-0 right-0 pl-10 flex" aria-labelledby="slide-over-heading">
                     <div className="relative w-screen max-w-md">

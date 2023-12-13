@@ -79,7 +79,7 @@ function PaginaSobre() {
   const containerStyles = {
     position: 'relative',
     width: '100vw',
-    height: '100vh',
+    height: '102vh',
     overflow: 'hidden'
   };
 
@@ -263,10 +263,10 @@ function PaginaSobre() {
 
       </article>
 
-      <article className="lg:hidden lg:min-h-screen">
+      <article className="lg:hidden mb-20 lg:min-h-screen">
 
         <div style={containerStyles}>
-          <div className="flex justify-center mt-12">
+          <div className="flex mb-24 justify-center mt-12">
             {allSwiped ? (
               //serve para renderizar a mensagem e o botão se allSwiped for verdadeiro
               renderEndOfCardsMessage()

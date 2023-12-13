@@ -13,6 +13,7 @@ const Header = () => {
     };
 
     return (
+        <>
         <nav className="flex items-center justify-between flex-wrap bg-slate-900 p-4 lg:p-6">
 
             <div className="mb-0 ml-0 -mr-12">
@@ -53,10 +54,12 @@ const Header = () => {
                     </a>
                 </div>
             </div>
-            {isMenuOpen && (
+            
+        </nav>
+        {isMenuOpen && (
                 <SideMenu onClose={toggleMenu} />
             )}
-        </nav>
+        </>
     );
 };
 
