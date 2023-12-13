@@ -3,10 +3,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import RestauranteCard from '../components/CardRestaurante';
 import RestauranteForm from '../components/RestauranteForm';
-import CardDetalhesRestaurante from '../components/CardDetalhesRestaurante';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ErrorPopup from '../components/ErrorPopUp';
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 
 
 function CadastroRestaurante() {
@@ -34,6 +34,8 @@ function CadastroRestaurante() {
     const [restaurantsPerPage] = useState(9);
     const [isLoading, setIsLoading] = useState(false);
     const [successMessage, setSuccessMessage] = useState('');
+
+
 
     const formRef = React.useRef(null);
 
@@ -220,6 +222,7 @@ function CadastroRestaurante() {
     function LoadingComponent() {
         return <img src='/loading1.webp' alt='Loading' className='w-1/2 mx-auto mt-5' />;
     }
+
     return (
         <main className='bg-slate-900'>
             <Header />
@@ -284,31 +287,17 @@ function CadastroRestaurante() {
                     </ul>
                 </div>
 
-                <div className="pagination flex justify-center items-center mt-6 space-x-4">
-                    <button
-                        onClick={prevPage}
-                        disabled={currentPage === 1}
-                        className={`py-2 px-4 rounded ${currentPage === 1 ? 'bg-gray-500' : 'bg-lbronze'}`}
-                    >
-                        Anterior
+                <div className='flex mx-auto mt-6'>
+                    {/* Botão para página anterior */}
+                    <button className='bg-lbronze hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' onClick={() => prevPage()} disabled={currentPage === 1}>
+                        <span className="button-text">Anterior</span>
+                        <AiOutlineArrowLeft className="button-icon" />
                     </button>
-
-                    {[...Array(Math.ceil(filteredRestaurantes.length / restaurantsPerPage)).keys()].map(number => (
-                        <button
-                            key={number + 1}
-                            onClick={() => paginate(number + 1)}
-                            className={`py-2 px-4 rounded ${currentPage === number + 1 ? 'bg-lbronze' : 'bg-gray-300'}`}
-                        >
-                            {number + 1}
-                        </button>
-                    ))}
-
-                    <button
-                        onClick={nextPage}
-                        disabled={currentPage === Math.ceil(filteredRestaurantes.length / restaurantsPerPage)}
-                        className={`py-2 px-4 rounded ${currentPage === Math.ceil(filteredRestaurantes.length / restaurantsPerPage) ? 'bg-gray-500' : 'bg-lbronze'}`}
-                    >
-                        Próxima
+                    <span className='text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>{currentPage}</span>
+                    {/* Botão para proxima página   */}
+                    <button className='bg-lbronze hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-2' onClick={() => nextPage()} disabled={currentPage === Math.ceil(filteredRestaurantes.length / restaurantsPerPage)}>
+                        <span className="button-text">Próximo</span>
+                        <AiOutlineArrowRight className="button-icon" />
                     </button>
                 </div>
 
