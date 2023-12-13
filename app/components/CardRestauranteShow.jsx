@@ -20,8 +20,9 @@ function RestauranteCardShow({ restaurante, abrirDetalhes}) {
 
   return (
 
-    <div className="max-w-sm rounded-2xl hover:cursor-pointer mt-5 bg-bronze overflow-hidden transition-transform duration-500  shadow-lg border-bronze relative group" onClick={() => abrirDetalhes(restaurante.id)}> 
+    <div className="max-w-sm rounded-2xl hover:cursor-pointer mt-5 bg-bronze overflow-hidden transition-transform duration-500  shadow-lg  border-bronze relative group" onClick={() => abrirDetalhes(restaurante.id)}> 
        {/* Descrição (inicialmente escondida e com transição suave) */}
+       
        <div className="absolute top-0 inset-x-0 mt-8 px-6 py-4 opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out z-10">
         <h3 className="font-bold text-xl mb-2 text-lbronze ">{restaurante.nome}</h3>
         <hr className='bg-lbronze w-12 h-1 mb-2 mt-2   rounded-lg' />
@@ -30,11 +31,14 @@ function RestauranteCardShow({ restaurante, abrirDetalhes}) {
         
       </div>
       {/* Imagem do Restaurante */}
+    
+      
       <img 
-        className="w-full h-64 relative z-0 group-hover:scale-150 group-hover:translate-y-full group-hover:opacity-0 transition-all duration-700 ease"
+        className="w-full h-64 border-none relative group-hover:scale-150 group-hover:translate-y-full group-hover:opacity-0 transition-all duration-700 ease"
         src={restaurante.img} 
         alt="Imagem do Restaurante"
       />
+      
       {/* Conteúdo do Card */}
       <div className="px-6 py-4 z-20 group-hover:translate-y-[200%]">
         <div className="font-bold text-xl mb-2 text-lbronze">{restaurante.nome} - {restaurante.chefe}</div>
