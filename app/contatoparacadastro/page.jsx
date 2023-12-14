@@ -66,7 +66,7 @@ function Login() {
             <ErrorPopup errors={errors} />
             <hr className='bg-lbronze h-1 -mt-1' />
             <div className=' flex items-center justify-center bg-slate-900 py-12 px-4 sm:px-6 lg:px-8'>
-                <div className='max-w-md w-full space-y-8'>
+                <div className=' max-w-2xl w-full space-y-8'>
                     <div>
                         <h2 className='mt-6 text-center text-3xl font-extrabold text-lbronze'>
                            Olá, deseja se tornar um colaborador da Elite Chefs?
@@ -75,7 +75,9 @@ function Login() {
                             <h4 className='text-justify text-xl font-bold text-gray-300 mb-3'>Você pode se tornar um membro da Elite Chefs e ter acesso a área de membros, onde você pode auxiliar na nossa curadoria, cadastrar restaurantes e muito mais.</h4>
                             <p className='text-justify text-xl mb-2 font-bold text-white'>Para isso, basta entrar em contato com a gente, enviando a sua proposta no formulário abaixo. Certifique-se de preencher os campos corretamente com as suas informações, insira o seu nome, o seu número de telefone e o seu e-mail nos repsecvtivos campos, deixe o seu CPF e a sua pretenção de cargo como colaborador na nossa equipe, no campo de texto da mensagem. </p>
                             <p className='text-justify mb-5 text-xl font-bold text-white'>Após o envio da sua proposta, iremos analisar o seu perfil e entraremos em contato com você o mais breve possível, em até 4 dias úteis.</p>
+                           <div className='w-full flex justify-center'>
                             <ContactForm contato={contato} handleChange={handleChange} handleSubmit={handleSubmit} />
+                            </div>
                             <PopUpCadastre isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}/>
                             
                         </div>
