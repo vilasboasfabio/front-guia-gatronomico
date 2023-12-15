@@ -44,6 +44,22 @@ const RestauranteForm = ({
     { value: 'Outra', label: 'Outra' },
   ];
 
+  const avaliacaoOptions = [
+    { value: 0, label: 'Selecionar Avaliação'},
+    { value: 1, label: '1 Estrela' },
+    { value: 2, label: '2 Estrelas' },
+    { value: 3, label: '3 Estrelas' },
+  ];
+
+  const valorOptions = [
+    { value: 0, label: 'Selecionar Valor'},
+    { value: 1, label: '$' },
+    { value: 2, label: '$$' },
+    { value: 3, label: '$$$' },
+    {value: 4, label: '$$$$'}
+  ];
+
+
 
   return (
     <div className="container mx-auto p-6 w-5/6 lg:w-2/3 bg-transparente mb-10 opacity-80 shadow-lg rounded-lg">
@@ -60,7 +76,7 @@ const RestauranteForm = ({
             onChange={handleChange}
             className="shadow appearance-none border rounded-xl w-full py-2 px-3 text-slate-100 leading-tight focus:outline-none bg-bronze-2 border-dbronze focus:shadow-outline"
           />
-          {errors.nome && <p className="error-message">{errors.nome}</p>}
+          
         </div>
 
         {/* Imagem */}
@@ -74,7 +90,7 @@ const RestauranteForm = ({
             onChange={handleChange}
             className="shadow appearance-none border rounded-xl w-full py-2 px-3 text-slate-100 leading-tight focus:outline-none bg-bronze-2 border-dbronze focus:shadow-outline"
           />
-          {errors.img && <p className="error-message">{errors.img}</p>}
+          
         </div>
 
         {/* Localização */}
@@ -88,21 +104,25 @@ const RestauranteForm = ({
             onChange={handleChange}
             className="shadow appearance-none border rounded-xl w-full py-2 px-3 text-slate-100 leading-tight focus:outline-none bg-bronze-2 border-dbronze focus:shadow-outline"
           />
-          {errors.loc && <p className="error-message">{errors.loc}</p>}
+          
         </div>
 
         {/* Valor */}
-        <div>
+        <div className='w-full'>
           <label htmlFor="valor" className="block text-white text-base font-bold mb-0 mt-4">Valor:</label>
-          <input
+          <select
             id="valor"
             name="valor"
-            type="text"
             value={restaurante.valor}
             onChange={handleChange}
             className="shadow appearance-none border rounded-xl w-full py-2 px-3 text-slate-100 leading-tight focus:outline-none bg-bronze-2 border-dbronze focus:shadow-outline"
-          />
-          {errors.valor && <p className="error-message">{errors.valor}</p>}
+          >
+            {valorOptions.map((option) => (
+              <option key={option.value} value={option.value} >
+                {option.label}
+              </option>
+            ))}
+          </select>
         </div>
 
         {/* Tipo */}
@@ -122,7 +142,7 @@ const RestauranteForm = ({
               </option>
             ))}
           </select>
-          {errors.tipo && <p className="error-message">{errors.tipo}</p>}
+          
         </div>
 
         {/* Chefe */}
@@ -136,7 +156,7 @@ const RestauranteForm = ({
             onChange={handleChange}
             className="shadow appearance-none border rounded-xl w-full py-2 px-3 text-slate-100 leading-tight focus:outline-none bg-bronze-2 border-dbronze focus:shadow-outline"
           />
-          {errors.chefe && <p className="error-message">{errors.chefe}</p>}
+          
         </div>
 
         {/* Descrição */}
@@ -150,7 +170,7 @@ const RestauranteForm = ({
             onChange={handleChange}
             className="shadow appearance-none border rounded-xl w-full py-2 px-3 text-slate-100 leading-tight focus:outline-none bg-bronze-2 border-dbronze focus:shadow-outline"
           />
-          {errors.descricao && <p className="error-message">{errors.descricao}</p>}
+          
         </div>
 
         {/* Funcionamento */}
@@ -199,15 +219,19 @@ const RestauranteForm = ({
 
         <div>
           <label htmlFor="avaliacao" className="block text-white text-base font-bold mb-0 mt-4">Avaliação:</label>
-          <input
+          <select
             id="avaliacao"
             name="avaliacao"
-            type="number"
             value={restaurante.avaliacao}
             onChange={handleChange}
             className="shadow appearance-none border rounded-xl w-full py-2 px-3 text-slate-100 leading-tight focus:outline-none bg-bronze-2 border-dbronze focus:shadow-outline"
-          />
-          {errors.avaliacao && <p className="error-message">{errors.avaliacao}</p>}
+          >
+            {avaliacaoOptions.map((option) => (
+              <option key={option.value} value={option.value} >
+                {option.label}
+              </option>
+            ))}
+          </select>
         </div>
 
         {/* Data */}
@@ -221,7 +245,7 @@ const RestauranteForm = ({
             onChange={handleChange}
             className="shadow appearance-none border rounded-xl w-full py-2 px-3 text-slate-100 leading-tight focus:outline-none bg-bronze-2 border-dbronze focus:shadow-outline"
           />
-          {errors.data && <p className="error-message">{errors.data}</p>}
+          
         </div>
 
         <div className='mx-auto mt-4 lg:ml-80'>
