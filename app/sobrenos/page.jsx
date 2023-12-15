@@ -1,5 +1,5 @@
 'use client';
-
+// Importando os módulos necessários
 import React, { useState, useEffect, useRef } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -10,8 +10,9 @@ import Header from "../components/Header";
 
 function Sobrenos() {
 
+    // Definindo o estado inicial para membros, editando, selecionado e erros
     const cardData = [
-        // ...seus dados de cartões
+       
         {
             name: 'Ana Clara Cavalcante Reis',
             url: '/eu.png',
@@ -38,62 +39,54 @@ function Sobrenos() {
             descricao: 'Sou Samuel, natural de Campinas-SP, e atualmente conto com 17 anos de idade. Encontro-me matriculado no curso de Desenvolvimento de Sistemas no SENAI Valinhos-SP. Sou apaixonado por tecnologia e por tudo que ela pode nos proporcionar, e por isso, estou sempre buscando aprender mais sobre o assunto. Além disso, sou uma pessoa muito comunicativa e gosto de trabalhar em equipe, pois acredito que a troca de conhecimentos é essencial para o crescimento profissional e pessoal de todos.'
         },
     ];
+
+    // Definindo o estado inicial para membros, editando, selecionado e erros
     const [autoplay, setAutoplay] = useState(true);
     const [progress, setProgress] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
     const sliderRef = useRef(null);
     const progressInterval = useRef(null);
 
-    // Function to start the progress bar
+   // Função para começar a progress bar
     const startProgress = () => {
-        // Clear any existing intervals
+        //Limpar o intervalo atual
         if (progressInterval.current) clearInterval(progressInterval.current);
 
-        // Set a new interval
+        // Iniciar um novo intervalo
         progressInterval.current = setInterval(() => {
             setProgress((prevProgress) => {
-                const nextProgress = prevProgress + 5; // Update progress
+                const nextProgress = prevProgress + 5; //Atualizar o progresso
                 if (nextProgress >= 100) {
-                    // If progress is complete, go to the next slide and reset progress
+                    //Se o progresso for 100, parar o intervalo e ir para o próximo slide
                     clearInterval(progressInterval.current);
                     sliderRef.current.slickNext();
                     return 0;
                 }
                 return nextProgress;
             });
-        }, 200); // The interval time controls the speed of the progress bar
+        }, 200); // O controle deslizante muda a cada 5 segundos, então a barra de progresso deve ser atualizada a cada 200 milissegundos
     };
 
-    // Effect to start the progress bar when autoplay is true
+    // Effect para iniciar a progress bar
     useEffect(() => {
         if (autoplay && !isPaused) {
             startProgress();
         }
 
-        // Cleanup interval on unmount
+        //Limpar o intervalo quando o componente é desmontado
         return () => {
             if (progressInterval.current) clearInterval(progressInterval.current);
         };
     }, [autoplay, isPaused]);
 
-    // Effect to clear the interval when the progress is paused
+    // Effect para pausar a progress bar quando o mouse está sobre o controle deslizante
     useEffect(() => {
         if (isPaused && progressInterval.current) {
             clearInterval(progressInterval.current);
         }
     }, [isPaused]);
 
-    // Function to toggle the autoplay and pause states
-    const toggleAutoplayAndPause = () => {
-        setAutoplay(!autoplay);
-        setIsPaused(!isPaused);
-        if (isPaused) {
-            // If currently paused, resume the progress bar
-            startProgress();
-        }
-    };
-
-    // Slider settings
+    // Configurações do carrossel
     const settings = {
         dots: false,
         infinite: true,
@@ -104,11 +97,11 @@ function Sobrenos() {
         autoplaySpeed: 5000,
         pauseOnHover: false,
         beforeChange: () => {
-            // Clear interval when the slide is about to change
+            // Limpar o intervalo atual
             if (progressInterval.current) clearInterval(progressInterval.current);
         },
         afterChange: () => {
-            // Restart the progress bar after slide change
+            // Recomeçar a barra de progresso
             setProgress(0);
             if (!isPaused) {
                 startProgress();
@@ -142,7 +135,9 @@ function Sobrenos() {
     */}             <div className="min-h-screen mb-12">
                     <div className="relative mt-6">
                         <div className="max-w-xl mx-auto overflow-hidden">
+                            {/* essa div é usada para colocar os cards em um carrossel*/}
                             <Slider ref={sliderRef} {...settings}>
+                                
                                 {cardData.map((card, index) => (
                                     <div key={index} onClick={() => setAutoplay(!autoplay)} className="px-4 flex justify-center items-cente bg-slate-800 border-bronze rounded-md p-8">
                                         <div className="max-w-md mx-auto">
@@ -155,7 +150,7 @@ function Sobrenos() {
                                     </div>
                                 ))}
                             </Slider>
-                            {/* ESSA DIV É usada abaixo é usada para colocar a barra de progresso do carrossel
+                            {/* ESSA DIV abaixo é usada para colocar a barra de progresso do carrossel
     */}
                             <div className='w-11/12 ml-5 h-2 bg-gray-200 my-4'>
                                 <div className='barra-progresso h-full bg-lbronze' style={{ width: `${progress}%` }}></div>

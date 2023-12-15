@@ -1,4 +1,5 @@
 'use client';
+//Importando os módulos necessários
 import Header from "../components/Header";
 import axios from 'axios';
 import Footer from "../components/Footer";
@@ -8,6 +9,7 @@ import ErrorPopup from "../components/ErrorPopUp";
 import MemberForm from "../components/MembroForm";
 import MembroCard from "../components/MembroCard";
 
+//Definindo o componente Membros
 function Membros() {
 
     const [membro, setMembro] = useState({
@@ -18,18 +20,22 @@ function Membros() {
         senha: '',
     });
 
+    //Definindo o estado inicial para membros, editando, selecionado e erros
     const [membros, setMembros] = useState([]);
     const [editando, setEditando] = useState(false);
     const [selecionado, setSelecionado] = useState(null);
     const [error, setErrors] = useState([]); // New state for error message
     const [isLoading, setIsLoading] = useState(false);
 
+    //Função para lidar com a mudança nos campos do formulário
     const formRef = React.useRef(null);
 
+    // Função para lidar com a mudança nos campos do formulário
     const handleChange = (e) => {
         setMembro({ ...membro, [e.target.name]: e.target.value });
     }
 
+    // Função para lidar com o envio do formulário
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -42,7 +48,7 @@ function Membros() {
                 descricao: '',
                 senha: '',
             });
-            setErrors(null); // Clear error message on successful operation
+            setErrors(null); // Limpar a mensagem de erro em caso de operação bem-sucedida
         } catch (error) {
             if (error.response && error.response.data && error.response.data.erros) {
                 setErrors(error.response.data.erros);
@@ -53,6 +59,7 @@ function Membros() {
         }
     }
 
+    //useEffect para renderizar a página novamente quando o componente é montado
     useEffect(() => {
         setIsLoading(true);
         axios.get('/api/membros')
@@ -66,7 +73,7 @@ function Membros() {
             });
     }, []);
 
-
+    // Função para lidar com a exclusão de um membro
     const handleDelete = async (id) => {
 
         try {
@@ -77,6 +84,7 @@ function Membros() {
         }
     };
 
+    //Funça7o para lidar com a edição de um membro preenchendo o formulário com os dados do membro selecionado
     const handleEdit = (membro) => {
         setEditando(true);
         setSelecionado(membro);
@@ -84,6 +92,7 @@ function Membros() {
         formRef.current.scrollIntoView({ behavior: 'smooth' });
     }
 
+    // Função para lidar com a atualização de um membro
     const handleUpdate = async (id, updatedMembro) => {
         try {
             const response = await axios.put(`/api/membros/${id}`, updatedMembro);
@@ -109,6 +118,7 @@ function Membros() {
             }
         }
     }
+
     //useEffect para renderizar a página novamente quando o estado de restaurantes for alterado
     useEffect(() => {
         axios.get('/api/membros')
@@ -120,11 +130,12 @@ function Membros() {
             });
     }, [membro]);
 
-
+    // Função para lidar com a exclusão de um membro
     function LoadingComponent() {
         return <img src='/loading1.webp' alt='Loading' className='w-1/2 mx-auto mt-5' />;
     }
 
+    // Renderizando o componente
     return (
         <>
             <Header />

@@ -8,8 +8,9 @@ import Footer from '../components/Footer';
 import ErrorPopup from '../components/ErrorPopUp';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 
-
+//Definindo o componente CadastroRestaurante
 function CadastroRestaurante() {
+    //Definindo o estado inicial para restaurante, restaurantes, erros, aberto, restaurante selecionado, termo de pesquisa, página atual e carregamento
     const [restaurante, setRestaurante] = useState({
         nome: '',
         img: '',
@@ -36,13 +37,15 @@ function CadastroRestaurante() {
     const [successMessage, setSuccessMessage] = useState('');
 
 
-
+    //Definindo a referência para o formulário
     const formRef = React.useRef(null);
 
+    //Função para lidar com a mudança nos campos do formulário
     const handleChange = (e) => {
         setRestaurante({ ...restaurante, [e.target.name]: e.target.value });
     };
 
+    //Função para abrir o modal
     const abrir = () => {
         if (aberto) {
             setAberto(false);
@@ -52,6 +55,7 @@ function CadastroRestaurante() {
         }
     }
 
+    //Função para lidar com a mudança nos campos do formulário
     const handleCheckboxChange = (e) => {
         const { name, value } = e.target;
         let newSelection;
@@ -69,6 +73,7 @@ function CadastroRestaurante() {
         setRestaurante({ ...restaurante, [name]: newSelection });
     };
 
+    //Função para lidar com o envio do formulário
     const handleSubmit = async (e) => {
         e.preventDefault();
         const dadosFormatados = {
@@ -77,9 +82,11 @@ function CadastroRestaurante() {
             avaliacao: Number(restaurante.avaliacao)
         };
 
+        // Verificar se o valor e a avaliação são números
         if (isEditing) {
             handleEdit(editingRestaurante, dadosFormatados);
         } else {
+            // Tentativa de postar os dados do restaurante para a API
             try {
                 const response = await axios.post('/api/restaurantes', dadosFormatados);
                 // Defina a mensagem de sucesso com a mensagem retornada pela API
@@ -114,10 +121,12 @@ function CadastroRestaurante() {
         }
     };
 
+    //Função para lidar com a edição do formulário
     const handleEdit = async (id, updatedRestaurante) => {
         const valorNumerico = Number(updatedRestaurante.valor);
         const avaliacaoNumerica = Number(updatedRestaurante.avaliacao);
 
+        // Verificar se o valor e a avaliação são números
         if (isNaN(valorNumerico) || isNaN(avaliacaoNumerica)) {
             setErrors(['Valor e avaliação devem ser números.']);
             return;
@@ -129,6 +138,7 @@ function CadastroRestaurante() {
             avaliacao: avaliacaoNumerica
         };
 
+        // Tentativa de atualizar os dados do restaurante para a API
         try {
             await axios.put(`/api/restaurantes/${id}`, dadosFormatados);
             const response = await axios.get('/api/restaurantes');
@@ -147,7 +157,9 @@ function CadastroRestaurante() {
                 avaliacao: '',
                 data: ''
             });
+            
         } catch (error) {
+            // Lidando com possíveis erros para atualizar os dados do restaurante
             if (error.response && error.response.data && error.response.data.erros) {
                 setErrors(error.response.data.erros);
                 console.log(error.response.data.erros);
@@ -159,6 +171,8 @@ function CadastroRestaurante() {
         }
     };
 
+
+    //Função para lidar com a exclusão do formulário
     const handleDelete = async (id) => {
         try {
             await axios.delete(`/api/restaurantes/${id}`);
@@ -168,6 +182,7 @@ function CadastroRestaurante() {
         }
     };
 
+    // Usando o useEffect para buscar os restaurantes da API quando o componente é montado
     useEffect(() => {
         const fetchRestaurantes = async () => {
             setIsLoading(true);
@@ -185,6 +200,7 @@ function CadastroRestaurante() {
     }, [restaurante]);
 
 
+    //Função para editar os inputs e preencher o formulário com os dados do restaurante
     const editInputs = (id) => {
         const restauranteEdit = restaurantes.find(restaurante => restaurante.id === id);
         setRestaurante(restauranteEdit);
@@ -193,6 +209,7 @@ function CadastroRestaurante() {
         formRef.current.scrollIntoView({ behavior: 'smooth' });
     }
 
+    //Função para lidar com a mudança nos campos do formulário
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);
         setCurrentPage(1); // Reset para a primeira página com a nova pesquisa
@@ -211,18 +228,22 @@ function CadastroRestaurante() {
     // Mudar página
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
+    // Página anterior
     const nextPage = () => {
         setCurrentPage(currentPage + 1);
     };
 
+    // Próxima página
     const prevPage = () => {
         setCurrentPage(currentPage - 1);
     };
 
+    // Componente de carregamento
     function LoadingComponent() {
         return <img src='/loading1.webp' alt='Loading' className='w-1/2 mx-auto mt-5' />;
     }
 
+    // Renderizando o componente em tela
     return (
         <main className='bg-slate-900'>
             <Header />

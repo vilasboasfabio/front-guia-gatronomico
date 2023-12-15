@@ -1,4 +1,5 @@
 'use client';
+//Importando os módulos necessários
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Footer from "../components/Footer";
@@ -6,8 +7,10 @@ import ErrorPopup from '../components/ErrorPopUp';
 import Header from '../components/Header';
 import { formatNumber } from 'libphonenumber-js'
 
+//Definindo o componente Contato
 function Contato() {
 
+    //Definindo o estado inicial para contato, contatos e erros
     const [contato, setContato] = useState({
         nome: '',
         email: '',
@@ -23,12 +26,8 @@ function Contato() {
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
-    const formRef = React.useRef(null);
 
-    const handleChange = (e) => {
-        setContato({ ...contato, [e.target.name]: e.target.value });
-    };
-
+    //Função para lidar com o envio do formulário
     const abrir = () => {
         if (aberto) {
             setAberto(false);
@@ -38,28 +37,12 @@ function Contato() {
         }
     }
 
+    //Função para lidar com a mudança nos campos do formulário
     const handleResponseChange = (e) => {
         setResposta(e.target.value);
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        axios.post('/api/contatos', contato)
-            .then((response) => {
-                setContatos(prevContatos => [...prevContatos, response.data]);
-                setContato({
-                    nome: '',
-                    email: '',
-                    telefone: '',
-                    mensagem: ''
-                });
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }
-
+// Usando o useEffect para buscar os contatos da API quando o componente é montado
     useEffect(() => {
         setIsLoading(true);
         axios.get('/api/contatos')
@@ -74,6 +57,7 @@ function Contato() {
             });
     }, []);
 
+    // Função para lidar com a exclusão de um contato
     const handleDelete = (id) => {
         axios.delete(`/api/contatos/${id}`)
             .then((response) => {
@@ -85,6 +69,7 @@ function Contato() {
             });
     }
 
+    // Função para lidar com a edição de um contato preenchendo o formulário com os dados do contato selecionado
     const handleResponseSubmit = async (id) => {
         if (!resposta.trim()) {
             setErrors(['A resposta não pode estar vazia.']);
@@ -110,10 +95,12 @@ function Contato() {
         }
     };
 
+    // Função para lidar com a edição de um contato preenchendo o formulário com os dados do contato selecionado
     function LoadingComponent() {
         return <img src='/loading1.webp' alt='Loading' className='w-1/2 mx-auto mt-5' />;
     }
 
+    // Renderizando o componente
     return (
         <>
             <Header />

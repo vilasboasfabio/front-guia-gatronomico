@@ -1,14 +1,17 @@
 'use client';
+// Importando os módulos necessários
 import React, { useState } from 'react';
 import axios from 'axios';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
+// Definindo o componente Login
 function Login() {
     const [nome, setNome] = useState('');
     const [senha, setSenha] = useState('');
     const [error, setError] = useState(null);
 
+    // Função para lidar com o envio do formulário
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -16,17 +19,19 @@ function Login() {
             const response = await axios.get('/api/membros');
             const membros = response.data;
 
-            const membro = membros.find(membro => membro.nome === nome && '123456e' === senha);
+            const membro = membros.find(membro => membro.nome === nome && membro.senha === senha);
 
-            if (membro) {
+            if (membro && (membro.posicao === 'membro' || membro.posicao === 'techlider')) {
                 window.location.href = '/respondercontatos';
             } else {
-                setError('Nome de usuário ou senha inválidos');
+                setError('Nome de usuário, senha ou posição inválidos');
             }
         } catch (error) {
             setError('Ocorreu um erro ao fazer login');
         }
     };
+
+    // Renderização do componente
 
     return (
         <>

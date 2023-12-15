@@ -1,4 +1,5 @@
-'use client';
+'use client'
+// Importando os módulos necessários
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Footer from "../components/Footer";
@@ -6,8 +7,10 @@ import ContactForm from '../components/ContatosForm';
 import Header from '../components/Header';
 import ErrorPopup from '../components/ErrorPopUp';
 
+// Definindo o componente Contato
 function Contato() {
 
+    // Definindo o estado inicial para contato, contatos e erros
     const [contato, setContato] = useState({
         nome: '',
         email: '',
@@ -17,24 +20,31 @@ function Contato() {
     const [contatos, setContatos] = useState([]);
     const [errors, setErrors] = useState([]);
 
+    // Função para lidar com a mudança nos campos do formulário
     const handleChange = (e) => {
         setContato({ ...contato, [e.target.name]: e.target.value });
     };
 
+    // Função para lidar com o envio do formulário
     const handleSubmit = async (e) => {
         e.preventDefault();
     
         try {
+            // Tentativa de postar os dados do contato para a API
             const response = await axios.post('/api/contatos', contato);
+            // Atualizando o estado dos contatos com a resposta da API
             setContatos([...contatos, response.data]);
+            // Resetando o estado do contato
             setContato({
                 nome: '',
                 email: '',
                 telefone: '',
                 mensagem: ''
             });
-            setErrors(null); // Clear error message on successful operation
+            // Limpar a mensagem de erro em caso de operação bem-sucedida
+            setErrors(null); 
         } catch (error) {
+            // Lidando com possíveis erros
             if (error.response && error.response.data && error.response.data.erros) {
                 setErrors(error.response.data.erros);
                 console.log(error.response.data.erros);
@@ -44,6 +54,7 @@ function Contato() {
         }
     }
 
+    // Usando o useEffect para buscar os contatos da API quando o componente é montado
     useEffect(() => {
         axios.get('/api/contatos')
             .then((response) => {
@@ -55,6 +66,7 @@ function Contato() {
             });
     }, []);
 
+    // Renderizando o componente
     return (
         <>
             <Header />
@@ -80,8 +92,7 @@ function Contato() {
             <Footer />
         </>
     )
-
-
 }
 
+// Exportando o componente Contato
 export default Contato;

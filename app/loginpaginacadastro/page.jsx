@@ -19,9 +19,13 @@ function Login() {
             const membro = membros.find(membro => membro.nome === nome && membro.senha === senha);
 
             if (membro) {
-                window.location.href = '/cadastros';
+                if (membro.posicao !== 'chef') {
+                    window.location.href = '/cadastros';
+                } else {
+                    setError('Os chefs não podem acessar essa página');
+                }
             } else {
-                setError('Nome de usuário ou senha inválidos');
+                setError('Nome de usuário, senha ou posição inválidos');
             }
         } catch (error) {
             setError('Ocorreu um erro ao fazer login');

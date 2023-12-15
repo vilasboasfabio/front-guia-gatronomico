@@ -1,5 +1,6 @@
 'use client';
 
+// Importando os módulos necessários
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import TinderCard from 'react-tinder-card';
@@ -12,8 +13,9 @@ import "slick-carousel/slick/slick-theme.css";
 
 function PaginaSobre() {
 
+  // Definindo o estado inicial para membros, editando, selecionado e erros
   const cardData = [
-    // ...seus dados de cartões com os mesmos textos e imagens desta página
+   
     {
       name: 'Descubra Destinos Gastronômicos Exclusivos:',
       url: '/pratocomida.png',
