@@ -38,6 +38,7 @@ function Login() {
                 mensagem: ''
             });
             setErrors(null); // Clear error message on successful operation
+            setIsModalOpen(true);
         } catch (error) {
             if (error.response && error.response.data && error.response.data.erros) {
                 setErrors(error.response.data.erros);
