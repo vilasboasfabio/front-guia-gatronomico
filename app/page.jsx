@@ -243,8 +243,6 @@ function ExibirRestaurantes() {
 
         <div className='flex resp-hid flex-col items-center justify-center min-h-screen  sm:px-6 lg:px-8 mb-10'>
 
-
-          <img src='/titulo.png' alt='Guia de Restaurante' className='lg:ml-6 mt-36 mb-2 w-max' />
           {/* { <hr className='bg-lbronze h-1 w-3/4 mt-0' /> } */}
           <div className='flex flex-col -mb'>
 
